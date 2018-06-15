@@ -34,6 +34,8 @@ class ShopSv extends BaseService {
       'open_time' => $data['open_time'],
       'thumbnail' => $data['thumbnail'],
       'words' => $data['words'],
+      'ext_1' => $data['ext_1'],
+      'ext_2' => $data['ext_2'],
       'brief' => $data['brief'],
       'image_text' => $data['image_text'],
       'shop_address' => $data['shop_address'],
