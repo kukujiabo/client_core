@@ -33,13 +33,19 @@ class RewardSv extends BaseService {
 
       'reward_code' => $data['reward_code'],
 
-      'check_code' => $data['check_code'],
-
-      'price' => $data['price'],
-
       'brief' => $data['brief'],
 
-      'shop_id' => $data['shop_id'],
+      'rate' => $data['rate'],
+
+      'limit' => $data['limit'],
+
+      'min_credit' => $data['min_credit'],
+
+      'max_credit' => $data['max_credit'],
+
+      'time' => $data['time'],
+
+      'commission' => $data['commission'],
 
       'num' => $data['num'],
 
@@ -104,11 +110,6 @@ class RewardSv extends BaseService {
       $updateData['check_code'] = $data['check_code'];
     
     }
-    if (isset($data['price'])) {
-
-      $updateData['price'] = $data['price'];
-    
-    }
     if (isset($data['thumbnail'])) {
 
       $updateData['thumbnail'] = $data['thumbnail'];
@@ -127,6 +128,36 @@ class RewardSv extends BaseService {
     if (isset($data['status'])) {
 
       $updateData['status'] = $data['status'];
+    
+    }
+    if (isset($data['commission'])) {
+
+      $updateData['commission'] = $data['commission'];
+    
+    }
+    if (isset($data['time'])) {
+
+      $updateData['time'] = $data['time'];
+    
+    }
+    if (isset($data['limit'])) {
+
+      $updateData['limit'] = $data['limit'];
+    
+    }
+    if (isset($data['rate'])) {
+
+      $updateData['rate'] = $data['rate'];
+    
+    }
+    if (isset($data['max_credit'])) {
+
+      $updateData['max_credit'] = $data['max_credit'];
+    
+    }
+    if (isset($data['min_credit'])) {
+
+      $updateData['min_credit'] = $data['min_credit'];
     
     }
     if (isset($data['start_time'])) {
