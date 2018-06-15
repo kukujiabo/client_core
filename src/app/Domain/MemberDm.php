@@ -30,12 +30,12 @@ class MemberDm {
    *
    * @return int $id
    */
-  public function register($mobile, $memberName) {
+  public function register($mobile, $memberName, $password) {
   
     /**
      * 返回注册结果
      */
-    $id = $this->_memberSv->register($mobile);
+    $id = $this->_memberSv->register($mobile, $password);
 
     if ($id) {
 
