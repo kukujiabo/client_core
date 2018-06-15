@@ -38,14 +38,14 @@ class ShopSv extends BaseService {
       'ext_2' => $data['ext_2'],
       'brief' => $data['brief'],
       'image_text' => $data['image_text'],
-      'shop_address' => $data['shop_address'],
+      'commission' => $data['commission'],
       'status' => $data['status'],
       'created_at' => date('Y-m-d H:i:s')
     ];
 
     $map = new TXMapSv();
 
-    $titude = $map->getQqAddress($data['shop_address']);
+    $titude = $map->getQqAddress($data['commission']);
 
     if($titude) {
 
@@ -125,9 +125,9 @@ class ShopSv extends BaseService {
       $updateData['image_text'] = $data['image_text'];
     
     }
-    if (isset($data['shop_address'])) {
+    if (isset($data['commission'])) {
     
-      $updateData['shop_address'] = $data['shop_address'];
+      $updateData['commission'] = $data['commission'];
     
     }
     if (isset($data['status'])) {
