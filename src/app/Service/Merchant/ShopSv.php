@@ -135,6 +135,16 @@ class ShopSv extends BaseService {
       $updateData['status'] = $data['status'];
     
     }
+    if (isset($data['ext_1'])) {
+    
+      $updateData['ext_1'] = $data['ext_1'];
+    
+    }
+    if (isset($data['ext_2'])) {
+    
+      $updateData['ext_2'] = $data['ext_2'];
+    
+    }
 
     if ($data['carousel']) {
 
