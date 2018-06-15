@@ -22,6 +22,8 @@ class Shop extends BaseApi {
         'open_time' => 'open_time|string|false||营业时间',
         'thumbnail' => 'thumbnail|string|false||店铺logo',
         'words' => 'words|string|false||一句话介绍',
+        'ext_1' => 'ext_1|int|false||最大额度',
+        'ext_2' => 'ext_2|int|false||最小额度',
         'brief' => 'brief|string|false||店铺简介',
         'image_text' => 'image_text|string|false||店铺照片',
         'carousel' => 'carousel|string|false||店铺轮播图',
