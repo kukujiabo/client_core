@@ -15,12 +15,12 @@ class BusinessApply extends BaseApi {
       'create' => [
       
         'name' => 'name|string|true||商户全称',
-        'member_id' => 'member_id|int|true||会员id',
+        'member_id' => 'member_id|int|false||会员id',
         'address' => 'address|string|true||商户地址',
         'contact' => 'contact|string|true||联系人',
         'phone' => 'phone|string|true||联系人电话',
-        'wechat' => 'wechat|string|true||微信号',
-        'brief' => 'brief|string|true||商户简介'
+        'wechat' => 'wechat|string|false||微信号',
+        'brief' => 'brief|string|false||商户简介'
       
       ],
 
