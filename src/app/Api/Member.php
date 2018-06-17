@@ -226,7 +226,7 @@ class Member extends BaseApi {
    *
    * @return
    */
-  public function wechetPubLogin() {
+  public function wechatPubLogin() {
   
     return $this->dm->wechatPubLogin($this->retriveRuleParams(__FUNCTION__));
   
