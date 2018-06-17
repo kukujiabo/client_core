@@ -47,9 +47,17 @@ class WechatAppSv extends ConfigSv {
    *
    * @return string accessToken
    */
-  public function getAccessToken($refresh = false) {
+  public function getAccessToken($type = 'pub', $refresh = false, $code = '') {
+
+    if ($type == 'pub') {
+    
+      return WechatAuth::getPubAccessToken($this->_appid, $this->_appsecret, $code);  
+    
+    } else {
   
-    return WechatAuth::getAccessToken($this->_appid, $this->_appsecret, $refresh);  
+      return WechatAuth::getMiniAccessToken($this->_appid, $this->_appsecret, $refresh);  
+
+    }
   
   }
 

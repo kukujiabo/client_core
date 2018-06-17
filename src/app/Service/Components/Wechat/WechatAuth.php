@@ -11,15 +11,41 @@ use App\Library\Http;
  */
 class WechatAuth {
 
+
   /**
-   * 获取微信接口访问令牌
+   * 获取微信公众号接口访问令牌
+   *
+   * @param string appid
+   * @param string appsecret
+   * @param string code
+   *
+   * @return
+   */
+  public static function getPubAccessToken($appid, $appsecret, $code) {
+
+    $url = str_replace(array('{APPID}', '{APPSECRET}', '{CODE}'), array($appid, $appsecret, $code), WechatApi::USER_ACCESS_TOKEN);
+
+    $result = json_decode(Http::httpGet($url));  
+
+    if ($result->errcode) {
+    
+      //todo record error.
+    
+    }
+    
+    return $result;
+  
+  }
+
+  /**
+   * 获取小程序微信接口访问令牌
    *
    * @param string appid
    * @param string appsecret
    *
    * @return
    */
-  public static function getAccessToken($appid, $appsecret, $refresh = false) {
+  public static function getMiniAccessToken($appid, $appsecret, $refresh = false) {
 
     $accessToken = RedisClient::get('wechat_auth', $appid);
 
