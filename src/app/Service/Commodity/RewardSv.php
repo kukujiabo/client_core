@@ -176,7 +176,7 @@ class RewardSv extends BaseService {
       $updateData['end_time'] = $data['end_time'];
     
     }
-    if (isset($data['image_text']) {
+    if (isset($data['image_text'])) {
 
       $updateData['image_text'] = $data['image_text'];
 
