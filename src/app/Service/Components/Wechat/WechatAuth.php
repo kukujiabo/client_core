@@ -127,4 +127,39 @@ class WechatAuth {
 
   }
 
+  /**
+   * 查询用户信息
+   *
+   * @param string accessToken
+   * @param string openid
+   *
+   * @return
+   */
+  public static function getUserInfo($accessToken, $openid) {
+  
+    /**
+     * 读取配置url
+     */
+    $url = str_replace(
+
+      array('{ACCESS_TOKEN}', '{OPENID}'), 
+
+      array($accessToken, $openid), 
+
+      WechatApi::DEVELOPER_WECHAT_ONER_USER_INFO
+
+    );
+  
+    $result = json_decode(Http::httpGet($url));
+
+    if ($result->errcode) {
+    
+      //todo handle api error
+    
+    }
+
+    return $result;
+  
+  }
+
 }

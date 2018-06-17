@@ -142,7 +142,25 @@ class MemberSv extends BaseService {
     /**
      * 2.查询用户openid，unionid
      */
-    return $accessToken;
+    $openid = $accessToken->openid;
+
+    $accessToken = $accessToken->access_token;
+
+    return $wxApp->getUserInfo($accessToken, $openid);
+
+    $member = $this->findOne(['wx_pbopenid' => $openid]);
+
+    if ($member) {
+    
+      return $this->createSession($member['id'], 'member_auth');
+    
+    } else {
+
+      $id = $this->createAuthByWxPubOpenId($openid);
+
+      return $this->createSession($id, 'member_auth');
+    
+    }
   
   }
 

@@ -225,4 +225,34 @@ trait AuthTrait {
   
   }
 
+  /**
+   * 用公众号openid创建新对象
+   *
+   * @param string openId
+   * @param string unionId
+   *
+   * @return
+   */
+  public function createAuthByWxPubOpenId($openId, $unionId = null) {
+  
+    $new = [
+    
+      'wx_pbopenid' => $openId,
+
+      'created_at' => date('Y-m-d H:i:s'),
+
+      'reference' => 1
+
+    ];
+
+    if ($unionId) {
+    
+      $new['wx_unionid'] = $unionId;
+    
+    }
+
+    return $this->add($new);
+  
+  }
+
 }
