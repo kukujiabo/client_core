@@ -24,6 +24,8 @@ class BusinessApplySv extends BaseService {
     $newData = [
     
       'member_id' => $data['member_id'],
+      'type' => $data['type'],
+      'relat_id' => $data['relat_id'],
       'name' => $data['name'],
       'address' => $data['address'],
       'contact' => $data['contact'],

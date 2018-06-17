@@ -14,6 +14,8 @@ class BusinessApply extends BaseApi {
     
       'create' => [
       
+        'type' => 'type|string|true||申请类型',
+        'relat_id' => 'relat_id|int|true||相关id',
         'name' => 'name|string|true||商户全称',
         'member_id' => 'member_id|int|false||会员id',
         'address' => 'address|string|true||商户地址',
