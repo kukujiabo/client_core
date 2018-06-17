@@ -49,6 +49,8 @@ class RewardSv extends BaseService {
 
       'max_credit' => $data['max_credit'],
 
+      'url' => $data['url'],
+
       'time' => $data['time'],
 
       'commission' => $data['commission'],
@@ -109,6 +111,11 @@ class RewardSv extends BaseService {
     if (isset($data['reward_code'])) {
 
       $updateData['reward_code'] = $data['reward_code'];
+    
+    }
+    if (isset($data['url'])) {
+
+      $updateData['url'] = $data['url'];
     
     }
     if (isset($data['check_code'])) {
