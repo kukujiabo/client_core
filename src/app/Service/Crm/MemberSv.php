@@ -123,15 +123,26 @@ class MemberSv extends BaseService {
   }
 
   /**
-   * 微信小程序登录
+   * 微信公众号登陆
    *
    * @param string $code
    *
    * @return
    */
-  public function wxMiniLogin($code) {
+  public function wechatPubLogin($code) {
   
+    /**
+     * 1.先获取 accessToken
+     */
+
+    $wxApp = new WechatApp('cloud_credit');
+
+    $accessToken = $wxApp->getAccessToken();
     
+    /**
+     * 2.查询用户openid，unionid
+     */
+    return $accessToken;
   
   }
 

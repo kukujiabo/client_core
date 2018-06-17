@@ -15,7 +15,7 @@ class WechatAppSv extends ConfigSv {
 
   protected $_appsecret;
 
-  public function __construct($appName = 'straw_mini') {
+  public function __construct($appName = 'cloud_credit') {
   
     $this->_appid = $this->getConfig("{$appName}_appid");
 

@@ -97,6 +97,12 @@ class Member extends BaseApi {
 
         'gender' => 'gender|int|false||性别'
       
+      ],
+
+      'wechatPubLogin' => [
+      
+        'code' => 'code|string|true||微信code'
+      
       ]
     
     ]);
@@ -212,6 +218,18 @@ class Member extends BaseApi {
 
     return $this->dm->wechatMiniLogin($params['app_name'], $params['code'], $params['share_code'], $params['member_name'], $params['portrait'], $params['gender']);
 
+  }
+
+  /**
+   * 微信公众号登陆
+   * @desc 微信公众号登陆
+   *
+   * @return
+   */
+  public function wechetPubLogin() {
+  
+    return $this->dm->wechatPubLogin($this->retriveRuleParams(__FUNCTION__));
+  
   }
 
 }

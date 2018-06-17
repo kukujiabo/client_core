@@ -193,5 +193,13 @@ class MemberDm {
   
   }
 
+  /**
+   * 微信公众号登陆
+   */
+  public function wechatPubLogin($params) {
+  
+    return $this->_memberSv->wechatPubLogin($params['code']);
+  
+  }
 
 }

@@ -19,11 +19,11 @@ class WechatAuth {
    *
    * @return
    */
-  public static function getAccessToken($appid, $appsecret) {
+  public static function getAccessToken($appid, $appsecret, $refresh = false) {
 
     $accessToken = RedisClient::get('wechat_auth', $appid);
 
-    if (!$accessToken || !$accessToken->access_token || $accessToken->expire_at < time()) {
+    if (!$accessToken || !$accessToken->access_token || $accessToken->expire_at < time() || $refresh) {
 
       $url = str_replace(array('{APPID}', '{APPSECRET}'), array($appid, $appsecret), WechatApi::GET_ACCESS_TOKEN);
 
@@ -45,7 +45,15 @@ class WechatAuth {
 
       RedisClient::set('wechat_auth', $appid, $newAccessToken);
 
-      return $result->access_token;
+      if ($result->openid) {
+
+        return $result;
+
+      } else {
+
+        return $result->access_token;
+
+      }
 
     } else {
     
@@ -54,6 +62,8 @@ class WechatAuth {
     }
   
   }
+
+
 
   /**
    * 获取用户openid
