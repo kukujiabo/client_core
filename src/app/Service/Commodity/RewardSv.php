@@ -35,6 +35,12 @@ class RewardSv extends BaseService {
 
       'brief' => $data['brief'],
 
+      'image_text' => $data['image_text'],
+
+      'insititution' => $data['institution'],
+
+      'material' => $data['material'],
+
       'rate' => $data['rate'],
 
       'limit' => $data['limit'],
@@ -169,6 +175,21 @@ class RewardSv extends BaseService {
 
       $updateData['end_time'] = $data['end_time'];
     
+    }
+    if (isset($data['image_text']) {
+
+      $updateData['image_text'] = $data['image_text'];
+
+    }
+    if (isset($data['institution'])) {
+
+      $updateData['insititution'] = $data['institution'];
+
+    }
+    if (isset($data['material'])) {
+
+      $updateData['material'] = $data['material'];
+
     }
 
     if ($data['carousel']) {
