@@ -47,9 +47,9 @@ class WechatAppSv extends ConfigSv {
    *
    * @return string accessToken
    */
-  public function getAccessToken() {
+  public function getAccessToken($refresh = false) {
   
-    return WechatAuth::getAccessToken($this->_appid, $this->_appsecret);  
+    return WechatAuth::getAccessToken($this->_appid, $this->_appsecret, $refresh);  
   
   }
 

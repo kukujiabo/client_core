@@ -137,7 +137,7 @@ class MemberSv extends BaseService {
 
     $wxApp = new WechatAppSv('cloud_credit');
 
-    $accessToken = $wxApp->getAccessToken();
+    $accessToken = $wxApp->getAccessToken(true);
     
     /**
      * 2.查询用户openid，unionid
