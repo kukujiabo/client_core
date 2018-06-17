@@ -37,7 +37,7 @@ class RewardSv extends BaseService {
 
       'image_text' => $data['image_text'],
 
-      'insititution' => $data['institution'],
+      'institution' => $data['institution'],
 
       'material' => $data['material'],
 
@@ -183,7 +183,7 @@ class RewardSv extends BaseService {
     }
     if (isset($data['institution'])) {
 
-      $updateData['insititution'] = $data['institution'];
+      $updateData['institution'] = $data['institution'];
 
     }
     if (isset($data['material'])) {
