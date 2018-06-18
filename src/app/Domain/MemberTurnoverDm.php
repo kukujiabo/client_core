@@ -19,4 +19,20 @@ class MemberTurnoverDm {
   
   }
 
+  public function applyCash($params) {
+  
+    $cash = $this->_mtsv->findOne($params['id']);
+
+    if ($cash['member_id'] == $params['member_id']) {
+    
+      return $this->update($params['id'], [ 'type' => 2 ]);
+    
+    } else {
+
+      return 0;
+    
+    }
+  
+  }
+
 }

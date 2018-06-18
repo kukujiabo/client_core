@@ -11,6 +11,13 @@ class MemberTurnover extends BaseApi {
   public function getRules() {
   
     return $this->rules([
+
+      'applyCash' => [
+      
+        'member_id' => 'member_id|int|true||会员ID',
+        'id' => 'id|int|true||流水id',
+      
+      ],
     
       'getList' => [
       
@@ -33,6 +40,18 @@ class MemberTurnover extends BaseApi {
    * @return array list
    */
   public function getList() {
+  
+    return $this->dm->getList($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
+  /**
+   * 申请提现
+   * @desc 申请提现
+   *
+   * @return 
+   */
+  public function applyCash() {
   
     return $this->dm->getList($this->retriveRuleParams(__FUNCTION__));
   
