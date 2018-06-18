@@ -113,7 +113,7 @@ class WechatAppSv extends ConfigSv {
 
     $timeStamp = time();
 
-    $jsapiTicket = WechatAuth::getJsTicket($this->appid, $this->appsecret);
+    $jsapiTicket = WechatAuth::getJsTicket($this->_appid, $this->_appsecret);
   
     $signStr = "jsapi_ticket={$jsapiTicket}&noncestr=cloudcredit&timestamp={$timeStamp}&url={$url}";
 
@@ -121,13 +121,13 @@ class WechatAppSv extends ConfigSv {
   
     $result = [
     
-      'timestamp' => $timestamp,
+      'timestamp' => $timeStamp,
 
       'signature' => $signature,
 
       'noncestr' => 'cloudcredit',
 
-      'appid' => $this->appid
+      'appid' => $this->_appid
     
     ];
 
