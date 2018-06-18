@@ -157,7 +157,7 @@ trait AuthTrait {
    *
    * @return
    */
-  public function createAuth($account, $password = null) {
+  public function createAuth($account, $password = null, $token = null) {
   
     $new = [
     
@@ -172,8 +172,20 @@ trait AuthTrait {
       $new[$this->_secret] = $this->encodeSecret($password);
 
     }
+
+    if ($token) {
+
+      $auth = RedisClient('member_auth', $token);
+
+      $this->update($auth['id'], $new);
+
+      return $auth['id'];
     
-    return $this->add($new);
+    } else {
+    
+      return $this->add($new);
+
+    }
   
   }
 

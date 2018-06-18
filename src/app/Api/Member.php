@@ -19,6 +19,8 @@ class Member extends BaseApi {
         'member_name' => 'member_name|string|true||会员名称',
 
         'password' => 'password|string|true||会员密码',
+
+        'token' => 'token|string|false||sessionid',
       
       ],
 
@@ -120,7 +122,7 @@ class Member extends BaseApi {
 
     $params = $this->retriveRuleParams(__FUNCTION__);
   
-    return $this->dm->register($params['mobile'], $params['member_name'], $params['password']);
+    return $this->dm->register($params['mobile'], $params['member_name'], $params['password'], $params['token']);
   
   }
 

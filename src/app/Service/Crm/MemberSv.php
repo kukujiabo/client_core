@@ -172,15 +172,15 @@ class MemberSv extends BaseService {
    *
    * @return
    */
-  public function register($account, $password = null) {
+  public function register($account, $password = null, $token = null) {
 
     if (empty($account)) {
 
       throw new LogException($this->_err->RGEPTACCTMSG, $this->_err->RGEPTACCTCODE);
     
     }
-  
-    return $this->createAuth($account, $password);
+
+    return $this->createAuth($account, $password, $token);
   
   }
 
