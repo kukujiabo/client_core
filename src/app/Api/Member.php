@@ -28,6 +28,7 @@ class Member extends BaseApi {
       
         'member_name' => 'member_name|string|false||会员名称',
         'sex' => 'sex|string|false||会员性别',
+        'reference' => 'reference|string|false||上级推荐人',
         'order' => 'order|string|false||排序',
         'fields' => 'fields|string|false||查询字段',
         'page' => 'page|int|false||页码',

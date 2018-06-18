@@ -73,6 +73,11 @@ class MemberSv extends BaseService {
       $query['sex'] = $params['sex'];
     
     }
+    if (isset($params['reference'])) {
+    
+      $query['reference'] = $params['reference'];
+    
+    }
   
     return $this->queryList($query, $params['fields'], $params['order'], $params['page'], $params['page_size']);
   
