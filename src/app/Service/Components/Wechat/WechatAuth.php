@@ -28,7 +28,7 @@ class WechatAuth {
   
       $accessToken = self::getAccessTokenByAppIdAppSecret($appid, $appsecret);
 
-      $url = str_replace('ACCESS_TOKEN', $accessToken , WechatApi::GET_JSAPI_TICKET);
+      $url = str_replace('{ACCESS_TOKEN}', $accessToken , WechatApi::GET_JSAPI_TICKET);
 
       $jsapiTicket = json_decode(Http::httpGet($url));
 
