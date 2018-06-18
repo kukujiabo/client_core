@@ -177,9 +177,9 @@ trait AuthTrait {
 
       $auth = RedisClient::get('member_auth', $token);
 
-      $this->update($auth['id'], $new);
+      $this->update($auth->id, $new);
 
-      return $auth['id'];
+      return $auth->id;
     
     } else {
     
