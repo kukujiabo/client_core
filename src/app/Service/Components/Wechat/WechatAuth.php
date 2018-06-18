@@ -20,13 +20,13 @@ class WechatAuth {
    *
    * @return string ticket
    */
-  public function getJsTicket($appid, $appsecret, $refresh = false) {
+  public static function getJsTicket($appid, $appsecret, $refresh = false) {
 
     $ticket = RedisClient::get('wechat_jsapi_ticket', $appid);
 
     if (!$ticket || !$ticket->ticket || $ticket->expire_at < time() || $refresh) {
   
-      $accessToken = $this->getAccessTokenByAppIdAppSecret($appid, $appsecret);
+      $accessToken = self::getAccessTokenByAppIdAppSecret($appid, $appsecret);
 
       $url = str_replace('ACCESS_TOKEN', $accessToken , WechatApi::GET_JSAPI_TICKET);
 

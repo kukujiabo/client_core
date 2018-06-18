@@ -3,7 +3,6 @@ namespace App\Service\Components\Wechat;
 
 use App\Service\System\ConfigSv;
 use App\Library\RedisClient;
-
 /**
  * 微信应用服务类
  *
