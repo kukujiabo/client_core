@@ -163,6 +163,20 @@ class MemberSv extends BaseService {
 
       $id = $this->createAuthByWxPubOpenId($openid, $wxMember->unionid, $reference);
 
+      $extraInfo = [
+      
+        'member_name' => $wxMember->nickname,
+
+        'portrait' => $wxMember->headimgurl,
+
+        'wx_city' => $wxMember->city,
+
+        'wx_province' => $wxMember->province
+      
+      ];
+
+      $this->update($id, $extraInfo);
+
       return $this->createSession($id, 'member_auth');
     
     }
