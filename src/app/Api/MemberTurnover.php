@@ -53,7 +53,7 @@ class MemberTurnover extends BaseApi {
    */
   public function applyCash() {
   
-    return $this->dm->getList($this->retriveRuleParams(__FUNCTION__));
+    return $this->dm->applyCash($this->retriveRuleParams(__FUNCTION__));
   
   }
 
