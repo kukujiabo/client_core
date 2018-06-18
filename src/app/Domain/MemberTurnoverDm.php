@@ -25,7 +25,7 @@ class MemberTurnoverDm {
 
     if ($cash['member_id'] == $params['member_id']) {
     
-      return $this->update($params['id'], [ 'type' => 2 ]);
+      return $this->_mtsv->update($params['id'], [ 'type' => 2 ]);
     
     } else {
 
