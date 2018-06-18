@@ -245,7 +245,7 @@ trait AuthTrait {
    *
    * @return
    */
-  public function createAuthByWxPubOpenId($openId, $unionId = null) {
+  public function createAuthByWxPubOpenId($openId, $unionId = null, $reference = null) {
   
     $new = [
     
@@ -253,7 +253,7 @@ trait AuthTrait {
 
       'created_at' => date('Y-m-d H:i:s'),
 
-      'reference' => 1
+      'reference' => $reference ? $reference : 1
 
     ];
 

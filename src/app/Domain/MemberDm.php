@@ -198,7 +198,7 @@ class MemberDm {
    */
   public function wechatPubLogin($params) {
   
-    return $this->_memberSv->wechatPubLogin($params['code']);
+    return $this->_memberSv->wechatPubLogin($params['code'], $params['reference']);
   
   }
 

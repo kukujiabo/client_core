@@ -129,7 +129,7 @@ class MemberSv extends BaseService {
    *
    * @return
    */
-  public function wechatPubLogin($code) {
+  public function wechatPubLogin($code, $reference = null) {
   
     /**
      * 1.先获取 accessToken
@@ -156,7 +156,7 @@ class MemberSv extends BaseService {
 
       $wxMember = $wxApp->getUserInfo($accessToken, $openid);
 
-      $id = $this->createAuthByWxPubOpenId($openid, $wxMember->unionid);
+      $id = $this->createAuthByWxPubOpenId($openid, $wxMember->unionid, $reference);
 
       return $this->createSession($id, 'member_auth');
     
