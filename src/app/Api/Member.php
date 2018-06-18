@@ -105,7 +105,7 @@ class Member extends BaseApi {
       
         'code' => 'code|string|true||微信code',
 
-        'reference' => 'code|string|false||推荐人'
+        'reference' => 'reference|string|false||推荐人'
       
       ]
     
