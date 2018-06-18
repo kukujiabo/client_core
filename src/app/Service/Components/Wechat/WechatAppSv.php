@@ -55,7 +55,7 @@ class WechatAppSv extends ConfigSv {
     
     } else {
   
-      return WechatAuth::getMiniAccessToken($this->_appid, $this->_appsecret, $refresh);  
+      return WechatAuth::getAccessTokenByAppIdAppSecret($this->_appid, $this->_appsecret, $refresh);  
 
     }
   
@@ -100,6 +100,39 @@ class WechatAppSv extends ConfigSv {
     $accessToken = self::getAccessToken();
 
     return WechatTools::getMiniTempCode(self::getAccessToken(), $scene, $page, $width, $autoColor, $lineColor);
+  
+  }
+
+  /**
+   * 微信api接口
+   *
+   * @param string url
+   *
+   * @return
+   */
+  public function jsapiRegister($url) {
+
+    $timeStamp = time();
+
+    $jsapiTicket = WechatAuth::getJsTicket($this->appid, $this->appsecret);
+  
+    $signStr = "jsapi_ticket={$jsapiTicket}&noncestr=cloudcredit&timestamp={$timeStamp}&url={$url}";
+
+    $signature = sha1($signStr);
+  
+    $result = [
+    
+      'timestamp' => $timestamp,
+
+      'signature' => $signature,
+
+      'noncestr' => 'cloudcredit',
+
+      'appid' => $this->appid
+    
+    ];
+
+    return $result;
   
   }
 

@@ -11,6 +11,54 @@ use App\Library\Http;
  */
 class WechatAuth {
 
+  /**
+   * 获取微信jsapi_ticket
+   *
+   * @param string appid
+   * @param string appsecret
+   * @param boolean refresh
+   *
+   * @return string ticket
+   */
+  public function getJsTicket($appid, $appsecret, $refresh = false) {
+
+    $ticket = RedisClient::get('wechat_jsapi_ticket', $appid);
+
+    if (!$ticket || !$ticket->ticket || $ticket->expire_at < time() || $refresh) {
+  
+      $accessToken = $this->getAccessTokenByAppIdAppSecret($appid, $appsecret);
+
+      $url = str_replace('ACCESS_TOKEN', $accessToken , WechatApi::GET_JSAPI_TICKET);
+
+      $jsapiTicket = json_decode(Http::httpGet($url));
+
+      if ($jsapiTicket->errcode == 0) {
+      
+        $newTicket = [
+        
+          'ticket' => $jsapiTicket->ticket,
+
+          'expire_at' => $jsapiTicket->expires_in + time()
+        
+        ];
+
+        RedisClient::set('wechat_jsapi_ticket', $appid, $newTicket);
+
+        return $jsapiTicket->ticket;
+      
+      } else {
+      
+        return 0;
+      
+      }
+
+    } else {
+    
+      return $ticket->ticket;
+    
+    }
+  
+  }
 
   /**
    * 获取微信公众号接口访问令牌
@@ -45,7 +93,7 @@ class WechatAuth {
    *
    * @return
    */
-  public static function getMiniAccessToken($appid, $appsecret, $refresh = false) {
+  public static function getAccessTokenByAppIdAppSecret($appid, $appsecret, $refresh = false) {
 
     $accessToken = RedisClient::get('wechat_auth', $appid);
 

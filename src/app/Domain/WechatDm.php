@@ -49,4 +49,13 @@ class WechatDm {
   
   }
 
+  /**
+   * 微信jsapi注册
+   */
+  public function jsapiRegister($params) {
+  
+    return $this->_wxsv->jsapiRegister($params['url']);
+  
+  }
+
 }

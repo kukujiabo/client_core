@@ -32,6 +32,12 @@ class Wechat extends BaseApi {
 
         'code' => 'code|string|true||微信code'
       
+      ],
+
+      'jsapiRegister' => [
+      
+        'url' => 'url|string|true||请求页面链接地址'
+      
       ]
       
     ]);
@@ -75,6 +81,18 @@ class Wechat extends BaseApi {
     $params = $this->retriveRuleParams(__FUNCTION__);
   
     return $this->dm->getOpenId($params['code']);
+  
+  }
+
+  /**
+   * 获取微信jsapi注册参数
+   * @desc 获取微信jsapi注册参数
+   *
+   * @return
+   */
+  public function jsapiRegister() {
+  
+    return $this->dm->jsapiRegister($this->retriveRuleParams(__FUNCTION__));
   
   }
 
