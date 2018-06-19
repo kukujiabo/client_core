@@ -9,7 +9,7 @@ use Core\Service\CurdSv;
  *
  * @author Meroc Chen <398515393@qq.com> 
  */
-class AgentApply extends BaseService {
+class AgentApplySv extends BaseService {
 
   use CurdSv;
 
