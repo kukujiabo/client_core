@@ -19,6 +19,7 @@ class Merchant extends BaseApi {
         'mname' => 'mname|string|true||商家名称',
         'thumbnail' => 'thumbnail|string|true||商家头像',
         'brief' => 'brief|string|false||商家简介',
+        'process_url' => 'process_url|string|false||信用卡进度查询链接',
         'phone' => 'phone|string|false||商户手机号',
         'image_text' => 'image_text|string|false||商家图文详情',
         'carousel' => 'carousel|string|false||商家轮播图',
@@ -34,6 +35,14 @@ class Merchant extends BaseApi {
 
       'updateMerchant' => [
       
+        'id' => 'id|int|true||银行id',
+        'thumbnail' => 'thumbnail|string|false||商家头像',
+        'brief' => 'brief|string|false||商家简介',
+        'process_url' => 'process_url|string|false||信用卡进度查询链接',
+        'phone' => 'phone|string|false||商户手机号',
+        'image_text' => 'image_text|string|false||商家图文详情',
+        'carousel' => 'carousel|string|false||商家轮播图',
+        'status' => 'status|int|false|1|商户状态'
       
       ],
 

@@ -61,6 +61,7 @@ class MerchantSv extends BaseService {
       'mname' => $data['mname'],
       'phone' => $data['phone'],
       'brief' => $data['brief'],
+      'process_url' => $data['process_url'],
       'image_text' => $data['image_text'],
       'thumbnail' => $data['thumbnail'],
       'ext_1' => $data['ext_1'],
