@@ -59,7 +59,7 @@ class AgentApplySv extends BaseService {
     
     } elseif ($params['member_id']) {
     
-      return $vaamSv->findOne($params['member_id']);
+      return $vaamSv->findOne([ 'member_id' => $params['member_id']]);
     
     } else {
     
