@@ -94,9 +94,30 @@ class BankDataSv extends BaseService {
 
     $spreadSheet = IOFactory::load($fileInfo['file_path']);
 
-    $sheetData = $spreadSheet->getActiveSheet()->toArray(null, true, true, true);
+    $sheetData = $spreadSheet->getActiveSheet()->toArray(null, true, true, false);
   
-    return $sheetData;
+    $dataset = [];
+
+    foreach($sheetData as $row) {
+    
+      $newData = [
+      
+        'name' => $row[0],
+        'name' => $row[1],
+        'state' => $row[2],
+        'in_date' => $row[4],
+        'audit_date' => $row[5],
+        'source' => $row[6],
+        'created_at' => date('Y-m-d H:i:s'),
+        'counted' => 0
+
+      ]
+    
+      array_push($newData);
+    
+    }
+
+    return $dataset;
   
   }
 
