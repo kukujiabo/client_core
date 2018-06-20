@@ -111,7 +111,7 @@ class BankDataSv extends BaseService {
         'created_at' => date('Y-m-d H:i:s'),
         'counted' => 0
 
-      ]
+      ];
     
       array_push($newData);
     
