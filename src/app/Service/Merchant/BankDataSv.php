@@ -20,7 +20,7 @@ class BankDataSv extends BaseService {
 
     $fileName = $bank['mcode'] . time();
 
-    if (move_uploaded_file($data["file_path"], API_ROOT . "/public/uploads/" . $fileName )) {
+    if (!move_uploaded_file($data["file_path"], API_ROOT . "/public/uploads/" . $fileName )) {
     
       return 0;
     
