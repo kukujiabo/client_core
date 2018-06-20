@@ -52,4 +52,29 @@ class BankDataSv extends BaseService {
 
   }
 
+  /**
+   * 查询上传文件列表
+   *
+   */
+  public function getList($data) {
+  
+    $fileSv = new VBankFileSv();
+  
+    $query = [];
+
+    if ($data['mname']) {
+    
+      $query['mname'] = $data['mname'];
+    
+    }
+    if ($data['orig_name']) {
+    
+      $query['orig_name'] = $data['orig_name'];
+    
+    }
+
+    return $fileSv->queryList($query, $data['fields'], $data['order'], $data['page'], $data['page_size']);
+  
+  }
+
 }

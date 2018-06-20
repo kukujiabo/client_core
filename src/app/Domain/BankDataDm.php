@@ -19,4 +19,10 @@ class BankDataDm {
   
   }
 
+  public function getList($data) {
+  
+    return $this->_bdsv->getList($data);
+  
+  }
+
 }
