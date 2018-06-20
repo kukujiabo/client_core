@@ -10,6 +10,8 @@ use Core\Service\CurdSv;
  */
 class BankDataSv extends BaseService {
 
+  use CurdSv;
+
   public function reconciliation($data) {
 
     $meSv = new MerchantSv();
