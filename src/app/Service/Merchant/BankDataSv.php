@@ -18,7 +18,7 @@ class BankDataSv extends BaseService {
 
     $bank =$meSv->findOne($data['bank_id']);
 
-    $fileName = $bank['mcode'] . rand(10, 99) . date('Y-m-d H:i:s');
+    $fileName = $bank['mcode'] . time();
 
     if (move_uploaded_file($data["file_path"], API_ROOT . "/public/uploads/" . $fileName )) {
     
