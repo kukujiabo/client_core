@@ -113,7 +113,7 @@ class BankDataSv extends BaseService {
 
       ];
     
-      array_push($newData);
+      array_push($dataset, $newData);
     
     }
 
