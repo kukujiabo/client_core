@@ -9,16 +9,20 @@ namespace App\Api;
 class BankData extends BaseApi {
 
   public function getRules() {
-  
-    'reconciliation' => [
-    
-      'bank_id' => 'bank_id|int|true||银行id',
-    
-      'file_path' => 'file_path|string|true||文件地址',
 
-      'orig_name' => 'orig_name|string|true||源文件名称'
-    
-    ]
+    return $this->rules([
+  
+      'reconciliation' => [
+      
+        'bank_id' => 'bank_id|int|true||银行id',
+      
+        'file_path' => 'file_path|string|true||文件地址',
+
+        'orig_name' => 'orig_name|string|true||源文件名称'
+      
+      ]
+
+    ]);
   
   }
 
