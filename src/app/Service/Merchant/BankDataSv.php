@@ -103,7 +103,7 @@ class BankDataSv extends BaseService {
       $newData = [
       
         'name' => $row[0],
-        'name' => $row[1],
+        'phone' => $row[1],
         'state' => $row[2],
         'in_date' => $row[4],
         'audit_date' => $row[5],
