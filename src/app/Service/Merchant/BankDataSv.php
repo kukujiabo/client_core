@@ -110,6 +110,7 @@ class BankDataSv extends BaseService {
         'source' => $row[5],
         'created_at' => date('Y-m-d H:i:s'),
         'counted' => 0,
+        'bank_id' => $fileInfo['bank_id'],
         'sequence' => $fileInfo['sequence']
 
       ];
