@@ -10,7 +10,6 @@ class UploadFiles extends BaseApi {
 
   public function getRules() {
   
-  
     return $this->rules([
     
       'upload' => [
