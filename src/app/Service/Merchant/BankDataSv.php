@@ -109,7 +109,8 @@ class BankDataSv extends BaseService {
         'audit_date' => $row[4],
         'source' => $row[5],
         'created_at' => date('Y-m-d H:i:s'),
-        'counted' => 0
+        'counted' => 0,
+        'sequence' => $fileInfo['sequence']
 
       ];
     
@@ -117,8 +118,22 @@ class BankDataSv extends BaseService {
     
     }
 
-    return $dataset;
-  
+    $acSv = new AuditCardSv();
+
+    $num = $acSv->batchAdd($acSv);
+
+    if ($num) {
+
+      $this->update($fileInfo['id'], [ return 'state' => 1 ]);
+
+      return $num;
+
+    } else {
+    
+      return 0;
+    
+    }
+
   }
 
 }
