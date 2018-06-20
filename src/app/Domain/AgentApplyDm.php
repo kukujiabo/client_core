@@ -29,8 +29,12 @@ class AgentApplyDm {
   }
 
   public function edit($data) {
+
+    $id = $data['id'];
+
+    unset($data['id']);
   
-    return $this->_aasv->edit($data);
+    return $this->_aasv->edit($id, $data);
   
   }
 
