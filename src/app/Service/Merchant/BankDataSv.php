@@ -105,9 +105,9 @@ class BankDataSv extends BaseService {
         'name' => $row[0],
         'phone' => $row[1],
         'state' => $row[2],
-        'in_date' => $row[4],
-        'audit_date' => $row[5],
-        'source' => $row[6],
+        'in_date' => $row[3],
+        'audit_date' => $row[4],
+        'source' => $row[5],
         'created_at' => date('Y-m-d H:i:s'),
         'counted' => 0
 
