@@ -120,7 +120,7 @@ class BankDataSv extends BaseService {
 
     $acSv = new AuditCardSv();
 
-    $num = $acSv->batchAdd($acSv);
+    $num = $acSv->batchAdd($dataset);
 
     if ($num) {
 
