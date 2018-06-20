@@ -25,10 +25,15 @@ class BankData extends BaseApi {
       'getList' => [
       
         'mname' => 'mname|string|false||商户名称',
+
         'orig_name' => 'orig_name|string|false||原始文件名',
+
         'fields' => 'fields|string|false||字段',
+
         'order' => 'order|string|false||排序',
+
         'page' => 'page|int|false|1|页码',
+
         'page_size' => 'page_size|int|false|20|每页条数'
       
       ]
