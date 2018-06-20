@@ -3,6 +3,9 @@ namespace App\Service\Merchant;
 
 use App\Service\BaseService;
 use Core\Service\CurdSv;
+use PhpOffice\PhpSpreadSheet\SpreadSheet;
+use PhpOffice\PhpSpreadSheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 
 /**
  * 银行数据
@@ -74,6 +77,26 @@ class BankDataSv extends BaseService {
     }
 
     return $fileSv->queryList($query, $data['fields'], $data['order'], $data['page'], $data['page_size']);
+  
+  }
+
+  /**
+   * 导入数据
+   * @desc 导入数据
+   *
+   * @return array
+   */
+  public function importData($data) {
+  
+    $fileInfo = $this->findOne($data['id']);
+
+    $acSv = new AuditCardSv();
+
+    $spreadSheet = new IOFactory::load($fileInfo['file_path']);
+
+    $sheetData = $spreadSheet->getActiveSheet()->toArray(null, true, true, true);
+  
+    return $sheetData;
   
   }
 

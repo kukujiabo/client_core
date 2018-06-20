@@ -25,4 +25,10 @@ class BankDataDm {
   
   }
 
+  public function importData($data) {
+  
+    return $this->_bdsv->importData($data);
+  
+  }
+
 }

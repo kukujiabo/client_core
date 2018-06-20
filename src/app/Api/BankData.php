@@ -36,6 +36,12 @@ class BankData extends BaseApi {
 
         'page_size' => 'page_size|int|false|20|每页条数'
       
+      ],
+
+      'importData' => [
+      
+        'id' => 'id|int|true||导入数据'
+      
       ]
 
     ]);
@@ -57,6 +63,12 @@ class BankData extends BaseApi {
   public function getList() {
   
     return $this->dm->getList($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
+  public function importData() {
+  
+    return $this->dm->importData($this->retriveRuleParams(__FUNCTION__));
   
   }
 
