@@ -124,7 +124,7 @@ class BankDataSv extends BaseService {
 
     if ($num) {
 
-      $this->update($fileInfo['id'], [ return 'state' => 1 ]);
+      $this->update($fileInfo['id'], [ 'state' => 1 ]);
 
       return $num;
 
