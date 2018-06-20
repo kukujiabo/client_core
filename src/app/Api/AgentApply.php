@@ -29,7 +29,9 @@ class AgentApply extends BaseApi {
         'phone' => 'phone|string|false||电话',
         'city' => 'city|string|false||城市',
         'identity' => 'identity|string|false||身份证号',
-        'state' => 'state|int|false||申请状态'
+        'state' => 'state|int|false||申请状态',
+        'confirm_at' => 'confirm_at|string|false||同意时间',
+        'reject_at' => 'reject_at|string|false||拒绝时间'
       
       ],
 
