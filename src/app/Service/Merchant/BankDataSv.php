@@ -92,7 +92,7 @@ class BankDataSv extends BaseService {
 
     $acSv = new AuditCardSv();
 
-    $spreadSheet = new IOFactory::load($fileInfo['file_path']);
+    $spreadSheet = IOFactory::load($fileInfo['file_path']);
 
     $sheetData = $spreadSheet->getActiveSheet()->toArray(null, true, true, true);
   
