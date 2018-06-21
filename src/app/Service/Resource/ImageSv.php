@@ -125,7 +125,7 @@ class ImageSv extends BaseService {
    */
   public function createQrCode($content, $base64 = true) {
   
-    return  App\qrcode($content, $base64);
+    return  \App\qrcode($content, $base64);
   
   }
 

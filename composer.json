@@ -26,8 +26,7 @@
     },
     "autoload": {
         "files": [
-            "src/app/functions.php",
-            "src/app/smn-sdk-php/Bootstrap.php"
+            "src/app/functions.php"
         ],
 		"classmap": [
 			"core"
