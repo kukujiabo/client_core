@@ -127,7 +127,6 @@ function qrCode($data, $base64 = false){
 
     $filename = $path . $images;
 
-
     $return = $object->png($data, $filename, $errorCorrectionLevel, $matrixPointSize, 2);
 
     return 'qr_code_img/' . $times . '/'. $images;

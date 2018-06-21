@@ -4,6 +4,7 @@ namespace App\Domain;
 use App\Service\Crm\MemberSv;
 use App\Service\Crm\MobileVerifyCodeSv;
 use App\Service\Message\SmsSv;
+use App\Service\Resource\ImageSv;
 
 /**
  * 会员
@@ -199,6 +200,21 @@ class MemberDm {
   public function wechatPubLogin($params) {
   
     return $this->_memberSv->wechatPubLogin($params['code'], $params['reference']);
+  
+  }
+
+  /**
+   * 获取用户二维码
+   */
+  public function getMemberQrCode($data) {
+
+    $member = $this->_memberSv->findOne($data['member_id']);
+
+    $content = $data['url'] . '?reference=' . $member['reference'];
+  
+    $imgSv = new ImageSv();
+  
+    return $imgSv->createQrCode($content, true);
   
   }
 

@@ -108,6 +108,14 @@ class Member extends BaseApi {
 
         'reference' => 'reference|string|false||推荐人'
       
+      ],
+
+      'getMemberQrCode' => [
+      
+        'member_id' => 'member_id|int|true||会员id',
+
+        'url' => 'url|string|true||办理链接'
+      
       ]
     
     ]);
@@ -234,6 +242,18 @@ class Member extends BaseApi {
   public function wechatPubLogin() {
   
     return $this->dm->wechatPubLogin($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
+  /**
+   * 生成用户推广二维码
+   * @decs 生成用户推广二维码
+   *
+   * @return string base64
+   */
+  public function getMemberQrCode() {
+  
+    return $this->dm->getMemberQrCode($this->retriveRuleParams(__FUNCTION__));  
   
   }
 

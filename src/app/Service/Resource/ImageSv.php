@@ -119,4 +119,14 @@ class ImageSv extends BaseService {
   
   }
 
+  /**
+   * 生成二维码
+   *
+   */
+  public function createQrCode($content, $base64 = true) {
+  
+    return  App\qrcode($content, $base64);
+  
+  }
+
 }
