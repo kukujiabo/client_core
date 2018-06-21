@@ -210,7 +210,15 @@ class MemberDm {
 
     $member = $this->_memberSv->findOne($data['member_id']);
 
-    $content = $data['url'] . '?reference=' . $member['reference'];
+    if (strpos($data['url'], '?') > 0) {
+
+      $content = $data['url'] . "&reference={$member['reference']}";
+    
+    } else {
+
+      $content = $data['url'] . "?reference={$member['reference']}";
+
+    }
   
     $imgSv = new ImageSv();
   
