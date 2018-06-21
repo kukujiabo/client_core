@@ -212,11 +212,11 @@ class MemberDm {
 
     if (strpos($data['url'], '?') > 0) {
 
-      $content = $data['url'] . "&reference={$member['identity']}";
+      $content = $data['url'] . "&reference={$member['member_identity']}";
     
     } else {
 
-      $content = $data['url'] . "?reference={$member['identity']}";
+      $content = $data['url'] . "?reference={$member['member_identity']}";
 
     }
   
