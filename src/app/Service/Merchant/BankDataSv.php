@@ -138,4 +138,51 @@ class BankDataSv extends BaseService {
   }
 
 
+
+  /**
+   * 比对数据
+   *
+   * @param array applyData
+   * @param array auditData
+   *
+   * @return boolean 
+   */
+  public function matchData($applyData, $auditData) {
+  
+    $apname = $applyData['name'];
+
+    $auname = $auditData['name'];
+  
+    $apphone = $applyData['phone'];
+
+    $auphone = $auditData['phone'];
+
+    $matchedPhone1 = substr($apphone, 0, 3) . substr($apphone, 8, 3);
+
+    $matchedPhone2 = substr($auphone, 0, 3) . substr($auphone, 8, 3);
+
+    if (strpos($auname, '*') === 0) {
+    
+      $matched1 = mb_substr($apname, mb_strlen($apname) - 1, 1, 'utf-8');
+
+      $matched2 = mb_substr($auname, mb_strlen($auname) - 1, 1, 'utf-8');
+
+      return $matched1 == $matched2 && $matchedPhone1 == $matchedPhone2;
+    
+    } elseif (strpos($auname, '*') > 0) {
+
+      $matched1 = mb_substr($apname, 0, 1, 'utf-8');
+
+      $matched2 = mb_substr($auname, 0, 1, 'utf-8');
+
+      return $matched1 == $matched2 && $matchedPhone1 == $matchedPhone2;
+    
+    } elseif (strpos($auname, '*') === false) {
+    
+      return $apname == $auname && $matchedPhone1 == $matchedPhone2;
+    
+    }
+  
+  }
+
 }

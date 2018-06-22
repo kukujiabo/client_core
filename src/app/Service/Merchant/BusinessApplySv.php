@@ -2,6 +2,7 @@
 namespace App\Service\Merchant;
 
 use App\Service\BaseService;
+use App\Service\Crm\MemberSv;
 use Core\Service\CurdSv;
 
 /**
@@ -20,6 +21,10 @@ class BusinessApplySv extends BaseService {
    * @return int id
    */
   public function create($data) {
+
+    $msv = new MemberSv();
+
+    $member = $msv->findOne($data['member_id']);
   
     $newData = [
     
@@ -32,6 +37,7 @@ class BusinessApplySv extends BaseService {
       'phone' => $data['phone'],
       'wechat' => $data['wechat'],
       'brief' => $data['brief'],
+      'reference' => $member['reference'],
       'created_at' => date('Y-m-d H:i:s')
     
     ];
