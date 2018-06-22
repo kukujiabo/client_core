@@ -383,7 +383,7 @@ class MemberSv extends BaseService {
    */
   public function getReferenceList($data) {
 
-    $query = [ 'reference' => $data['reference'] ]
+    $query = [ 'reference' => $data['reference'] ];
   
     $members = $this->query($query, '*', 'id desc', $data['page'], $data['page_size']);
   
