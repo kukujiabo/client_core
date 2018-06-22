@@ -44,4 +44,10 @@ class AgentApplyDm {
   
   }
 
+  public function accept($data) {
+  
+    return $this->_aasv->accept($data);
+  
+  }
+
 }

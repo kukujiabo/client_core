@@ -21,6 +21,12 @@ class AgentApply extends BaseApi {
         'member_id' => 'member_id|int|true||会员id',
       
       ],
+
+      'accept' => [
+      
+        'id' => 'id|int|true||申请id'
+      
+      ],
     
       'edit' => [
       
@@ -106,5 +112,16 @@ class AgentApply extends BaseApi {
   
   }
 
+  /**
+   * 同意申请
+   * @desc 同意申请
+   *
+   * @return int num
+   */
+  public function accept() {
+  
+    return $this->dm->accept($this->retriveRuleParams(__FUNCTION__)); 
+  
+  }
 
 }

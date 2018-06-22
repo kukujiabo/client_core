@@ -36,6 +36,28 @@ class AgentApplySv extends BaseService {
   }
 
   /**
+   * 同意申请
+   *
+   */
+  public function accept($data) {
+  
+    $res = $this->update($data['id'], [ 'checked' => 1, 'confirm_at' => date('Y-m-d H:i:s') ]);
+  
+    if ($res) {
+    
+      $apply = $this->findOne($data['id']);
+    
+      $mSv = new MemberSv();
+
+      $mSv->update($apply['member_id'], [ 'member_type' => 3 ]);
+
+    }
+
+    return $res;
+  
+  }
+
+  /**
    * 编辑代理商
    *
    */
