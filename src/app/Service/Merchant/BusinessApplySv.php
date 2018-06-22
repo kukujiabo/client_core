@@ -27,6 +27,18 @@ class BusinessApplySv extends BaseService {
     $msv = new MemberSv();
 
     $member = $msv->findOne($data['member_id']);
+
+    $bankId = 0;
+
+    if ($type == 'card') {
+
+      $shop = new ShopSv();
+    
+      $card = $shop->findOne($data['relat_id']);
+
+      $bankId = $card['mid'];
+    
+    }
   
     $newData = [
     
@@ -38,6 +50,7 @@ class BusinessApplySv extends BaseService {
       'contact' => $data['contact'],
       'phone' => $data['phone'],
       'wechat' => $data['wechat'],
+      'bank_id' => $data['bank_id'],
       'brief' => $data['brief'],
       'reference' => $member['reference'],
       'created_at' => date('Y-m-d H:i:s')
