@@ -41,7 +41,7 @@ class AgentApplySv extends BaseService {
    */
   public function accept($data) {
   
-    $res = $this->update($data['id'], [ 'checked' => 1, 'confirm_at' => date('Y-m-d H:i:s') ]);
+    $res = $this->update($data['id'], [ 'state' => 1, 'confirm_at' => date('Y-m-d H:i:s') ]);
   
     if ($res) {
     
