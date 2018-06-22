@@ -36,8 +36,24 @@ class BusinessApply extends BaseApi {
         'page' => 'page|int|false|1|页码',
         'page_size' => 'page_size|int|false|20|每页条数'
       
-      ]
+      ],
+
+      'getReferenceCards' => [
+      
+        'reference' => 'reference|string|true||关联'
+        'page' => 'page|int|false|1|页码',
+        'page_size' => 'page_size|int|false|12|每页条数'
+      
+      ],
     
+      'getReferenceLoans' => [
+      
+        'reference' => 'reference|string|true||关联'
+        'page' => 'page|int|false|1|页码',
+        'page_size' => 'page_size|int|false|12|每页条数'
+      
+      ]
+
     ]);
   
   }
@@ -66,5 +82,28 @@ class BusinessApply extends BaseApi {
   
   }
 
+  /**
+   * 查询信用卡列表
+   * @desc 查询信用卡列表
+   *
+   * @return
+   */
+  public function getReferenceCards() {
+  
+    return $this->dm->getReferenceCards($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
+  /**
+   * 查询贷款列表
+   * @desc 查询贷款列表
+   *
+   * @return
+   */
+  public function getReferenceLoans() {
+  
+    return $this->dm->getReferenceLoans($this->retriveRuleParams(__FUNCTION__));
+  
+  }
 
 }

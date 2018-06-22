@@ -4,6 +4,8 @@ namespace App\Service\Merchant;
 use App\Service\BaseService;
 use App\Service\Crm\MemberSv;
 use Core\Service\CurdSv;
+use App\Service\Crm\VBapplyMemberCardSv;
+use App\Service\Crm\VBapplyMemberLoanSv;
 
 /**
  * 商户入驻申请服务
@@ -77,5 +79,32 @@ class BusinessApplySv extends BaseService {
   
   }
 
+  /**
+   * 查询信用卡申请
+   *
+   */
+  public function getReferenceCards($data) {
+
+    $cardSv = new VBapplyMemberCardSv();
+
+    $query = [ 'reference' => $data['reference'] ];
+  
+    return $cardSv->queryList($query, '*', 'id desc', $data['page'], $data['page_size']);
+  
+  }
+
+  /**
+   * 查询贷款申请
+   *
+   */
+  public function getReferenceLoans($data) {
+  
+    $loanSv = new VBapplyMemberLoanSv();
+  
+    $query = [ 'reference' => $data['reference'] ];
+
+    return $loanSv->queryList($query, '*', 'id desc', $data['page'], $data['page_size']);
+
+  }
 
 }

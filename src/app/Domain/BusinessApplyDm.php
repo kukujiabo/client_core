@@ -25,4 +25,16 @@ class BusinessApplyDm {
   
   }
 
+  public function getReferenceCards($data) {
+  
+    return $this->_baSv->getReferenceCards($data);
+  
+  }
+
+  public function getReferenceLoans($data) {
+  
+    return $this->_baSv->getReferenceLoans($data);
+  
+  }
+
 }
