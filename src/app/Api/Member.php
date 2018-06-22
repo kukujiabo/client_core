@@ -116,6 +116,14 @@ class Member extends BaseApi {
 
         'url' => 'url|string|true||办理链接'
       
+      ],
+
+      'getReferenceList' => [
+      
+        'reference' => 'reference|string|true||推荐人',
+        'page' => 'page|int|false|1|页码',
+        'page_size' => 'page_size|int|false|8|每页条数'
+      
       ]
     
     ]);
@@ -256,5 +264,18 @@ class Member extends BaseApi {
     return $this->dm->getMemberQrCode($this->retriveRuleParams(__FUNCTION__));  
   
   }
+
+  /**
+   * 查询下级合伙人列表:
+   * @desc 查询下级合伙人列表:
+   *
+   * @return array list
+   */
+  public function getReferenceList() {
+  
+    return $this->dm->getReferenceList($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
 
 }

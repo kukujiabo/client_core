@@ -226,4 +226,10 @@ class MemberDm {
   
   }
 
+  public function getReferenceList($data) {
+
+    return $this->_memberSv->getReferenceList($data);
+  
+  }
+
 }

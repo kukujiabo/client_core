@@ -376,4 +376,19 @@ class MemberSv extends BaseService {
   
   }
 
+  /**
+   * 查询下级合伙人列表
+   *
+   * @return array list
+   */
+  public function getReferenceList($data) {
+
+    $query = [ 'reference' => $data['reference'] ]
+  
+    $members = $this->query($query, '*', 'id desc', $data['page'], $data['page_size']);
+  
+    return $members;
+  
+  }
+
 }
