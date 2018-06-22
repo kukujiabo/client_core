@@ -40,7 +40,7 @@ class BusinessApply extends BaseApi {
 
       'getReferenceCards' => [
       
-        'reference' => 'reference|string|true||关联'
+        'reference' => 'reference|string|true||关联',
         'page' => 'page|int|false|1|页码',
         'page_size' => 'page_size|int|false|12|每页条数'
       
@@ -48,7 +48,7 @@ class BusinessApply extends BaseApi {
     
       'getReferenceLoans' => [
       
-        'reference' => 'reference|string|true||关联'
+        'reference' => 'reference|string|true||关联',
         'page' => 'page|int|false|1|页码',
         'page_size' => 'page_size|int|false|12|每页条数'
       
