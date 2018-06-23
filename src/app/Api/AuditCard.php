@@ -21,8 +21,12 @@ class AuditCard extends BaseApi {
         'page' => 'page|int|false||页码',
         'page_size' => 'page_size|int|false|50|每页条数'
       
+      ],
+
+      'balanceOfAccount' => [
+      
+      
       ]
-    
     
     ]);
   
@@ -41,5 +45,16 @@ class AuditCard extends BaseApi {
   
   }
 
+  /**
+   * 对账
+   * @desc 对账
+   *
+   * @return array result
+   */
+  public function balanceOfAccount() {
+  
+    return $this->dm->balanceOfAccount($this->retriveRuleParams(__FUNCTION__));
+  
+  }
 
 }

@@ -37,4 +37,56 @@ class AuditCardSv extends BaseService {
   
   }
 
+  /**
+   * 对账
+   *
+   */
+  public function balanceOfAccount($data) {
+  
+    $auditData = $this->all([ 'write_off' => 0 ]);
+
+    $baSv = new BusinessApplySv();
+
+    $applyData = $baSv->all([ 'write_off' => 0 ]);
+
+    $matchedApply = [];
+
+    $dismatchApply = [];
+
+    foreach($auditData as $audit) {
+    
+      foreach($applyData as $key => $apply) {
+
+        if ($applyData[$key]['write_off'] == 1) {
+        
+          continue;
+        
+        }
+      
+        if ($baSv->matchData($apply, $audit)) {
+        
+          $applyData[$key]['write_off'] = 1;
+
+          array_push($matchedApply, $apply['id']);
+        
+        }
+      
+      }
+    
+    }
+
+    foreach($applyData as $checkedData) {
+    
+      array_push($dismatchApply, $checkedData['id']);
+    
+    }
+
+    $mtNum = $this->batchUpdate(implode(',', $matchedApply), [ 'state' => 1, 'write_off' => 1 ]);
+
+    $dsNum = $this->batchUpdate(implode(',', $dismatchedApply), [ 'state' => 0, 'write_off' => 1 ]);
+
+    return [ 'matched_num' => $mtNum, 'dismatched_num' => $dsNum ];
+  
+  }
+
 }
