@@ -387,9 +387,9 @@ class MemberSv extends BaseService {
   
     $members = $this->queryList($query, '*', 'id desc', $data['page'], $data['page_size']);
 
-    foreach($members as $member) {
+    foreach($members as $key => $member) {
     
-      $member['sub_count'] = $this->queryCount([ 'reference' => $member['member_identity'] ]);
+      $members[$key]['sub_count'] = $this->queryCount([ 'reference' => $member['member_identity'] ]);
     
     }
   
