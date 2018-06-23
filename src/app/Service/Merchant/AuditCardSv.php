@@ -45,7 +45,7 @@ class AuditCardSv extends BaseService {
   
     $auditData = $this->all([ 'write_off' => 0 ]);
 
-    $baSv = new BusinessApplySv();
+    $baSv = new BankDataSv();
 
     $applyData = $baSv->all([ 'write_off' => 0 ]);
 
