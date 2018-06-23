@@ -6,6 +6,7 @@ use App\Common\Traits\AuthTrait;
 use App\Exception\LogException;
 use App\Exception\ErrorCode;
 use Core\Service\CurdSv;
+use App\Service\Merchant\BusinessApplySv;
 use App\Library\RedisClient;
 use App\Service\Components\Wechat\WechatAppSv;
 
@@ -394,6 +395,8 @@ class MemberSv extends BaseService {
         $members['list'][$key]['sub_count'] = $this->queryCount([ 'reference' => $member['member_identity'] ]);
 
       }
+
+      $busi = new BusinsessApplySv();
     
     }
   

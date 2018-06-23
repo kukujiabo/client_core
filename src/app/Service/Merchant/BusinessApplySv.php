@@ -88,7 +88,9 @@ class BusinessApplySv extends BaseService {
     
     }
 
-    return $this->queryList($query, $data['fields'], $data['order'], $data['page'], $data['page_size']);
+    $vbaSv = new VBapplyMemberCardSv();
+
+    return $vbaSv->queryList($query, $data['fields'], $data['order'], $data['page'], $data['page_size']);
   
   }
 
