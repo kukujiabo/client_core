@@ -9,7 +9,7 @@ class WithdrawDm {
 
   public function __construct() {
   
-    $this->_wdsv = new AlbumSv();
+    $this->_wdsv = new WithdrawSv();
   
   }
 
