@@ -124,6 +124,12 @@ class Member extends BaseApi {
         'page' => 'page|int|false|1|页码',
         'page_size' => 'page_size|int|false|8|每页条数'
       
+      ],
+
+      'checkPartner' => [
+      
+        'member_id' => 'member_id|int|true||会员id'
+      
       ]
     
     ]);
@@ -274,6 +280,18 @@ class Member extends BaseApi {
   public function getReferenceList() {
   
     return $this->dm->getReferenceList($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
+  /**
+   * 检查合伙人状态
+   * @desc 检查合伙人状态
+   *
+   * @return 
+   */
+  public function checkPartner() {
+  
+    return $this->dm->checkPartner($this->retriveRuleParams(__FUNCTION__));
   
   }
 

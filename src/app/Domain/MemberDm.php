@@ -232,4 +232,12 @@ class MemberDm {
   
   }
 
+  public function checkPartner($data) {
+  
+    $info = $this->_memberSv->findOne($data['member_id']);
+
+    return $info['member_type'];
+  
+  }
+
 }
