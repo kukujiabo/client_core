@@ -17,7 +17,7 @@ class WithdrawSv extends BaseService {
 
     $mSv = new MemberSv();
 
-    $member = $mSv->findOne([ 'id' => $data['member_id'] ]);
+    $member = $mSv->findOne($data['member_id']);
 
     if (!$member) {
     
