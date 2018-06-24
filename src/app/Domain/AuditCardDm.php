@@ -19,9 +19,9 @@ class AuditCardDm {
   
   }
 
-  public function balanceOfAccount() {
+  public function balanceOfAccount($params) {
   
-    return $this->_acsv->balanceOfAccount();
+    return $this->_acsv->balanceOfAccount($params);
   
   }
 

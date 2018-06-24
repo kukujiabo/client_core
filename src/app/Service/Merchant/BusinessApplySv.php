@@ -50,7 +50,7 @@ class BusinessApplySv extends BaseService {
       'contact' => $data['contact'],
       'phone' => $data['phone'],
       'wechat' => $data['wechat'],
-      'bank_id' => $data['bank_id'],
+      'bank_id' => $bankId,
       'brief' => $data['brief'],
       'reference' => $member['reference'],
       'created_at' => date('Y-m-d H:i:s')

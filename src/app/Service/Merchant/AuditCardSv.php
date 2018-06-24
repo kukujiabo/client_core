@@ -43,21 +43,27 @@ class AuditCardSv extends BaseService {
    */
   public function balanceOfAccount($data) {
   
-    $auditData = $this->all([ 'write_off' => 0 ]);
+    $auditData = $this->all([ 'sequence' => $data['sequence'] ]);
 
     $baSv = new BankDataSv();
 
-    $applyData = $baSv->all([ 'write_off' => 0 ]);
+    $bsaSv = new BusinessApplySv();
+
+    $applyData = $bsaSv->all([ 'write_off' => 0, 'bank_id' => $data['bank_id'] ]);
+
+    $matchedAudit = [];
+
+    $dismatchAudit = [];
 
     $matchedApply = [];
 
     $dismatchApply = [];
 
-    foreach($auditData as $audit) {
+    foreach($auditData as $key1 => $audit) {
     
-      foreach($applyData as $key => $apply) {
+      foreach($applyData as $key2 => $apply) {
 
-        if ($applyData[$key]['write_off'] == 1) {
+        if ($apply['write_off'] == 1) {
         
           continue;
         
@@ -65,9 +71,15 @@ class AuditCardSv extends BaseService {
       
         if ($baSv->matchData($apply, $audit)) {
         
-          $applyData[$key]['write_off'] = 1;
+          $applyData[$key2]['write_off'] = 1;
+
+          $auditData[$key1]['write_off'] = 1;
+
+          array_push($matchedAudit, $audit['id']);
 
           array_push($matchedApply, $apply['id']);
+
+          break;
         
         }
       
@@ -76,8 +88,22 @@ class AuditCardSv extends BaseService {
     }
 
     foreach($applyData as $checkedData) {
+
+      if (!$checkedData['write_off']) {
     
-      array_push($dismatchApply, $checkedData['id']);
+        array_push($dismatchApply, $checkedData['id']);
+
+      }
+    
+    }
+
+    foreach($auditData as $checkedData) {
+    
+      if (!$checkedData['write_off']) {
+      
+        array_push($dismatchAudit, $checkedData['id']);
+      
+      } 
     
     }
 

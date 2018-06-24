@@ -25,6 +25,8 @@ class AuditCard extends BaseApi {
 
       'balanceOfAccount' => [
       
+        'sequence' => 'sequence|string|false||流水号',
+        'bank_id' => 'bank_id|int|false||银行id'
       
       ]
     
