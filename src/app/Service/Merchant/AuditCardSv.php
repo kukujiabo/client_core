@@ -49,6 +49,8 @@ class AuditCardSv extends BaseService {
 
     $bsaSv = new BusinessApplySv();
 
+    $bankData = $baSv->findOne([ 'sequence' => $data['sequence'] ]);
+
     $applyData = $bsaSv->all([ 'state' => 0, 'bank_id' => $data['bank_id'] ], 'id desc');
 
     $matchedAudit = [];
@@ -56,8 +58,6 @@ class AuditCardSv extends BaseService {
     $matchedApply = [];
 
     $dismatchApply = [];
-
-    // return $baSv->matchData($applyData[0], $auditData[1]);
 
     foreach($auditData as $key1 => $audit) {
     
@@ -119,6 +119,8 @@ class AuditCardSv extends BaseService {
       $dmtApp = $bsaSv->batchUpdate([ 'id' => implode(',', $dismatchApply) ], [ 'state' => 2, 'checked_at' => date('Y-m-d H:i:s') ]);
     
     }
+
+    $baSv->update($bankData['id'], [ 'state' => 2 ]);
 
     return [ 'matched_audit' => $mtNum, 'pass_apply' => $mtApp, 'reject_apply' => $dmtApp ];
   
