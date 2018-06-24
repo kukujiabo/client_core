@@ -396,7 +396,7 @@ class MemberSv extends BaseService {
 
       }
 
-      $busi = new BusinsessApplySv();
+      $busi = new BusinessApplySv();
     
     }
   
