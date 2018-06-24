@@ -257,6 +257,44 @@ trait AuthTrait {
 
     ];
 
+    if ($reference > 1) {
+    
+      $supervisor = $this->findOne([ 'member_identity' => $reference ]);
+
+      if ($supervisor) {
+
+        switch ($supervisor['member_type']) {
+
+          case 3:
+        
+            $new['member_type'] = 2;
+          
+            break;
+
+          case 2:
+        
+            $new['member_type'] = 1;
+          
+            break;
+
+          case 1:
+        
+            $new['member_type'] = 0;
+          
+            break;
+
+          default: 
+
+            $new['member_type'] = 0;
+
+            break;
+        
+        }
+      
+      }
+    
+    }
+
     if ($unionId) {
     
       $new['wx_unionid'] = $unionId;
