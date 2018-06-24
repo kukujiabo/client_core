@@ -91,4 +91,12 @@ class ErrorCode {
 
   public $VDEMPTYMSG = '更新内容不能为空！';
 
+  /**
+   * Bank
+   *
+   */
+  public $DUPLICATEBKFILECODE = '800001';
+
+  public $DUPLICATEBKFILEMSG = '重复的文件！';
+
 }

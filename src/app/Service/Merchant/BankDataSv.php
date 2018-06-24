@@ -6,6 +6,7 @@ use Core\Service\CurdSv;
 use PhpOffice\PhpSpreadSheet\SpreadSheet;
 use PhpOffice\PhpSpreadSheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\IOFactory;
+use App\Exception\LogException;
 
 /**
  * 银行数据
@@ -20,6 +21,14 @@ class BankDataSv extends BaseService {
     $meSv = new MerchantSv();
 
     $bank =$meSv->findOne($data['bank_id']);
+
+    $exist = $this->findOne([ 'orig_name' => $data['orig_name'] ]);
+
+    if ($exist) {
+    
+      throw new LogException($this->_err->DUPLICATEBKFILEMSG, $this->_err->DUPLICATEBKFILECODE);
+    
+    }
 
     $fileName = $bank['mcode'] . time();
 
