@@ -149,7 +149,7 @@ class BankDataSv extends BaseService {
    */
   public function matchData($applyData, $auditData) {
   
-    $apname = $applyData['name'];
+    $apname = $applyData['contact'];
 
     $auname = $auditData['name'];
   

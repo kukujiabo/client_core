@@ -43,21 +43,21 @@ class AuditCardSv extends BaseService {
    */
   public function balanceOfAccount($data) {
   
-    $auditData = $this->all([ 'sequence' => $data['sequence'] ]);
+    $auditData = $this->all([ 'sequence' => $data['sequence'], 'write_off' => 0, 'counted' => 0 ], 'id desc');
 
     $baSv = new BankDataSv();
 
     $bsaSv = new BusinessApplySv();
 
-    $applyData = $bsaSv->all([ 'write_off' => 0, 'bank_id' => $data['bank_id'] ]);
+    $applyData = $bsaSv->all([ 'state' => 0, 'bank_id' => $data['bank_id'] ], 'id desc');
 
     $matchedAudit = [];
-
-    $dismatchAudit = [];
 
     $matchedApply = [];
 
     $dismatchApply = [];
+
+    // return $baSv->matchData($applyData[0], $auditData[1]);
 
     foreach($auditData as $key1 => $audit) {
     
@@ -73,11 +73,26 @@ class AuditCardSv extends BaseService {
         
           $applyData[$key2]['write_off'] = 1;
 
-          $auditData[$key1]['write_off'] = 1;
-
           array_push($matchedAudit, $audit['id']);
 
-          array_push($matchedApply, $apply['id']);
+          if ($audit['state'] == 1) {
+
+            /**
+             * 审批通过
+             */
+
+            array_push($matchedApply, $apply['id']);
+
+          } else {
+
+            /**
+             * 审批拒绝
+             */ 
+
+            array_push($dismatchApply, $apply['id']);
+          
+          
+          }
 
           break;
         
@@ -87,31 +102,25 @@ class AuditCardSv extends BaseService {
     
     }
 
-    foreach($applyData as $checkedData) {
+    $mtNum = 0; $mtApp = 0; $dmtApp = 0;
 
-      if (!$checkedData['write_off']) {
+    if (!empty($matchedAudit)) {
     
-        array_push($dismatchApply, $checkedData['id']);
-
-      }
+      $mtNum = $this->batchUpdate([ 'id' => implode(',', $matchedAudit) ], [ 'counted' => 1 ]);
+    
+    }
+    if (!empty($matchedApply)) {
+    
+      $mtApp = $bsaSv->batchUpdate([ 'id' => implode(',', $matchedApply) ], [ 'state' => 1, 'checked_at' => date('Y-m-d H:i:s') ]);
+     
+    }
+    if (!empty($dismatchApply)) {
+    
+      $dmtApp = $bsaSv->batchUpdate([ 'id' => implode(',', $dismatchApply) ], [ 'state' => 2, 'checked_at' => date('Y-m-d H:i:s') ]);
     
     }
 
-    foreach($auditData as $checkedData) {
-    
-      if (!$checkedData['write_off']) {
-      
-        array_push($dismatchAudit, $checkedData['id']);
-      
-      } 
-    
-    }
-
-    $mtNum = $this->batchUpdate(implode(',', $matchedApply), [ 'state' => 1, 'write_off' => 1 ]);
-
-    $dsNum = $this->batchUpdate(implode(',', $dismatchedApply), [ 'state' => 0, 'write_off' => 1 ]);
-
-    return [ 'matched_num' => $mtNum, 'dismatched_num' => $dsNum ];
+    return [ 'matched_audit' => $mtNum, 'pass_apply' => $mtApp, 'reject_apply' => $dmtApp ];
   
   }
 
