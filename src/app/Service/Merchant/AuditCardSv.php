@@ -120,7 +120,7 @@ class AuditCardSv extends BaseService {
     
     }
 
-    $baSv->update($bankData['id'], [ 'state' => 2 ]);
+    $baSv->update($bankData['id'], [ 'state' => 2, 'checked_at' => date('Y-m-d H:i:s') ]);
 
     return [ 'matched_audit' => $mtNum, 'pass_apply' => $mtApp, 'reject_apply' => $dmtApp ];
   
