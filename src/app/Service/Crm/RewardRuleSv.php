@@ -45,7 +45,7 @@ class RewardRuleSv extends BaseService {
    */
   public function getList($data) {
   
-    $infoSv = new VRewardRuleInfo();
+    $infoSv = new VRewardRuleInfoSv();
 
     $query = [];
 
