@@ -51,7 +51,7 @@ class AuditCardSv extends BaseService {
 
     $bankData = $baSv->findOne([ 'sequence' => $data['sequence'] ]);
 
-    $applyData = $bsaSv->all([ 'counted' => 0, 'bank_id' => $data['bank_id'] ], 'id desc');
+    $applyData = $bsaSv->all([ 'state' => 0, 'bank_id' => $data['bank_id'] ], 'id desc');
 
     $matchedAudit = [];
 
