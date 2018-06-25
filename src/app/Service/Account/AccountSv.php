@@ -78,7 +78,8 @@ class AccountSv extends BaseService {
       'relat_id' => $data['relat_id'],
       'relat_type' => $data['relat_type'],
       'account_id' => $accountInfo['id'],
-      'member_id' => $accountinfo['member_id'],
+      'member_id' => $accountInfo['member_id'],
+      'created_at' => date('Y-m-d H:i:s')
     ];
 
     $logSv = new AccountLogSv();
@@ -114,7 +115,8 @@ class AccountSv extends BaseService {
       'relat_id' => $data['relat_id'],
       'relat_type' => $data['relat_type'],
       'account_id' => $accountInfo['id'],
-      'member_id' => $accountinfo['member_id']
+      'member_id' => $accountInfo['member_id'],
+      'created_at' => date('Y-m-d H:i:s')
     ];
   
     $logSv = new AccountLogSv();
