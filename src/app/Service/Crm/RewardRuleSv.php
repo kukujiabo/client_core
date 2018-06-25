@@ -22,7 +22,7 @@ class RewardRuleSv extends BaseService {
    */
   public function create($data) {
 
-    $exist = $this->fineOne([ 'member_id' => $data['member_id'], 'card_id' => $data['card_id'] ]);
+    $exist = $this->findOne([ 'member_id' => $data['member_id'], 'card_id' => $data['card_id'] ]);
 
     if ($exist) {
     
