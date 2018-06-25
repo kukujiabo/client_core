@@ -150,7 +150,7 @@ class BusinessApplySv extends BaseService {
 
       'write_off' => 0,
 
-      'type' = 'card'
+      'type' => 'card'
 
     ];
 
