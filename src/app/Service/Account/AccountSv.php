@@ -1,7 +1,7 @@
 <?php
 namespace App\Service\Account;
 
-use App\Service\Account\AccountSv;
+use App\Service\BaseService;
 use Core\Service\CurdSv;
 
 /**
