@@ -52,7 +52,7 @@ class AccountSv extends BaseService {
     
     } elseif ($data['member_id']) {
     
-      return $this->findOne([ 'member_id' => $data['id'] ]);
+      return $this->findOne([ 'member_id' => $data['member_id'] ]);
     
     }
 
