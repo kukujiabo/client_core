@@ -37,4 +37,10 @@ class BusinessApplyDm {
   
   }
 
+  public function balanceCreditMoney($data) {
+  
+    return $this->_baSv->balanceCreditMoney($data);
+  
+  }
+
 }

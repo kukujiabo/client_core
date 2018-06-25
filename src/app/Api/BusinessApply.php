@@ -52,6 +52,12 @@ class BusinessApply extends BaseApi {
         'page' => 'page|int|false|1|页码',
         'page_size' => 'page_size|int|false|12|每页条数'
       
+      ],
+
+      'balanceCreditMoney' => [
+      
+        'id' => 'id|int|false||申请id'
+      
       ]
 
     ]);
@@ -103,6 +109,18 @@ class BusinessApply extends BaseApi {
   public function getReferenceLoans() {
   
     return $this->dm->getReferenceLoans($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
+  /**
+   * 计算信用卡佣金
+   * @desc 计算信用卡佣金
+   *
+   * @return int num
+   */
+  public function balanceCreditMoney() {
+  
+    return $this->dm->balanceCreditMoney($this->retriveRuleParams(__FUNCTION__));
   
   }
 

@@ -6,6 +6,7 @@ use App\Service\Crm\MemberSv;
 use App\Service\Commodity\MemberRewardSv;
 use App\Service\Crm\VBapplyMemberCardSv;
 use App\Service\Crm\VBapplyMemberLoanSv;
+use App\Service\Account\AccountSv;
 use Core\Service\CurdSv;
 
 /**
@@ -147,10 +148,10 @@ class BusinessApplySv extends BaseService {
     
       'state' => 1,
 
-      'write_off' => 1,
+      'write_off' => 0,
 
-      'reference' => 'gt|1'
-    
+      'type' = 'card'
+
     ];
 
     if ($data['id']) {
@@ -161,13 +162,61 @@ class BusinessApplySv extends BaseService {
   
     $checkedApplies = $this->all($query);
 
-    $accountUpdate = [ ];
+    $applyIds = [];
 
     foreach($checkedApplies as $apply) {
     
-    
+      array_push($applyIds, $apply['id']);
     
     }
+
+    $mrSv = new MemberRewardSv();
+
+    $rewards = $mrSv->all([ 'apply_id' => implode(',', $applyIds), 'writeoff' => 0 ]);
+
+    $acctSv = new AccountSv();
+
+    foreach($rewards as $reward) {
+
+      /**
+       * 新增账户记录
+       */
+      $newMoney = [
+      
+        'member_id' => $reward['member_id'],
+        'relat_id' => $reward['relat_id'],
+        'relat_type' => $reward['relat_type'],
+        'money' => $reward['money'],
+      
+      ];
+
+      $acctSv->addMoney($newMoney);
+
+      /**
+       * 核销奖励金
+       */
+      $updateReward = [
+      
+        'writeoff' => 1,
+        'writeoff_at' => date('Y-m-d H:i:s')
+      
+      ];
+
+      $mrSv->update($reward['id'], $updateReward);
+
+      /**
+       * 核销对应申请
+       */
+      $updateApply = [
+        'write_off' => 1,
+        'write_off_at' => date('Y-m-d H:i:s')
+      ];
+
+      $this->update($reward['apply_id'], $updateApply);
+    
+    }
+
+    return count($rewards);
   
   }
 

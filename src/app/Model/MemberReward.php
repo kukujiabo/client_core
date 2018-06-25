@@ -10,7 +10,9 @@ class MemberReward extends BaseModel {
 
   protected $_queryOptionsRule = [
   
-    'id' => 'in'
+    'id' => 'in',
+    
+    'apply_id' => 'in'
   
   ];
 
