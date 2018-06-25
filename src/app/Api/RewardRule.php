@@ -16,7 +16,7 @@ class RewardRule extends BaseApi {
       
         'member_id' => 'member_id|int|true||会员id',
         'card_id' => 'card_id|int|true||信用卡id',
-        'senior_reward' => 'senior_reward|float|true||一级奖励金'
+        'senior_reward' => 'senior_reward|float|true||一级奖励金',
         'sub_reward' => 'sub_reward|float|true||下级奖励金'
       
       ],
