@@ -31,4 +31,10 @@ class AccountDm {
   
   }
 
+  public function getDetail($data) {
+  
+    return $this->_acsv->getDetail($data);
+  
+  }
+
 }
