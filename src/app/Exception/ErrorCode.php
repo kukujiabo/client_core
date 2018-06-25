@@ -99,4 +99,11 @@ class ErrorCode {
 
   public $DUPLICATEBKFILEMSG = '重复的文件！';
 
+  /**
+   * reward rule for cards
+   */
+  public $DUPLICATECARDRULECODE = '900001';
+
+  public $DUPLICATECARDRULEMSG = '请勿重复定义规则！';
+
 }

@@ -3,6 +3,7 @@ namespace App\Service;
 
 use Core\Service\Service;
 use App\Exception\ErrorCode;
+use App\Exception\LogException;
 
 /**
  * 服务基类
@@ -47,6 +48,15 @@ class BaseService extends Service {
   protected function getSessionToken() {
 
     $token = \App\getHeader('X-TOKEN');
+  
+  }
+
+  /**
+   * 排除预定义异常
+   */
+  protected function throwError($msg, $code) {
+  
+    throw new LogException($msg, $code);
   
   }
 
