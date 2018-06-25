@@ -3,12 +3,13 @@ namespace App\Service\Merchant;
 
 use App\Service\BaseService;
 use App\Service\Crm\MemberSv;
-use Core\Service\CurdSv;
+use App\Service\Commodity\MemberRewardSv;
 use App\Service\Crm\VBapplyMemberCardSv;
 use App\Service\Crm\VBapplyMemberLoanSv;
+use Core\Service\CurdSv;
 
 /**
- * 商户入驻申请服务
+ * 信用卡申请
  *
  */
 class BusinessApplySv extends BaseService {
@@ -57,7 +58,21 @@ class BusinessApplySv extends BaseService {
     
     ];
 
-    return $this->add($newData); 
+    $mrsv = new MemberRewardSv();
+
+    $applyId = $this->add($newData); 
+
+    if ($data['type'] == 'card') {
+
+      $mrsv->createCardReward($applyId, $data['member_id'], $member['reference'], $data['relat_id']);
+
+    } else {
+    
+      $mrsv->createLoanReward($applyId, $data['member_id'], $member['reference'], $data['relat_id']);
+    
+    }
+
+    return $applyId;
   
   }
 
@@ -120,6 +135,40 @@ class BusinessApplySv extends BaseService {
 
     return $loanSv->queryList($query, '*', 'id desc', $data['page'], $data['page_size']);
 
+  }
+
+  /**
+   * 结算佣金
+   *
+   */
+  public function balanceCreditMoney($data) {
+  
+    $query = [
+    
+      'state' => 1,
+
+      'write_off' => 1,
+
+      'reference' => 'gt|1'
+    
+    ];
+
+    if ($data['id']) {
+    
+      $query['id'] = $data['id'];
+    
+    }
+  
+    $checkedApplies = $this->all($query);
+
+    $accountUpdate = [ ];
+
+    foreach($checkedApplies as $apply) {
+    
+    
+    
+    }
+  
   }
 
 }

@@ -1,6 +1,7 @@
 <?php
 namespace App\Service\Crm;
 
+use App\Service\Account\AccountSv;
 use App\Service\BaseService;
 use App\Common\Traits\AuthTrait;
 use App\Exception\LogException;
@@ -163,6 +164,13 @@ class MemberSv extends BaseService {
       $wxMember = $wxApp->getUserInfo($accessToken, $openid);
 
       $id = $this->createAuthByWxPubOpenId($openid, $wxMember->unionid, $reference);
+
+      /**
+       * 创建账户
+       */
+      $acctSv = new AccountSv();
+
+      $acctSv->create([ 'member_id' => $id ]);
 
       $extraInfo = [
       

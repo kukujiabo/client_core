@@ -3,6 +3,9 @@ namespace App\Service\Commodity;
 
 use \Core\Service\CurdSv;
 use App\Service\BaseService;
+use App\Service\Crm\MemberSv;
+use App\Service\Crm\RewardRuleSv;
+
 /**
  * 会员赠品服务
  *
@@ -236,6 +239,156 @@ class MemberRewardSv extends BaseService {
     }
     
     return $this->batchUpdate([ 'id' => implode(',', $updateIds) ], [ 'checked' => 1 ]);
+  
+  }
+
+  /**
+   * 新建奖励
+   *
+   */
+  public function createCardReward($applyId, $memberId, $identity, $relatId) {
+
+    $msv = new MemberSv();
+
+    $member = $msv->findOne($memberId);
+
+    /**
+     * 先判断申请人是否散客
+     */
+    if ($member['member_type'] == 0) {
+    
+      return; //散客不计件
+    
+    } else {
+
+      $ruleSv = new RuleRewardSv();
+
+      /**
+       * 如果是一级代理
+       */
+      if ($member['member_type'] == 3) {
+
+        $rule = $ruleSv->findOne([ 'card_id' => $relatId, 'member_id' => $member['id'] ]);
+
+        if (!$rule) {
+        
+          $rule = $ruleSv->findOne([ 'card_id' => $relatId, 'member_id' => 0 ]);
+
+        }
+
+        $newReward = [
+        
+          'apply_id' => $applyId,
+          'member_id' => $member['id'],
+          'member_type' => $member['member_type'],
+          'relat_id' => $relatId,
+          'relat_type' => 1,
+          'rule_id' => $rule['id'],
+          'money' => $rule['senior_reward'] + $rule['sub_reward'],
+          'writeoff' => 0,
+          'created_at' => date('Y-m-d H:i:s')
+        
+        ];
+
+        return $this->add($newReward);
+      
+      } elseif ($member['member_type']  == 2) {
+      
+        $supervisor = $msv->findOne([ 'member_identity' => $identity ]);
+
+        $rule = $ruleSv->findOne([ 'card_id' => $relatId, 'member_id' => $supervisor['id'] ]);
+
+        if (!$rule) {
+        
+          $rule = $ruleSv->findOne([ 'card_id' => $relatId, 'member_id' => 0 ]);
+
+        }
+      
+        $newReward1 = [
+        
+          'apply_id' => $applyId,
+          'member_id' => $member['id'],
+          'member_type' => $member['member_type'],
+          'relat_id' => $relatId,
+          'relat_type' => 1,
+          'rule_id' => $rule['id'],
+          'money' => $rule['sub_reward'],
+          'writeoff' => 0,
+          'created_at' => date('Y-m-d H:i:s')
+        
+        ];
+
+        $newReward2 = [
+        
+          'apply_id' => $applyId,
+          'member_id' => $supervisor['id'],
+          'member_type' => $supervisor['member_type'],
+          'relat_id' => $relatId,
+          'relat_type' => 1,
+          'rule_id' => $rule['id'],
+          'money' => $rule['senior_reward'],
+          'writeoff' => 0,
+          'created_at' => date('Y-m-d H:i:s')
+        
+        ]
+
+        $newRewards = [];
+
+        array_push($newRewards, $newReward1, $newReward2);
+
+        return $this->batchAdd($newRewards);
+      
+      } elseif ($member['member_type'] == 1) {
+      
+        $sub = $msv->findOne([ 'member_identity' => $identity ]);
+
+        $supervisor = $msv->findOne([ 'member_identity' => $sub['reference'] ]);
+      
+        $rule = $ruleSv->findOne([ 'card_id' => $relatId, 'member_id' => $supervisor['id'] ]);
+
+        if (!$rule) {
+        
+          $rule = $ruleSv->findOne([ 'card_id' => $relatId, 'member_id' => 0 ]);
+
+        }
+      
+        $newReward1 = [
+        
+          'apply_id' => $applyId,
+          'member_id' => $sub['id'],
+          'member_type' => $sub['member_type'],
+          'relat_id' => $relatId,
+          'relat_type' => 1,
+          'rule_id' => $rule['id'],
+          'money' => $rule['sub_reward'],
+          'writeoff' => 0,
+          'created_at' => date('Y-m-d H:i:s')
+        
+        ];
+
+        $newReward2 = [
+        
+          'apply_id' => $applyId,
+          'member_id' => $supervisor['id'],
+          'member_type' => $supervisor['member_type'],
+          'relat_id' => $relatId,
+          'relat_type' => 1,
+          'rule_id' => $rule['id'],
+          'money' => $rule['senior_reward'],
+          'writeoff' => 0,
+          'created_at' => date('Y-m-d H:i:s')
+        
+        ]
+
+        $newRewards = [];
+
+        array_push($newRewards, $newReward1, $newReward2);
+
+        return $this->batchAdd($newRewards);
+      
+      }
+
+    }
   
   }
 

@@ -106,4 +106,16 @@ class ErrorCode {
 
   public $DUPLICATECARDRULEMSG = '请勿重复定义规则！';
 
+  /**
+   * account
+   *
+   */
+  public $DUPLICATEACCOUNTCODE = '110001';
+
+  public $DUPLICATEACCOUNTMSG = '账户不能重复!';
+
+  public $NORESTCODE = '110002';
+
+  public $NORESTMSG = '账户余额不足！';
+
 }

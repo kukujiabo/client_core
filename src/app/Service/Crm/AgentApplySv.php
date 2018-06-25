@@ -2,6 +2,7 @@
 namespace App\Service\Crm;
 
 use App\Service\BaseService;
+use App\Service\Account\AccountSv;
 use Core\Service\CurdSv;
 
 /**
@@ -49,6 +50,9 @@ class AgentApplySv extends BaseService {
     
       $mSv = new MemberSv();
 
+      /**
+       * 更新用户等级
+       */
       $mSv->update($apply['member_id'], [ 'member_type' => 3 ]);
 
     }

@@ -5,7 +5,9 @@ class BusinessApply extends BaseModel {
 
   protected $_queryOptionRule = [
   
-    'id' => 'in'
+    'id' => 'in',
+
+    'reference' => 'range'
   
   ];
 

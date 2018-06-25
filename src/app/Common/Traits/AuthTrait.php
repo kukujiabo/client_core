@@ -290,9 +290,9 @@ trait AuthTrait {
             break;
         
         }
-      
+
       }
-    
+
     }
 
     if ($unionId) {
