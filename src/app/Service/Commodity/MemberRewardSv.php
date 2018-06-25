@@ -261,7 +261,7 @@ class MemberRewardSv extends BaseService {
     
     } else {
 
-      $ruleSv = new RuleRewardSv();
+      $ruleSv = new RewardRuleSv();
 
       /**
        * 如果是一级代理
