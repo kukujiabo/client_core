@@ -35,6 +35,8 @@ class WithdrawSv extends BaseService {
 
       'type' => 2,
 
+      'money' => $data['money'],
+
       'withdraw' => 1,
 
       'created_at' => date('Y-m-d H:i:s')
