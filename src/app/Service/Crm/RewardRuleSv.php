@@ -26,6 +26,7 @@ class RewardRuleSv extends BaseService {
     
       'member_id' => $data['member_id'] ? $data['member_id'] : 0,
       'card_id' => $data['card_id'],
+      'senior_reward' => $data['senior_reward'],
       'sub_reward' => $data['sub_reward'],
       'remark' => $data['remark'],
       'created_at' => date('Y-m-d H:i:s')
