@@ -1,5 +1,5 @@
 <?php
-namespace App\BaseApi;
+namespace App\Api;
 
 /**
  * 会员绑定支付宝账号接口
