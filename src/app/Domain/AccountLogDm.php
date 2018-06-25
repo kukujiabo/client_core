@@ -1,7 +1,7 @@
 <?php
 namespace App\Domain;
 
-use App\Service\Account\AccountSv;
+use App\Service\Account\AccountLogSv;
 
 class AccountLogDm {
 
