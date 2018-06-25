@@ -330,7 +330,7 @@ class MemberRewardSv extends BaseService {
           'writeoff' => 0,
           'created_at' => date('Y-m-d H:i:s')
         
-        ]
+        ];
 
         $newRewards = [];
 
@@ -378,7 +378,7 @@ class MemberRewardSv extends BaseService {
           'writeoff' => 0,
           'created_at' => date('Y-m-d H:i:s')
         
-        ]
+        ];
 
         $newRewards = [];
 
