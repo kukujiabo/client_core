@@ -26,6 +26,22 @@ class WithdrawSv extends BaseService {
     }
 
     $sequence = time() . rand(1000, 9999) . $member['member_identity'];
+
+    $turnOver = new MemberTurnoverSv();
+
+    $newTurn = [
+    
+      'member_id' => $data['member_id'],
+
+      'type' => 2,
+
+      'withdraw' => 1,
+
+      'created_at' => date('Y-m-d H:i:s')
+    
+    ];
+
+    $turnOver->add($newTurn);
   
     $newWithdraw = [
 
