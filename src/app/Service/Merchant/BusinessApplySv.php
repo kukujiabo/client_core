@@ -203,6 +203,18 @@ class BusinessApplySv extends BaseService {
       ];
 
       $mrSv->update($reward['id'], $updateReward);
+
+      /**
+       * 核销申请
+       */
+      $updateApply = [
+      
+        'write_off' => 1,
+        'write_off_at' => date('Y-m-d H:i:s')
+      
+      ]
+
+      $acctSv->update($reward['apply_id'], $updateApply);
     
     }
 
