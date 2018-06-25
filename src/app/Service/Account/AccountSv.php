@@ -115,7 +115,7 @@ class AccountSv extends BaseService {
       'relat_type' => $data['relat_type'],
       'account_id' => $accountInfo['id'],
       'member_id' => $accountinfo['member_id']
-    ]
+    ];
   
     $logSv = new AccountLogSv();
 
