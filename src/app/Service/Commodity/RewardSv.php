@@ -208,6 +208,8 @@ class RewardSv extends BaseService {
       $isv->batchDelete(5, $id);
 
       $isv->batchCreate($carousel, 5, $id);
+
+      $updateData['banner'] = $carousel[0]['url'];
     
     }
   
