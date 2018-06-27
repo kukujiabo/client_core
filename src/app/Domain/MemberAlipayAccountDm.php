@@ -19,4 +19,10 @@ class MemberAlipayAccountDm {
   
   }
 
+  public function getDetail($data) {
+  
+    return $this->_mapsv->getDetail($data);
+  
+  }
+
 }

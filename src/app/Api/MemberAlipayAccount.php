@@ -1,5 +1,4 @@
-<?php
-namespace App\Api;
+<?php namespace App\Api;
 
 /**
  * 会员绑定支付宝账号接口
@@ -19,6 +18,12 @@ class MemberAlipayAccount extends BaseApi {
       
         'real_name' => 'real_name|string|true||会员真实姓名'
       
+      ],
+
+      'getDetail' => [
+      
+        'member_id' => 'member_id|int|true||会员id'
+      
       ]
     
     ]);
@@ -34,6 +39,18 @@ class MemberAlipayAccount extends BaseApi {
   public function create() {
   
     return $this->dm->create($this->retriveRuleParams(__FUNCTION__)); 
+  
+  }
+
+  /**
+   * 查询账号详情
+   * @desc 查询账号详情
+   *
+   * @return data array
+   */
+  public function getDetail() {
+  
+    return $this->dm->getDetail($this->retriveRuleParams(__FUNCTION__));
   
   }
 
