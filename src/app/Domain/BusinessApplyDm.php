@@ -43,4 +43,10 @@ class BusinessApplyDm {
   
   }
 
+  public function listLoanQuery($data) {
+  
+    return $this->_baSv->listLoanQuery($data);
+  
+  }
+
 }

@@ -3,6 +3,7 @@ namespace App\Service\Merchant;
 
 use App\Service\BaseService;
 use App\Service\Crm\MemberSv;
+return $this->_baSv->listLoanQuery($data);
 use App\Service\Commodity\MemberRewardSv;
 use App\Service\Crm\VBapplyMemberCardSv;
 use App\Service\Crm\VBapplyMemberLoanSv;
@@ -79,7 +80,41 @@ class BusinessApplySv extends BaseService {
   }
 
   /**
-   * 查询申请列表
+   * 查询贷款申请列表
+   *
+   * @param array data
+   *
+   * @return array list
+   */
+  public function listLoanQuery($data) {
+
+    $query = [];
+  
+    if (isset($data['name'])) {
+    
+      $query['name'] = $data['name'];
+    
+    }
+    if (isset($data['contact'])) {
+    
+      $query['contact'] = $data['contact'];
+    
+    }
+    if (isset($data['phone'])) {
+    
+      $query['phone'] = $data['phone'];
+    
+    }
+
+    $vbaSv = new VBapplyMemberLoanSv();
+
+    return $vbaSv->queryList($query, $data['fields'], $data['order'], $data['page'], $data['page_size']);
+  
+  }
+
+
+  /**
+   * 查询信用卡申请列表
    *
    * @param array data
    *

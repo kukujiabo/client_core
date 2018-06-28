@@ -38,6 +38,18 @@ class BusinessApply extends BaseApi {
       
       ],
 
+      'listLoanQuery' => [
+      
+        'name' => 'name|string|false||商户名称',
+        'contact' => 'contact|string|false||联系人姓名',
+        'phone' => 'phone|string|false||联系人电话',
+        'fields' => 'fields|string|false||商户字段',
+        'order' => 'order|string|false||排序', 
+        'page' => 'page|int|false|1|页码',
+        'page_size' => 'page_size|int|false|20|每页条数'
+      
+      ],
+
       'getReferenceCards' => [
       
         'reference' => 'reference|string|true||关联',
@@ -77,7 +89,7 @@ class BusinessApply extends BaseApi {
   }
 
   /**
-   * 查询列表申请
+   * 查询信用卡申请
    * @desc 查询列表申请
    *
    * @return array list
@@ -85,6 +97,18 @@ class BusinessApply extends BaseApi {
   public function listCardQuery() {
   
     return $this->dm->listCardQuery($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
+  /**
+   * 查询贷款申请
+   * @desc 查询列表申请
+   *
+   * @return array list
+   */
+  public function listLoanQuery() {
+  
+    return $this->dm->listLoanQuery($this->retriveRuleParams(__FUNCTION__));
   
   }
 
