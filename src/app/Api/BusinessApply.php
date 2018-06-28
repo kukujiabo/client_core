@@ -84,7 +84,7 @@ class BusinessApply extends BaseApi {
    */
   public function listCardQuery() {
   
-    return $this->dm->listQuery($this->retriveRuleParams(__FUNCTION__));
+    return $this->dm->listCardQuery($this->retriveRuleParams(__FUNCTION__));
   
   }
 
