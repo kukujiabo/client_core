@@ -3,7 +3,6 @@ namespace App\Service\Merchant;
 
 use App\Service\BaseService;
 use App\Service\Crm\MemberSv;
-return $this->_baSv->listLoanQuery($data);
 use App\Service\Commodity\MemberRewardSv;
 use App\Service\Crm\VBapplyMemberCardSv;
 use App\Service\Crm\VBapplyMemberLoanSv;
