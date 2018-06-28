@@ -32,7 +32,7 @@ class BusinessApplySv extends BaseService {
 
     $bankId = 0;
 
-    if ($type == 'card') {
+    if ($data['type'] == 'card') {
 
       $shop = new ShopSv();
     
@@ -85,7 +85,7 @@ class BusinessApplySv extends BaseService {
    *
    * @return array list
    */
-  public function listQuery($data) {
+  public function listCardQuery($data) {
 
     $query = [];
   

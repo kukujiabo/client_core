@@ -26,7 +26,7 @@ class BusinessApply extends BaseApi {
       
       ],
 
-      'listQuery' => [
+      'listCardQuery' => [
       
         'name' => 'name|string|false||商户名称',
         'contact' => 'contact|string|false||联系人姓名',
@@ -82,7 +82,7 @@ class BusinessApply extends BaseApi {
    *
    * @return array list
    */
-  public function listQuery() {
+  public function listCardQuery() {
   
     return $this->dm->listQuery($this->retriveRuleParams(__FUNCTION__));
   

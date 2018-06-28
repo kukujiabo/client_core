@@ -19,9 +19,9 @@ class BusinessApplyDm {
   
   }
 
-  public function listQuery($data) {
+  public function listCardQuery($data) {
    
-    return $this->_baSv->listQuery($data); 
+    return $this->_baSv->listCardQuery($data); 
   
   }
 
