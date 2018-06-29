@@ -92,12 +92,16 @@ class ErrorCode {
   public $VDEMPTYMSG = '更新内容不能为空！';
 
   /**
-   * Bank
+   * UPLOADFILE
    *
    */
   public $DUPLICATEBKFILECODE = '800001';
 
   public $DUPLICATEBKFILEMSG = '重复的文件！';
+
+  public $FILETRANSFERFAILEDCODE = '800002';
+
+  public $FILETRANSFERFAILEDMSG = '复制文件失败！';
 
   /**
    * reward rule for cards
@@ -117,5 +121,6 @@ class ErrorCode {
   public $NORESTCODE = '110002';
 
   public $NORESTMSG = '账户余额不足！';
+
 
 }
