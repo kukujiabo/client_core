@@ -18,7 +18,7 @@ class LoanDataSv extends BaseService {
    */
   public function reconciliation($data) {
 
-    $rdSv = new Reward();
+    $rdSv = new RewardSv();
 
     $loan = $rdSv->findOne($data['loan_id']);
 
