@@ -8,7 +8,7 @@ use Core\Service\CurdSv;
  * 贷款文件服务
  *
  */
-class LoanFileSv extends BaseService {
+class VLoanFileSv extends BaseService {
 
   use CurdSv;
 
