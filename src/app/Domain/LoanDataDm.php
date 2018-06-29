@@ -19,4 +19,10 @@ class LoanDataDm {
   
   }
 
+  public function getList($data) {
+  
+    return $this->_lnSv->getList($data); 
+  
+  }
+
 }
