@@ -313,4 +313,35 @@ class RewardSv extends BaseService {
   
   }
 
+  /**
+   * 查询全部贷款
+   *
+   * @param data
+   *
+   * @return array data
+   */
+  public function getAll($data) {
+
+    $query = []; 
+
+    if (isset($data['reward_name'])) {
+    
+      $query['reward_name'] = $data['reward_name'];
+    
+    }
+    if (isset($data['shop_name'])) {
+    
+      $query['shop_name'] = $data['shop_name'];
+    
+    }
+    if (isset($data['shop_id'])) {
+    
+      $query['shop_id'] = $data['shop_id'];
+    
+    }
+  
+    return $this->all($query, $data['fields'], $data['order'], $data['page'], $data['page_size']);
+  
+  }
+
 }
