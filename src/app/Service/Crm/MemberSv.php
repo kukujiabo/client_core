@@ -80,8 +80,10 @@ class MemberSv extends BaseService {
       $query['reference'] = $params['reference'];
     
     }
+
+    $vmf = new VMemberFullInfoSv();
   
-    return $this->queryList($query, $params['fields'], $params['order'], $params['page'], $params['page_size']);
+    return $vmf->queryList($query, $params['fields'], $params['order'], $params['page'], $params['page_size']);
   
   }
 
