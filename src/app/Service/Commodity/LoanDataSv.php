@@ -3,6 +3,10 @@ namespace App\Service\Commodity;
 
 use App\Service\BaseService;
 use Core\Service\CurdSv;
+use PhpOffice\PhpSpreadSheet\SpreadSheet;
+use PhpOffice\PhpSpreadSheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use App\Exception\LogException;
 
 /**
  * 贷款对账数据
@@ -59,6 +63,66 @@ class LoanDataSv extends BaseService {
       ];
     
       return $this->add($newFile);
+    
+    }
+
+  }
+
+  /**
+   * 导入数据
+   * @desc 导入数据
+   *
+   * @return array
+   */
+  public function importData($data) {
+  
+    $fileInfo = $this->findOne($data['id']);
+
+    $acSv = new AuditLoanSv();
+
+    $spreadSheet = IOFactory::load($fileInfo['file_path']);
+
+    $sheetData = $spreadSheet->getActiveSheet()->toArray(null, true, true, false);
+  
+    $dataset = [];
+
+    foreach($sheetData as $row) {
+    
+      $newData = [
+      
+        'name' => $row[0],
+        'phone' => $row[1],
+        'state' => $row[2],
+        'in_date' => $row[3],
+        'audit_date' => $row[4],
+        'money' => $row[5],
+        'product_name' => $row[6],
+        'source' => $row[7],
+        'created_at' => date('Y-m-d H:i:s'),
+        'loan_id' => $fileInfo['loan_id'],
+        'sequence' => $fileInfo['sequence'],
+        'counted' => 0,
+        'write_off' => 0,
+
+      ];
+    
+      array_push($dataset, $newData);
+    
+    }
+
+    $acSv = new AuditLoanSv();
+
+    $num = $acSv->batchAdd($dataset);
+
+    if ($num) {
+
+      $this->update($fileInfo['id'], [ 'state' => 1 ]);
+
+      return $num;
+
+    } else {
+    
+      return 0;
     
     }
 

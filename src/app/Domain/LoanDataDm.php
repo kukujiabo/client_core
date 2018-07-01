@@ -25,4 +25,10 @@ class LoanDataDm {
   
   }
 
+  public function importData($data) {
+  
+    return $this->_lnSv->importData($data);
+  
+  }
+
 }
