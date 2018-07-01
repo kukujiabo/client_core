@@ -261,18 +261,18 @@ class MemberRewardSv extends BaseService {
     
     } else {
 
-      $ruleSv = new RewardRuleSv();
+      $ruleSv = new LoanRewardRuleSv();
 
       /**
        * 如果是一级代理
        */
       if ($member['member_type'] == 3) {
 
-        $rule = $ruleSv->findOne([ 'card_id' => $relatId, 'member_id' => $member['id'] ]);
+        $rule = $ruleSv->findOne([ 'loan_id' => $relatId, 'member_id' => $member['id'] ]);
 
         if (!$rule) {
         
-          $rule = $ruleSv->findOne([ 'card_id' => $relatId, 'member_id' => 0 ]);
+          $rule = $ruleSv->findOne([ 'loan_id' => $relatId, 'member_id' => 0 ]);
 
         }
 
