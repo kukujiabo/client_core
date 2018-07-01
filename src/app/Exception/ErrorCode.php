@@ -122,5 +122,12 @@ class ErrorCode {
 
   public $NORESTMSG = '账户余额不足！';
 
+  /**
+   * BUSINESS APPLY
+   *
+   */
+  public $LOANSYNCFAILEDMSG = '贷款申请同步失败！';
+
+  public $LOANSYNCFAILEDCODE = '210001';
 
 }
