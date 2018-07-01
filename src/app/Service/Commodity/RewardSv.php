@@ -58,6 +58,10 @@ class RewardSv extends BaseService {
       'num' => $data['num'],
 
       'is_self' => $data['is_self'],
+      
+      'reward_type' => $data['reward_type'],
+
+      'display_order' => $data['display_order'],
 
       'start_time' => $data['start_time'] ? date('Y-m-d H:i:s', $data['start_time']) : NULL,
 
@@ -153,6 +157,16 @@ class RewardSv extends BaseService {
     if (isset($data['commission'])) {
 
       $updateData['commission'] = $data['commission'];
+    
+    }
+    if (isset($data['reward_type'])) {
+
+      $updateData['reward_type'] = $data['reward_type'];
+    
+    }
+    if (isset($data['display_order'])) {
+
+      $updateData['display_order'] = $data['display_order'];
     
     }
     if (isset($data['time'])) {

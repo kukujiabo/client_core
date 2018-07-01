@@ -32,7 +32,9 @@ class Reward extends BaseApi {
         'carousel' => 'carousel|string|false||贷款轮播图',
         'start_time' => 'start_time|string|false||贷款有效期开始',
         'end_time' => 'end_time|string|false||贷款有效期结束',
-        'is_self' => 'is_self|int|false|1|是否自营'
+        'is_self' => 'is_self|int|false|1|是否自营',
+        'display_order' => 'display_order|int|false|1|排序',
+        'reward_type' => 'reward_type|int|false|1|贷款佣金类型'
       
       ],
 
@@ -58,7 +60,9 @@ class Reward extends BaseApi {
         'carousel' => 'carousel|string|false||贷款轮播图',
         'start_time' => 'start_time|string|false||贷款有效期开始',
         'end_time' => 'end_time|string|false||贷款有效期结束',
-        'is_self' => 'is_self|int|false|1|是否自营'
+        'is_self' => 'is_self|int|false|1|是否自营',
+        'display_order' => 'display_order|int|false|1|排序',
+        'reward_type' => 'reward_type|int|false|1|贷款佣金类型'
       
       ],
 
