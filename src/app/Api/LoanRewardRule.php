@@ -18,7 +18,7 @@ class LoanRewardRule extends BaseApi {
         'loan_id' => 'loan_id|int|true||贷款id',
         'senior_reward' => 'senior_reward|float|true||一级代理佣金',
         'sub_reward' => 'sub_reward|float|true||二级代理佣金',
-        'remark' => 'remark|string|true||备注',
+        'remark' => 'remark|string|false||备注',
         'state' => 'state|int|false|1|状态',
       
       ],
