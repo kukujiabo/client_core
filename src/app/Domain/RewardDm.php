@@ -79,4 +79,10 @@ class RewardDm {
 
   }
 
+  public function loanCommisionList($data) {
+  
+    return $this->rwdSv->loanCommisionList($data); 
+  
+  }
+
 }

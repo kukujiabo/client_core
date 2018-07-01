@@ -79,6 +79,18 @@ class Reward extends BaseApi {
       
       ],
 
+      'loanCommisionList' => [
+      
+        'reward_name' => 'reward_name|string|false||贷款名称',
+        'reward_code' => 'reward_code|string|false||贷款编码',
+        'status' => 'status|int|false||贷款状态',
+        'fields' => 'fields|string|false||查询字段',
+        'order' => 'order|string|false||排序',
+        'page' => 'page|int|false||页码',
+        'page_size' => 'page_size|int|false||每页条数'
+      
+      ],
+
       'getDetail' => [
       
         'id' => 'id|int|true||贷款id',
@@ -148,6 +160,18 @@ class Reward extends BaseApi {
   public function listQuery() {
   
     return $this->dm->listQuery($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
+  /**
+   * 带佣金信息的贷款列表
+   * @desc 查询列表
+   *
+   * @return array list
+   */
+  public function loanCommisionList() {
+  
+    return $this->dm->loanCommisionList($this->retriveRuleParams(__FUNCTION__));
   
   }
 

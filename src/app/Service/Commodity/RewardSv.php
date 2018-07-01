@@ -238,6 +238,36 @@ class RewardSv extends BaseService {
   
   }
 
+  /**
+   * 带佣金信息的贷款列表
+   *
+   */
+  public function loanCommisionList() {
+  
+    $query = array();
+  
+    if ($data['reward_code']) {
+    
+      $query['reward_code'] = $data['reward_code'];
+    
+    }
+    if ($data['reward_name']) {
+    
+      $query['reward_name'] = $data['reward_name'];
+    
+    }
+    if ($data['status']) {
+    
+      $query['status'] = $data['status'];
+    
+    }
+
+    $lcSv = new VLoanCommisionInfoSv();
+  
+    return $lcSv->queryList($query, $data['fields'], $data['order'], $data['page'], $data['page_size']);
+  
+  }
+
 
   /**
    * 查询列表
