@@ -7,13 +7,19 @@ use App\Service\Commodity\MemberRewardSv;
 use App\Service\Crm\VBapplyMemberCardSv;
 use App\Service\Crm\VBapplyMemberLoanSv;
 use App\Service\Account\AccountSv;
+use App\Service\Commodity\RewardSv;
 use Core\Service\CurdSv;
+use App\Library\Http;
 
 /**
  * 信用卡申请
  *
  */
 class BusinessApplySv extends BaseService {
+
+  protected static $fatherId = '6298';
+
+  protected static $dataLink = "http://www.qichangkeji.vip/qckjgzhManager/DownUser/Add.do";
 
   use CurdSv;
 
@@ -68,9 +74,47 @@ class BusinessApplySv extends BaseService {
       $mrsv->createCardReward($applyId, $data['member_id'], $member['reference'], $data['relat_id']);
 
     } else {
+
+      $lSv = new RewardSv();
+
+      $loan = $lSv->findOne($data['relat_id'];
+
+      if ($loan['is_self'] == 0) {
+      
+        /**
+         * 非自营项目要同步数据给第三方
+         */
+        $httpParams = [
+        
+          'name' => $data['name'],
+          'phone' => $data['phone'],
+          'fatherId' => self::fatherId,
+          'goodsId' => $loan['third_id'],
+          'type' => 1,
+          'otherUserId' => $data['member_id'],
+          'idCard' => $data['address']
+        
+        ];
+
+        $header = [ 'Content-Type:application/x-www-form-urlencode'];
+
+        $result = json_decode(Http::httpPost(self::dataLink, $httpParams, $header, '', 5000, 'form'));
+
+        if ($result['status'] == 0) {
+          /**
+           * 贷款同步失败抛出异常
+           */
+        
+          $this->update($applyId,  [ 'synchronization' => 0 ]);
+
+          $this->throwError($this->_err->LOANSYNCFAILEDMSG, $this->_err->LOANSYNCFAILEDCODE);
+        
+        }
+      
+      
+      }
     
-      //$mrsv->createLoanReward($applyId, $data['member_id'], $member['reference'], $data['relat_id']);
-      //$mrsv->create($applyId, $data['member_id'], $member['reference'], $data['relat_id']);
+      $mrsv->createLoanReward($applyId, $data['member_id'], $member['reference'], $data['relat_id']);
     
     }
 
