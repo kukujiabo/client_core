@@ -87,6 +87,14 @@ class LoanDataSv extends BaseService {
     $dataset = [];
 
     foreach($sheetData as $row) {
+
+      $name = trim($row[0]);
+
+      if (empty($name)) {
+      
+        continue;
+      
+      }
     
       $newData = [
       
