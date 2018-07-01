@@ -77,7 +77,7 @@ class BusinessApplySv extends BaseService {
 
       $lSv = new RewardSv();
 
-      $loan = $lSv->findOne($data['relat_id'];
+      $loan = $lSv->findOne($data['relat_id']);
 
       if ($loan['is_self'] == 0) {
       
