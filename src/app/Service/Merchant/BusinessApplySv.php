@@ -87,7 +87,7 @@ class BusinessApplySv extends BaseService {
          */
         $httpParams = [
         
-          'name' => $data['name'],
+          'name' => $data['contact'],
           'phone' => $data['phone'],
           'fatherId' => BusinessApplySv::FATHERID,
           'goodsId' => $loan['third_id'],
@@ -117,7 +117,7 @@ class BusinessApplySv extends BaseService {
 
         $logId = $log->add($newLogData);
 
-        $result = json_decode(Http::httpPost(BusinessApplySv::TDATALINK, $httpParams, $header, '', 5000, 'form'));
+        $result = json_decode(Http::httpPost(BusinessApplySv::TDATALINK, $httpParams, $header, '', 5000, 'raw'));
 
         $log->update($logId, ['return_data' => json_encode($result)]);
 
