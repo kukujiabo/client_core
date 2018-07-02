@@ -67,6 +67,8 @@ class RewardSv extends BaseService {
 
       'end_time' => $data['end_time'] ? date('Y-m-d H:i:s', $data['end_time']) : NULL,
 
+      'third_id' => $data['third_id'],
+
       'created_at' => $timeStr
     
     ];
@@ -157,6 +159,11 @@ class RewardSv extends BaseService {
     if (isset($data['commission'])) {
 
       $updateData['commission'] = $data['commission'];
+    
+    }
+    if (isset($data['third_id'])) {
+
+      $updateData['third_id'] = $data['third_id'];
     
     }
     if (isset($data['reward_type'])) {
