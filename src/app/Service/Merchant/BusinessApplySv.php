@@ -97,7 +97,7 @@ class BusinessApplySv extends BaseService {
         
         ];
 
-        $header = [ 'Content-Type:application/x-www-form-urlencode'];
+        $header = [ 'Content-Type:application/x-www-form-urlencoded'];
 
         $log = new LoanThirdLogSv();
 
