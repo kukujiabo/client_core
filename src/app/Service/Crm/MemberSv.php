@@ -182,7 +182,7 @@ class MemberSv extends BaseService {
 
         'wx_city' => $wxMember->city,
 
-        'wx_province' => $wxMember->province
+        'wx_province' => $wxMember->province,
 
         'sex' => $wxMember->gender
       
