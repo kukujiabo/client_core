@@ -431,7 +431,7 @@ class MemberSv extends BaseService {
     
     }
 
-    $mvcSv = MobileVerifyCodeSv();
+    $mvcSv = new MobileVerifyCodeSv();
 
     if ($mvcSv->checkVerifyCode($data['mobile'], $data['code'])) {
     
