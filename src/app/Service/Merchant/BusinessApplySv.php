@@ -117,7 +117,7 @@ class BusinessApplySv extends BaseService {
 
         $logId = $log->add($newLogData);
 
-        $result = json_decode(Http::httpPost(BusinessApplySv::TDATALINK, $httpParams, $header, '', 5000, 'raw'));
+        $result = json_decode(Http::httpPost(BusinessApplySv::TDATALINK, $httpParams, $header, '', 5000, 'raw'), true);
 
         $log->update($logId, ['return_data' => json_encode($result)]);
 
