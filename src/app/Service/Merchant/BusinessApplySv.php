@@ -6,6 +6,7 @@ use App\Service\Crm\MemberSv;
 use App\Service\Commodity\MemberRewardSv;
 use App\Service\Crm\VBapplyMemberCardSv;
 use App\Service\Crm\VBapplyMemberLoanSv;
+use App\Service\Crm\LoanThirdLogSv;
 use App\Service\Account\AccountSv;
 use App\Service\Commodity\RewardSv;
 use Core\Service\CurdSv;
@@ -98,7 +99,27 @@ class BusinessApplySv extends BaseService {
 
         $header = [ 'Content-Type:application/x-www-form-urlencode'];
 
+        $log = new LoanThirdLogSv();
+
+        $newLogData = [
+        
+          'member_id' => $data['member_id'],
+
+          'send_data' => json_encode($httpParams),
+
+          'reward_id' => $data['relat_id'],
+
+          'goods_id' => $loan['third_id'],
+
+          'created_at' => date('Y-m-d H:i:s')
+        
+        ];
+
+        $logId = $log->add($newLogData);
+
         $result = json_decode(Http::httpPost(self::dataLink, $httpParams, $header, '', 5000, 'form'));
+
+        $log->update($logId, ['return_data' => json_encode($result)]);
 
         if ($result['status'] == 0) {
           /**
