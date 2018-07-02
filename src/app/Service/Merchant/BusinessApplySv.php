@@ -111,7 +111,6 @@ class BusinessApplySv extends BaseService {
         
         }
       
-      
       }
     
       $mrsv->createLoanReward($applyId, $data['member_id'], $member['reference'], $data['relat_id']);

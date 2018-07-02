@@ -5,6 +5,7 @@ use \Core\Service\CurdSv;
 use App\Service\BaseService;
 use App\Service\Crm\MemberSv;
 use App\Service\Crm\RewardRuleSv;
+use App\Service\Crm\LoanRewardRuleSv;
 
 /**
  * 会员赠品服务
@@ -282,7 +283,7 @@ class MemberRewardSv extends BaseService {
           'member_id' => $member['id'],
           'member_type' => $member['member_type'],
           'relat_id' => $relatId,
-          'relat_type' => 1,
+          'relat_type' => 2,
           'rule_id' => $rule['id'],
           'money' => $rule['senior_reward'] + $rule['sub_reward'],
           'writeoff' => 0,
@@ -296,11 +297,11 @@ class MemberRewardSv extends BaseService {
       
         $supervisor = $msv->findOne([ 'member_identity' => $identity ]);
 
-        $rule = $ruleSv->findOne([ 'card_id' => $relatId, 'member_id' => $supervisor['id'] ]);
+        $rule = $ruleSv->findOne([ 'loan_id' => $relatId, 'member_id' => $supervisor['id'] ]);
 
         if (!$rule) {
         
-          $rule = $ruleSv->findOne([ 'card_id' => $relatId, 'member_id' => 0 ]);
+          $rule = $ruleSv->findOne([ 'loan_id' => $relatId, 'member_id' => 0 ]);
 
         }
       
@@ -310,7 +311,7 @@ class MemberRewardSv extends BaseService {
           'member_id' => $member['id'],
           'member_type' => $member['member_type'],
           'relat_id' => $relatId,
-          'relat_type' => 1,
+          'relat_type' => 2,
           'rule_id' => $rule['id'],
           'money' => $rule['sub_reward'],
           'writeoff' => 0,
@@ -324,7 +325,7 @@ class MemberRewardSv extends BaseService {
           'member_id' => $supervisor['id'],
           'member_type' => $supervisor['member_type'],
           'relat_id' => $relatId,
-          'relat_type' => 1,
+          'relat_type' => 2,
           'rule_id' => $rule['id'],
           'money' => $rule['senior_reward'],
           'writeoff' => 0,
@@ -344,11 +345,11 @@ class MemberRewardSv extends BaseService {
 
         $supervisor = $msv->findOne([ 'member_identity' => $sub['reference'] ]);
       
-        $rule = $ruleSv->findOne([ 'card_id' => $relatId, 'member_id' => $supervisor['id'] ]);
+        $rule = $ruleSv->findOne([ 'loan_id' => $relatId, 'member_id' => $supervisor['id'] ]);
 
         if (!$rule) {
         
-          $rule = $ruleSv->findOne([ 'card_id' => $relatId, 'member_id' => 0 ]);
+          $rule = $ruleSv->findOne([ 'loan_id' => $relatId, 'member_id' => 0 ]);
 
         }
       
@@ -358,7 +359,7 @@ class MemberRewardSv extends BaseService {
           'member_id' => $sub['id'],
           'member_type' => $sub['member_type'],
           'relat_id' => $relatId,
-          'relat_type' => 1,
+          'relat_type' => 2,
           'rule_id' => $rule['id'],
           'money' => $rule['sub_reward'],
           'writeoff' => 0,
@@ -372,7 +373,7 @@ class MemberRewardSv extends BaseService {
           'member_id' => $supervisor['id'],
           'member_type' => $supervisor['member_type'],
           'relat_id' => $relatId,
-          'relat_type' => 1,
+          'relat_type' => 2,
           'rule_id' => $rule['id'],
           'money' => $rule['senior_reward'],
           'writeoff' => 0,
