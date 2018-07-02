@@ -18,9 +18,9 @@ use App\Library\Http;
  */
 class BusinessApplySv extends BaseService {
 
-  protected static $fatherId = '6298';
+  CONST FATHERID = '6298';
 
-  protected static $dataLink = "http://www.qichangkeji.vip/qckjgzhManager/DownUser/Add.do";
+  CONST TDATALINK = "http://www.qichangkeji.vip/qckjgzhManager/DownUser/Add.do";
 
   use CurdSv;
 
@@ -89,7 +89,7 @@ class BusinessApplySv extends BaseService {
         
           'name' => $data['name'],
           'phone' => $data['phone'],
-          'fatherId' => self::fatherId,
+          'fatherId' => BusinessApplySv::FATHERID,
           'goodsId' => $loan['third_id'],
           'type' => 1,
           'otherUserId' => $data['member_id'],
@@ -117,7 +117,7 @@ class BusinessApplySv extends BaseService {
 
         $logId = $log->add($newLogData);
 
-        $result = json_decode(Http::httpPost(self::dataLink, $httpParams, $header, '', 5000, 'form'));
+        $result = json_decode(Http::httpPost(BusinessApplySv::TDATALINK, $httpParams, $header, '', 5000, 'form'));
 
         $log->update($logId, ['return_data' => json_encode($result)]);
 
