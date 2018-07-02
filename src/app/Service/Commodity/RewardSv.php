@@ -242,7 +242,7 @@ class RewardSv extends BaseService {
    * 带佣金信息的贷款列表
    *
    */
-  public function loanCommisionList() {
+  public function loanCommisionList($data) {
   
     $query = array();
   
