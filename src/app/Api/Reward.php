@@ -35,7 +35,8 @@ class Reward extends BaseApi {
         'is_self' => 'is_self|int|false|1|是否自营',
         'display_order' => 'display_order|int|false|1|排序',
         'reward_type' => 'reward_type|int|false|1|贷款佣金类型',
-        'third_id' => 'third_id|int|false||第三方id'
+        'third_id' => 'third_id|int|false||第三方id',
+        'audit_type' => 'audit_type|int|false||结算条件'
       
       ],
 
@@ -64,8 +65,8 @@ class Reward extends BaseApi {
         'is_self' => 'is_self|int|false|1|是否自营',
         'display_order' => 'display_order|int|false|1|排序',
         'reward_type' => 'reward_type|int|false|1|贷款佣金类型',
-        'third_id' => 'third_id|int|false||第三方id'
-      
+        'third_id' => 'third_id|int|false||第三方id',
+        'audit_type' => 'audit_type|int|false||结算条件'
       
       ],
 

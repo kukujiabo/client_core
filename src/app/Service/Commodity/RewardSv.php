@@ -69,6 +69,8 @@ class RewardSv extends BaseService {
 
       'third_id' => $data['third_id'],
 
+      'audit_type' => $data['audit_type'],
+
       'created_at' => $timeStr
     
     ];
@@ -134,6 +136,11 @@ class RewardSv extends BaseService {
     if (isset($data['is_self'])) {
 
       $updateData['is_self'] = $data['is_self'];
+    
+    }
+    if (isset($data['audit_type'])) {
+
+      $updateData['audit_type'] = $data['audit_type'];
     
     }
     if (isset($data['thumbnail'])) {
