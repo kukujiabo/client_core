@@ -70,7 +70,7 @@ class Member extends BaseApi {
       
       ],
 
-      'resetPassword' => {
+      'resetPassword' => [
 
         'mobile' => 'mobile|string|true||手机号',
   
@@ -78,7 +78,7 @@ class Member extends BaseApi {
 
         'code' => 'code|string|true||验证码'
   
-      },
+      ],
 
       'updatePassword' => [
 
