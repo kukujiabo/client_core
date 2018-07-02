@@ -240,4 +240,10 @@ class MemberDm {
   
   }
 
+  public function resetPassword($data) {
+  
+    return $this->_memberSv->resetPassword($data);
+  
+  }
+
 }

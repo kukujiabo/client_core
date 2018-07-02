@@ -414,4 +414,29 @@ class MemberSv extends BaseService {
   
   }
 
+  /**
+   * 重置密码
+   *
+   * @return
+   */
+  public function resetPassword($data) {
+  
+    $member = $this->findOne([ 'mobile' => $data['mobile'] ]);
+  
+    if (!$member) {
+    
+      return $this->throwError($this->_err->MEMBERNOTFOUNDMSG, $this->_err->MEMBERNOTFOUNDCODE);
+    
+    }
+
+    $mvcSv = MobileVerifyCodeSv();
+
+    if ($mvcSv->checkVerifyCode($data['mobile'], $data['code'])) {
+    
+      return $this->editSecret($data['mobile'], $data['new_password']);
+    
+    }
+  
+  }
+
 }

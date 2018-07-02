@@ -27,6 +27,10 @@ class ErrorCode {
 
   public $WOLDPASSMSG = '旧密码错误！';
 
+  public $MEMBERNOTFOUNDMSG = '没有查找到会员！';
+
+  public $MEMBERNOTFOUNDCODE = '100005';
+
   /**
    * MobileVerifyCodeSv
    */

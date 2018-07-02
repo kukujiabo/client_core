@@ -70,6 +70,16 @@ class Member extends BaseApi {
       
       ],
 
+      'resetPassword' => {
+
+        'mobile' => 'mobile|string|true||手机号',
+  
+        'new_password' => 'new_password|string|true||新密码',
+
+        'code' => 'code|string|true||验证码'
+  
+      },
+
       'updatePassword' => [
 
         'member_id' => 'member_id|int|false||用户id',
@@ -292,6 +302,18 @@ class Member extends BaseApi {
   public function checkPartner() {
   
     return $this->dm->checkPartner($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
+  /**
+   * 重制密码
+   * @desc 重制密码
+   *
+   * @return
+   */
+  public function resetPassword() {
+  
+    return $this->dm->resetPassword($this->retriveRuleParams(__FUNCTION__));
   
   }
 
