@@ -35,6 +35,7 @@ class CashApplySv extends BaseService {
 
     $acctData = [
     
+      'member_id' => $data['member_id'],
       'money' => $data['cash'],
       'relat_id' => $applyId,
       'relat_type' => 3,
