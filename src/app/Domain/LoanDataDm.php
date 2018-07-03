@@ -2,6 +2,7 @@
 namespace App\Domain;
 
 use App\Service\Commodity\LoanDataSv;
+use App\Service\Commodity\AuditLoanSv;
 
 class LoanDataDm {
 
@@ -29,6 +30,14 @@ class LoanDataDm {
   
     return $this->_lnSv->importData($data);
   
+  }
+
+  public function balanceOfAccount($data) {
+
+    $alSv = new AuditLoanSv();
+  
+    return $this->_lnSv->balanceOfAccount($alSv);
+
   }
 
 }

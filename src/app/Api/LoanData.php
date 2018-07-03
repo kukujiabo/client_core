@@ -42,6 +42,14 @@ class LoanData extends BaseApi {
       
         'id' => 'id|int|true||文件id'
       
+      ],
+
+      'balanceOfAccount' => [
+      
+        'loan_id' => 'loan_id|int|true||贷款id',
+
+        'sequence' => 'sequence|string|true||序列号'
+      
       ]
     
     ]);
@@ -81,6 +89,18 @@ class LoanData extends BaseApi {
   public function importData() {
   
     return $this->dm->importData($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
+  /**
+   * 对账
+   * @desc 对账
+   *
+   * @return int num
+   */
+  public function balanceOfAccount() {
+  
+    return $this->dm->balanceOfAccount($this->retriveRuleParams(__FUNCTION__));
   
   }
 
