@@ -77,6 +77,7 @@ class AccountSv extends BaseService {
       'change_type' => 1,
       'relat_id' => $data['relat_id'],
       'relat_type' => $data['relat_type'],
+      'state' => $data['state'],
       'account_id' => $accountInfo['id'],
       'member_id' => $accountInfo['member_id'],
       'created_at' => date('Y-m-d H:i:s')
@@ -114,6 +115,8 @@ class AccountSv extends BaseService {
       'change_type' => 0,
       'relat_id' => $data['relat_id'],
       'relat_type' => $data['relat_type'],
+      'remark' => $data['remark'],
+      'state' => $data['state'],
       'account_id' => $accountInfo['id'],
       'member_id' => $accountInfo['member_id'],
       'created_at' => date('Y-m-d H:i:s')

@@ -290,6 +290,7 @@ class BusinessApplySv extends BaseService {
         'relat_id' => $reward['relat_id'],
         'relat_type' => $reward['relat_type'],
         'money' => $reward['money'],
+        'state' => 1
       
       ];
 
@@ -387,7 +388,8 @@ class BusinessApplySv extends BaseService {
         'relat_id' => $reward['relat_id'],
         'relat_type' => $reward['relat_type'],
         'reward_id' => $reward['id'],
-        'money' => $money
+        'money' => $money,
+        'state' => 1
       
       ];
 
