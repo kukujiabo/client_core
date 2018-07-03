@@ -70,6 +70,12 @@ class BusinessApply extends BaseApi {
       
         'id' => 'id|int|false||申请id'
       
+      ],
+
+      'balanceLoanMoney' => [
+      
+        'id' => 'id|int|false||申请id'
+      
       ]
 
     ]);
