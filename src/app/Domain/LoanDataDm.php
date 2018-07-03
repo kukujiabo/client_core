@@ -3,7 +3,6 @@ namespace App\Domain;
 
 use App\Service\Commodity\LoanDataSv;
 use App\Service\Commodity\AuditLoanSv;
-
 class LoanDataDm {
 
   protected $_lnSv;
@@ -36,7 +35,7 @@ class LoanDataDm {
 
     $alSv = new AuditLoanSv();
   
-    return $this->_lnSv->balanceOfAccount($alSv);
+    return $alSv->balanceOfAccount($alSv);
 
   }
 
