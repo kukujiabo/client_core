@@ -39,7 +39,7 @@ class CashApply extends BaseApi {
    */
   public function create() {
   
-    return $this->create($this->retriveRuleParams(__FUNCTION__));
+    return $this->dm->create($this->retriveRuleParams(__FUNCTION__));
   
   }
 
@@ -51,7 +51,7 @@ class CashApply extends BaseApi {
    */
   public function getList() {
   
-    return $this->getList($this->retriveRuleParams(__FUNCTION__));
+    return $this->dm->getList($this->retriveRuleParams(__FUNCTION__));
   
   }
 
