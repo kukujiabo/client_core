@@ -46,7 +46,7 @@ class CashApplySv extends BaseService {
 
     $acctSv->minuMoney($acctData);
     
-    return $this->applyId;
+    return $applyId;
   
   }
 
