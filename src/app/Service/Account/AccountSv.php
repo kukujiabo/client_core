@@ -126,7 +126,7 @@ class AccountSv extends BaseService {
 
     $logSv->add($newLog);
 
-    return $this->update($accountInfo['id'], $newIncome);
+    return $this->update($accountInfo['id'], $newMinus);
   
   }
 
