@@ -397,22 +397,10 @@ class MemberSv extends BaseService {
   public function getReferenceList($data) {
 
     $query = [ 'reference' => $data['reference'] ];
+
+    $refSv = new VAgentAchievementSv();
   
-    $members = $this->queryList($query, '*', 'id desc', $data['page'], $data['page_size']);
-
-    foreach($members['list'] as $key => $member) {
-
-      if ($member['member_identity']) {
-    
-        $members['list'][$key]['sub_count'] = $this->queryCount([ 'reference' => $member['member_identity'] ]);
-
-      }
-
-      $busi = new BusinessApplySv();
-    
-    }
-  
-    return $members;
+    return $refSv->queryList($query, '*', 'id desc', $data['page'], $data['page_size']);
   
   }
 
