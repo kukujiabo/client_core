@@ -369,7 +369,7 @@ class BusinessApplySv extends BaseService {
 
     foreach($rewards as $reward) {
 
-      $auditData = AuditLoanSv();
+      $auditData = $auditSv->findOne([ 'apply_id' => $reward['apply_id'] ]);
 
       $money = $reward['money'];
 
