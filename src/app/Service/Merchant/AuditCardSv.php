@@ -75,6 +75,8 @@ class AuditCardSv extends BaseService {
 
           array_push($matchedAudit, $audit['id']);
 
+          $this->update($audit['id'], [ 'apply_id' => $apply['id'] ]);
+
           if ($audit['state'] == 1) {
 
             /**
