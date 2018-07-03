@@ -49,7 +49,7 @@ class BusinessApplyDm {
   
   }
 
-  public function balanceOfAccount($data) {
+  public function balanceLoanMoney($data) {
   
     return $this->_baSv->balanceLoanMoney($data);
   
