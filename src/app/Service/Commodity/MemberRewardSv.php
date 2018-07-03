@@ -264,6 +264,10 @@ class MemberRewardSv extends BaseService {
 
       $ruleSv = new LoanRewardRuleSv();
 
+      $loanSv = new RewardSv();
+
+      $loan = $loanSv->findOne($relatId);
+
       /**
        * 如果是一级代理
        */
@@ -288,7 +292,7 @@ class MemberRewardSv extends BaseService {
           'money' => $rule['senior_reward'] + $rule['sub_reward'],
           'writeoff' => 0,
           'created_at' => date('Y-m-d H:i:s'),
-          'reward_type' => $rule['reward_type']
+          'reward_type' => $loan['reward_type']
         
         ];
 
@@ -316,7 +320,7 @@ class MemberRewardSv extends BaseService {
           'rule_id' => $rule['id'],
           'money' => $rule['sub_reward'],
           'writeoff' => 0,
-          'reward_type' => $rule['reward_type'],
+          'reward_type' => $loan['reward_type'],
           'created_at' => date('Y-m-d H:i:s')
         
         ];
@@ -331,7 +335,7 @@ class MemberRewardSv extends BaseService {
           'rule_id' => $rule['id'],
           'money' => $rule['senior_reward'],
           'writeoff' => 0,
-          'reward_type' => $rule['reward_type'],
+          'reward_type' => $loan['reward_type'],
           'created_at' => date('Y-m-d H:i:s')
         
         ];
@@ -366,7 +370,7 @@ class MemberRewardSv extends BaseService {
           'rule_id' => $rule['id'],
           'money' => $rule['sub_reward'],
           'writeoff' => 0,
-          'reward_type' => $rule['reward_type'],
+          'reward_type' => $loan['reward_type'],
           'created_at' => date('Y-m-d H:i:s')
         
         ];
@@ -381,7 +385,7 @@ class MemberRewardSv extends BaseService {
           'rule_id' => $rule['id'],
           'money' => $rule['senior_reward'],
           'writeoff' => 0,
-          'reward_type' => $rule['reward_type'],
+          'reward_type' => $loan['reward_type'],
           'created_at' => date('Y-m-d H:i:s')
         
         ];

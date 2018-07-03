@@ -238,7 +238,7 @@ class BusinessApplySv extends BaseService {
   }
 
   /**
-   * 结算佣金
+   * 结算信用卡佣金
    *
    */
   public function balanceCreditMoney($data) {
@@ -276,6 +276,95 @@ class BusinessApplySv extends BaseService {
     $acctSv = new AccountSv();
 
     foreach($rewards as $reward) {
+
+      /**
+       * 新增账户记录
+       */
+      $newMoney = [
+      
+        'member_id' => $reward['member_id'],
+        'relat_id' => $reward['relat_id'],
+        'relat_type' => $reward['relat_type'],
+        'money' => $reward['money'],
+      
+      ];
+
+      $acctSv->addMoney($newMoney);
+
+      /**
+       * 核销奖励金
+       */
+      $updateReward = [
+      
+        'writeoff' => 1,
+        'writeoff_at' => date('Y-m-d H:i:s')
+      
+      ];
+
+      $mrSv->update($reward['id'], $updateReward);
+
+      /**
+       * 核销申请
+       */
+      $updateApply = [
+      
+        'write_off' => 1,
+        'write_off_at' => date('Y-m-d H:i:s')
+      
+      ];
+
+      $acctSv->update($reward['apply_id'], $updateApply);
+    
+    }
+
+    return count($rewards);
+  
+  }
+
+  /**
+   * 结算贷款佣金
+   *
+   */
+  public function balanceLoanMoney($data) {
+  
+    $query = [
+    
+      'state' => 1,
+
+      'write_off' => 0,
+
+      'type' => 'loan'
+
+    ];
+
+    if ($data['id']) {
+    
+      $query['id'] = $data['id'];
+    
+    }
+  
+    $checkedApplies = $this->all($query);
+
+    $applyIds = [];
+
+    foreach($checkedApplies as $apply) {
+    
+      array_push($applyIds, $apply['id']);
+    
+    }
+
+    $mrSv = new MemberRewardSv();
+
+    $rewards = $mrSv->all([ 'apply_id' => implode(',', $applyIds), 'writeoff' => 0 ]);
+
+    $acctSv = new AccountSv();
+
+    $lnSv = new RewardSv();
+
+    $loans = $lnSv->all([]);
+
+    foreach($rewards as $reward) {
+
 
       /**
        * 新增账户记录
