@@ -19,6 +19,8 @@ class CashApplySv extends BaseService {
    * 新建申请
    */
   public function create($data) {
+
+    $acctSv = new AccountSv();
   
     $newApply = [
     
