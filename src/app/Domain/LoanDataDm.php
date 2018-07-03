@@ -35,7 +35,7 @@ class LoanDataDm {
 
     $alSv = new AuditLoanSv();
   
-    return $alSv->balanceOfAccount($alSv);
+    return $alSv->balanceOfAccount($data);
 
   }
 
