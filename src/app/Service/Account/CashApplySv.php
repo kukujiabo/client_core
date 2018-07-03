@@ -20,18 +20,6 @@ class CashApplySv extends BaseService {
    */
   public function create($data) {
   
-    $acctSv = new AccountSv();
-
-    $account = $acctSv->findOne([ 'member_id' => $data['member_id'] ]);
-
-    $availableMoney = $account['rest'] - $account['frozen'];
-
-    if ($availableMoney < $data['cash']) {
-    
-      return $this->throwError($this->_err->NOAVAILMONEYMSG, $this->NOAVAILMONEYCODE);
-    
-    }
-
     $newApply = [
     
       'member_id' => $data['member_id'],
