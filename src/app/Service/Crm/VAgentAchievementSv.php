@@ -1,5 +1,5 @@
 <?php
-namespace App\Service\BaseService;
+namespace App\Service\Crm;
 
 use App\Service\BaseService;
 use Core\Service\CurdSv;
@@ -11,7 +11,6 @@ use Core\Service\CurdSv;
 class VAgentAchievementSv extends BaseService {
 
   use CurdSv;
-
 
 
 }
