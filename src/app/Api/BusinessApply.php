@@ -148,4 +148,16 @@ class BusinessApply extends BaseApi {
   
   }
 
+  /**
+   * 计算贷款佣金
+   * @desc 计算贷款佣金
+   *
+   * @return int num
+   */
+  public function balanceLoanMoney() {
+  
+    return $this->dm->balanceLoanMoney($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
 }

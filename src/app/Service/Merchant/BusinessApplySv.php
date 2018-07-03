@@ -9,6 +9,7 @@ use App\Service\Crm\VBapplyMemberLoanSv;
 use App\Service\Crm\LoanThirdLogSv;
 use App\Service\Account\AccountSv;
 use App\Service\Commodity\RewardSv;
+use App\Service\Commodity\AuditLoanSv;
 use Core\Service\CurdSv;
 use App\Library\Http;
 
@@ -275,7 +276,11 @@ class BusinessApplySv extends BaseService {
 
     $acctSv = new AccountSv();
 
+    $auditSv = new AuditCardSv();
+
     foreach($rewards as $reward) {
+
+      $auditData = $auditSv->findOne([ 'apply_id' => $reward['apply_id'] ]);
 
       /**
        * 新增账户记录
@@ -309,7 +314,8 @@ class BusinessApplySv extends BaseService {
       $updateApply = [
       
         'write_off' => 1,
-        'write_off_at' => date('Y-m-d H:i:s')
+        'write_off_at' => date('Y-m-d H:i:s'),
+        'audit_id' => $auditData['id']
       
       ];
 
@@ -359,12 +365,19 @@ class BusinessApplySv extends BaseService {
 
     $acctSv = new AccountSv();
 
-    $lnSv = new RewardSv();
-
-    $loans = $lnSv->all([]);
+    $auditSv = new AuditLoanSv();
 
     foreach($rewards as $reward) {
 
+      $auditData = AuditLoanSv();
+
+      $money = $reward['money'];
+
+      if ($reward['reward_type'] == 1) {
+
+        $money = $auditData['money'] * ($money/100);
+      
+      }
 
       /**
        * 新增账户记录
@@ -374,7 +387,8 @@ class BusinessApplySv extends BaseService {
         'member_id' => $reward['member_id'],
         'relat_id' => $reward['relat_id'],
         'relat_type' => $reward['relat_type'],
-        'money' => $reward['money'],
+        'reward_id' => $reward['id'],
+        'money' => $money
       
       ];
 
@@ -386,7 +400,8 @@ class BusinessApplySv extends BaseService {
       $updateReward = [
       
         'writeoff' => 1,
-        'writeoff_at' => date('Y-m-d H:i:s')
+        'writeoff_at' => date('Y-m-d H:i:s'),
+        'audit_id' => $auditData['id']
       
       ];
 
