@@ -8,7 +8,7 @@ namespace App\Model;
  */
 class MemberReward extends BaseModel {
 
-  protected $_queryOptionsRule = [
+  protected $_queryOptionRule = [
   
     'id' => 'in',
     

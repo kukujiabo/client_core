@@ -1,5 +1,4 @@
-<?php
-namespace App\Model;
+<?php namespace App\Model;
 
 /**
  * 会员
@@ -8,7 +7,7 @@ namespace App\Model;
  */
 class Member extends BaseModel {
 
-  protected $_queryOptionsRule = [
+  protected $_queryOptionRule = [
   
     'member_name' => 'like'
   

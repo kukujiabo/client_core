@@ -24,8 +24,7 @@ class BusinessApplySv extends BaseService {
   CONST TDATALINK = "http://www.qichangkeji.vip/qckjgzhManager/DownUser/Add.do";
 
   use CurdSv;
-
-  /**
+/**
    * 新增申请
    *
    * @param array data
