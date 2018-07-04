@@ -253,7 +253,32 @@ class ShopSv extends BaseService {
 
   public function getCardCommissionList($data) {
   
+    $query = [];
   
+    if (isset($data['shop_name'])) {
+    
+      $query['shop_name'] = $data['shop_name'];
+    
+    }
+    if (isset($data['shop_code'])) {
+    
+      $query['shop_code'] = $data['shop_code'];
+    
+    }
+    if (isset($data['status'])) {
+    
+      $query['status'] = $data['status'];
+    
+    }
+    if (isset($data['mid'])) {
+    
+      $query['mid'] = $data['mid'];
+    
+    }
+
+    $vcciSv = new VCardCommissionInfoSv();
+      
+    return $vcciSv->queryList($query, $data['fields'], $data['order'], $data['page'], $data['page_size']);
   
   }
 
