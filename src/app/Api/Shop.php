@@ -83,6 +83,20 @@ class Shop extends BaseApi {
         'id' => 'id|int|true||门店id',
         'member_id' => 'member_id|int|false||会员id'
       
+      ],
+
+      'getCardCommissionList' => [
+      
+        'mid' => 'mid|int|false||商户id',
+        'shop_name' => 'shop_name|string|false||店铺名称',
+        'shop_code' => 'shop_code|string|false||店铺编码',
+        'status' => 'status|int|false||店铺状态',
+        'fields' => 'fields|string|false||查询字段',
+        'order' => 'order|string|false||排序',
+        'page' => 'page|int|false|1|页码',
+        'page_size' => 'page_size|int|false|20|每页条数'
+      
+      
       ]
     
     ]);
@@ -148,6 +162,18 @@ class Shop extends BaseApi {
   public function getAll() {
   
     return $this->dm->getAll($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
+  /**
+   * 查询信用卡佣金列表
+   * @desc 查询信用卡佣金列表
+   *
+   * @return
+   */
+  public function getCardCommissionList() {
+  
+    return $this->dm->getCardCommissionList($this->retriveRuleParams(__FUNCTION__)); 
   
   }
 

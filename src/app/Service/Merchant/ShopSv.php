@@ -251,4 +251,10 @@ class ShopSv extends BaseService {
   
   }
 
+  public function getCardCommissionList($data) {
+  
+  
+  
+  }
+
 }

@@ -102,4 +102,14 @@ class ShopDm {
 
   }
 
+  /**
+   * 查询信用卡佣金列表
+   *
+   */
+  public function getCardCommissionList($data) {
+  
+    return $this->_spsv->getCardCommissionList($data); 
+
+  }
+
 }
