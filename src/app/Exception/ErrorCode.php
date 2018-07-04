@@ -31,9 +31,6 @@ class ErrorCode {
 
   public $MEMBERNOTFOUNDCODE = '100005';
 
-  public $DUPLICATEACCOUNTMSG = '重复的账户名！';
-
-  public $DUPLICATEACCOUNTCODE = '100006';
 
   /**
    * MobileVerifyCodeSv
