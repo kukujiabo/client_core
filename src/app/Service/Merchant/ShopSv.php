@@ -34,6 +34,7 @@ class ShopSv extends BaseService {
       'open_time' => $data['open_time'],
       'thumbnail' => $data['thumbnail'],
       'words' => $data['words'],
+      'account_date' => $data['account_date'],
       'ext_1' => $data['ext_1'],
       'ext_2' => $data['ext_2'],
       'brief' => $data['brief'],
@@ -93,6 +94,11 @@ class ShopSv extends BaseService {
     if (isset($data['thumbnail'])) {
     
       $updateData['thumbnail'] = $data['thumbnail'];
+    
+    }
+    if (isset($data['account_date'])) {
+    
+      $updateData['account_date'] = $data['account_date'];
     
     }
     if (isset($data['shop_code'])) {
