@@ -71,6 +71,8 @@ class RewardSv extends BaseService {
 
       'audit_type' => $data['audit_type'],
 
+      'account_date' => $data['account_date'],
+
       'created_at' => $timeStr
     
     ];
@@ -121,6 +123,11 @@ class RewardSv extends BaseService {
     if (isset($data['reward_code'])) {
 
       $updateData['reward_code'] = $data['reward_code'];
+    
+    }
+    if (isset($data['account_date'])) {
+
+      $updateData['account_date'] = $data['account_date'];
     
     }
     if (isset($data['url'])) {
