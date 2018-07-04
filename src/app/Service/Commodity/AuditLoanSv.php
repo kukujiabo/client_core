@@ -10,6 +10,29 @@ class AuditLoanSv extends BaseService {
 
   use CurdSv;
 
+  /**
+   * 查询脱敏数据
+   */
+  public function getList($data) {
+  
+    $vacSv = new VAuditLoanDataSv();
+
+    $query = [];
+
+    if ($data['sequence']) {
+    
+      $query['sequence'] = $data['sequence'];
+    
+    }
+    if ($data['loan_id']) {
+    
+      $query['loan_id'] = $data['loan_id'];
+    
+    }
+
+    return $vacSv->queryList($query, $data['fields'], $data['order'], $data['page'], $data['page_size']);
+  
+  }
 
   /**
    * 对账数据
