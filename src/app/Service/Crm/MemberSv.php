@@ -214,7 +214,7 @@ class MemberSv extends BaseService {
 
     if ($this->exsitAccount($account)) {
     
-      return $this->throwError($this->_err, $this->_err->);
+      return $this->throwError($this->_err->DUPLICATEACCOUNTMSG, $this->_err->DUPLICATEACCOUNTCODE);
     
     }
 
