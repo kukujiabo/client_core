@@ -19,5 +19,10 @@ class AccountLogDm {
   
   }
 
+  public function getUnionLogInfoList($data) {
+  
+    return $this->_aclsv->getUnionLogInfoList($data);
+  
+  }
 
 }
