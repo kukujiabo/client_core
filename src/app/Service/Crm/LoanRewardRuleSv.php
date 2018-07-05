@@ -77,13 +77,47 @@ class LoanRewardRuleSv extends BaseService {
 
   /**
    * 查询规则详情
-   * @desc 查询规则详情
    *
    * @return array data
    */
   public function getRuleDetail($data) {
 
     return $this->findOne($data['id']);
+  
+  }
+
+  /**
+   * 更新规则
+   *
+   */
+  public function updateRule($data) {
+
+    $id = $data['id'];
+
+    $updateData = [];
+    
+    if ($data['senior_reward']) {
+    
+      $updateData['senior_reward'] = $data['senior_reward']; 
+    
+    }
+    if ($data['sub_reward']) {
+    
+      $updateData['sub_reward'] = $data['sub_reward']; 
+    
+    }
+    if ($data['state']) {
+    
+      $updateData['state'] = $data['state']; 
+    
+    }
+    if ($data['remark']) {
+    
+      $updateData['remark'] = $data['remark']; 
+    
+    }
+  
+    return $this->update($id, $updateData);
   
   }
 

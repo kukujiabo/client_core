@@ -31,4 +31,10 @@ class LoanRewardRuleDm {
   
   }
 
+  public function updateRule($data) {
+  
+    return $this->_lrrSv->updateRule($data);
+  
+  }
+
 }
