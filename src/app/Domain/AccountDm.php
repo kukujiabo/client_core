@@ -37,4 +37,10 @@ class AccountDm {
   
   }
 
+  public function getList($data) {
+  
+    return $this->_acsv->getList($data);
+  
+  }
+
 }

@@ -3,6 +3,7 @@ namespace App\Service\Account;
 
 use App\Service\BaseService;
 use Core\Service\CurdSv;
+use App\Model\Account;
 
 /**
  * 用户账户
@@ -127,6 +128,31 @@ class AccountSv extends BaseService {
     $logSv->add($newLog);
 
     return $this->update($accountInfo['id'], $newMinus);
+  
+  }
+
+  /**
+   * 获取账户列表
+   *
+   */
+  public function getList($data) {
+  
+    $acmSv = new VMemberAccountInfoSv(); 
+
+    $query = [];
+
+    if ($data['member_name']) {
+    
+      $query['member_name'] = $data['member_name'];
+    
+    }
+    if ($data['member_type']) {
+    
+      $query['member_type'] = $data['member_type'];
+    
+    }
+
+    return $acmSv->getList($query, $data['fields'], $data['order'], $data['page'], $data['page_size']);
   
   }
 
