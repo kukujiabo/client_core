@@ -251,7 +251,26 @@ class MemberRewardSv extends BaseService {
 
     $msv = new MemberSv();
 
-    $member = $msv->findOne($memberId);
+    $member = [];
+
+    if ($memberId == -1) {
+    
+      /**
+       * 未注册非微信用户贷款，业绩等同代理自己贷款
+       */
+      $member = $msv->findOne([ 'member_identity' => $identity ]);
+
+      if ($member['member_type'] < 2) {
+      
+        return; 
+      
+      }
+    
+    } else {
+
+      $member = $msv->findOne($memberId);
+
+    }
 
     /**
      * 先判断申请人是否散客
@@ -300,7 +319,7 @@ class MemberRewardSv extends BaseService {
       
       } elseif ($member['member_type']  == 2) {
       
-        $supervisor = $msv->findOne([ 'member_identity' => $identity ]);
+        $supervisor = $msv->findOne([ 'member_identity' => $member['reference' ]]);
 
         $rule = $ruleSv->findOne([ 'loan_id' => $relatId, 'member_id' => $supervisor['id'] ]);
 
@@ -309,42 +328,68 @@ class MemberRewardSv extends BaseService {
           $rule = $ruleSv->findOne([ 'loan_id' => $relatId, 'member_id' => 0 ]);
 
         }
+
+        /**
+         * 二级代理未注册，则业绩归到一级代理下
+         */
+        if (!$member['mobile']) {
+        
+          $newReward = [
+          
+            'apply_id' => $applyId,
+            'member_id' => $supervisor['id'],
+            'member_type' => $supervisor['member_type'],
+            'relat_id' => $relatId,
+            'relat_type' => 2,
+            'rule_id' => $rule['id'],
+            'money' => $rule['sub_reward'] + $rule['senior_reward'],
+            'writeoff' => 0,
+            'reward_type' => $loan['reward_type'],
+            'created_at' => date('Y-m-d H:i:s')
+          
+          ];
+
+          return $this->add($newReward);
+        
+        } else {
       
-        $newReward1 = [
-        
-          'apply_id' => $applyId,
-          'member_id' => $member['id'],
-          'member_type' => $member['member_type'],
-          'relat_id' => $relatId,
-          'relat_type' => 2,
-          'rule_id' => $rule['id'],
-          'money' => $rule['sub_reward'],
-          'writeoff' => 0,
-          'reward_type' => $loan['reward_type'],
-          'created_at' => date('Y-m-d H:i:s')
-        
-        ];
+          $newReward1 = [
+          
+            'apply_id' => $applyId,
+            'member_id' => $member['id'],
+            'member_type' => $member['member_type'],
+            'relat_id' => $relatId,
+            'relat_type' => 2,
+            'rule_id' => $rule['id'],
+            'money' => $rule['sub_reward'],
+            'writeoff' => 0,
+            'reward_type' => $loan['reward_type'],
+            'created_at' => date('Y-m-d H:i:s')
+          
+          ];
 
-        $newReward2 = [
-        
-          'apply_id' => $applyId,
-          'member_id' => $supervisor['id'],
-          'member_type' => $supervisor['member_type'],
-          'relat_id' => $relatId,
-          'relat_type' => 2,
-          'rule_id' => $rule['id'],
-          'money' => $rule['senior_reward'],
-          'writeoff' => 0,
-          'reward_type' => $loan['reward_type'],
-          'created_at' => date('Y-m-d H:i:s')
-        
-        ];
+          $newReward2 = [
+          
+            'apply_id' => $applyId,
+            'member_id' => $supervisor['id'],
+            'member_type' => $supervisor['member_type'],
+            'relat_id' => $relatId,
+            'relat_type' => 2,
+            'rule_id' => $rule['id'],
+            'money' => $rule['senior_reward'],
+            'writeoff' => 0,
+            'reward_type' => $loan['reward_type'],
+            'created_at' => date('Y-m-d H:i:s')
+          
+          ];
 
-        $newRewards = [];
+          $newRewards = [];
 
-        array_push($newRewards, $newReward1, $newReward2);
+          array_push($newRewards, $newReward1, $newReward2);
 
-        return $this->batchAdd($newRewards);
+          return $this->batchAdd($newRewards);
+
+        }
       
       } elseif ($member['member_type'] == 1) {
       
@@ -410,7 +455,26 @@ class MemberRewardSv extends BaseService {
 
     $msv = new MemberSv();
 
-    $member = $msv->findOne($memberId);
+    $member = [];
+
+    if ($memberId == -1) {
+    
+      /**
+       * 未注册非微信用户办卡，业绩等同代理自己办卡
+       */
+      $member = $msv->findOne([ 'member_identity' => $identity ]);
+
+      if ($member['member_type'] < 2) {
+      
+        return; 
+      
+      }
+    
+    } else {
+
+      $member = $msv->findOne($memberId);
+
+    }
 
     /**
      * 先判断申请人是否散客
@@ -454,7 +518,7 @@ class MemberRewardSv extends BaseService {
       
       } elseif ($member['member_type']  == 2) {
       
-        $supervisor = $msv->findOne([ 'member_identity' => $identity ]);
+        $supervisor = $msv->findOne([ 'member_identity' => $member['reference'] ]);
 
         $rule = $ruleSv->findOne([ 'card_id' => $relatId, 'member_id' => $supervisor['id'] ]);
 
@@ -463,41 +527,66 @@ class MemberRewardSv extends BaseService {
           $rule = $ruleSv->findOne([ 'card_id' => $relatId, 'member_id' => 0 ]);
 
         }
+
+        /**
+         * 若二级代理未注册，则业绩全部归到一级代理名下
+         */
+        if (!$member['mobile']) {
+        
+          $newReward = [
+          
+            'apply_id' => $applyId,
+            'member_id' => $supervisor['id'],
+            'member_type' => $supervisor['member_type'],
+            'relat_id' => $relatId,
+            'relat_type' => 1,
+            'rule_id' => $rule['id'],
+            'money' => $rule['sub_reward'] + $rule['senior_reward'],
+            'writeoff' => 0,
+            'created_at' => date('Y-m-d H:i:s')
+          
+          ];
+
+          return $this->add($newReward);
+        
+        } else {
       
-        $newReward1 = [
-        
-          'apply_id' => $applyId,
-          'member_id' => $member['id'],
-          'member_type' => $member['member_type'],
-          'relat_id' => $relatId,
-          'relat_type' => 1,
-          'rule_id' => $rule['id'],
-          'money' => $rule['sub_reward'],
-          'writeoff' => 0,
-          'created_at' => date('Y-m-d H:i:s')
-        
-        ];
+          $newReward1 = [
+          
+            'apply_id' => $applyId,
+            'member_id' => $member['id'],
+            'member_type' => $member['member_type'],
+            'relat_id' => $relatId,
+            'relat_type' => 1,
+            'rule_id' => $rule['id'],
+            'money' => $rule['sub_reward'],
+            'writeoff' => 0,
+            'created_at' => date('Y-m-d H:i:s')
+          
+          ];
 
-        $newReward2 = [
-        
-          'apply_id' => $applyId,
-          'member_id' => $supervisor['id'],
-          'member_type' => $supervisor['member_type'],
-          'relat_id' => $relatId,
-          'relat_type' => 1,
-          'rule_id' => $rule['id'],
-          'money' => $rule['senior_reward'],
-          'writeoff' => 0,
-          'created_at' => date('Y-m-d H:i:s')
-        
-        ];
+          $newReward2 = [
+          
+            'apply_id' => $applyId,
+            'member_id' => $supervisor['id'],
+            'member_type' => $supervisor['member_type'],
+            'relat_id' => $relatId,
+            'relat_type' => 1,
+            'rule_id' => $rule['id'],
+            'money' => $rule['senior_reward'],
+            'writeoff' => 0,
+            'created_at' => date('Y-m-d H:i:s')
+          
+          ];
 
-        $newRewards = [];
+          $newRewards = [];
 
-        array_push($newRewards, $newReward1, $newReward2);
+          array_push($newRewards, $newReward1, $newReward2);
 
-        return $this->batchAdd($newRewards);
-      
+          return $this->batchAdd($newRewards);
+
+        }
+
       } elseif ($member['member_type'] == 1) {
       
         $sub = $msv->findOne([ 'member_identity' => $identity ]);

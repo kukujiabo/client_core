@@ -33,9 +33,21 @@ class BusinessApplySv extends BaseService {
    */
   public function create($data) {
 
-    $msv = new MemberSv();
+    $reference = '';
 
-    $member = $msv->findOne($data['member_id']);
+    if ($data['member_id'] == -1) {
+    
+      $reference = $data['reference'];
+    
+    } else {
+
+      $msv = new MemberSv();
+
+      $member = $msv->findOne($data['member_id']);
+
+      $reference = $member['reference'];
+
+    }
 
     $bankId = 0;
 
@@ -61,7 +73,7 @@ class BusinessApplySv extends BaseService {
       'wechat' => $data['wechat'],
       'bank_id' => $bankId,
       'brief' => $data['brief'],
-      'reference' => $member['reference'],
+      'reference' => $reference,
       'created_at' => date('Y-m-d H:i:s')
     
     ];
@@ -72,7 +84,7 @@ class BusinessApplySv extends BaseService {
 
     if ($data['type'] == 'card') {
 
-      $mrsv->createCardReward($applyId, $data['member_id'], $member['reference'], $data['relat_id']);
+      $mrsv->createCardReward($applyId, $data['member_id'], $reference, $data['relat_id']);
 
     } else {
 
@@ -134,7 +146,7 @@ class BusinessApplySv extends BaseService {
       
       }
     
-      $mrsv->createLoanReward($applyId, $data['member_id'], $member['reference'], $data['relat_id']);
+      $mrsv->createLoanReward($applyId, $data['member_id'], $reference, $data['relat_id']);
     
     }
 
