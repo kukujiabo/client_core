@@ -75,5 +75,16 @@ class LoanRewardRuleSv extends BaseService {
   
   }
 
+  /**
+   * 查询规则详情
+   * @desc 查询规则详情
+   *
+   * @return array data
+   */
+  public function getRuleDetail($data) {
+
+    return $this->findOne($data['id']);
+  
+  }
 
 }

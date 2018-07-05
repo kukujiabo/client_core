@@ -25,5 +25,10 @@ class LoanRewardRuleDm {
   
   }
 
+  public function getRuleDetail($data) {
+  
+    return $this->_lrrSv->getRuleDetail($data);
+  
+  }
 
 }
