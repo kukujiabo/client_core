@@ -152,7 +152,7 @@ class AccountSv extends BaseService {
     
     }
 
-    return $acmSv->getList($query, $data['fields'], $data['order'], $data['page'], $data['page_size']);
+    return $acmSv->queryList($query, $data['fields'], $data['order'], $data['page'], $data['page_size']);
   
   }
 
