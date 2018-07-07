@@ -450,7 +450,7 @@ class MemberSv extends BaseService {
     
       if (!$member['wx_unionid']) {
       
-        $wxMember = $wxApp->getUserInfo($accessToken, $member['wx_pbopenid']);
+        $wxMember = $wxApp->getRegUserInfo($accessToken, $member['wx_pbopenid']);
 
         $this->update($member['id'], [ 'wx_unionid' => $wxMember->unionid ]);
       
