@@ -153,9 +153,11 @@ class MemberSv extends BaseService {
      */
     $openid = $accessToken->openid;
 
-    $accessToken = $accessToken->access_token;
+    // $accessToken = $accessToken->access_token;
 
-    $member = $this->findOne(['wx_pbopenid' => $openid]);
+    $wxMember = $wxApp->getUserInfo($accessToken->access_token, $openid);
+
+    $member = $this->findOne(['wx_unionid' => $wxMember->unionid]);
 
     if ($member) {
     
@@ -163,7 +165,7 @@ class MemberSv extends BaseService {
     
     } else {
 
-      $wxMember = $wxApp->getUserInfo($accessToken, $openid);
+      //$wxMember = $wxApp->getUserInfo($accessToken, $openid);
 
       $id = $this->createAuthByWxPubOpenId($openid, $wxMember->unionid, $reference);
 
