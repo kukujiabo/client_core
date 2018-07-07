@@ -88,6 +88,20 @@ class WechatAppSv extends ConfigSv {
   }
 
   /**
+   * 获取用户注册信息
+   *
+   * @param string accessToken
+   * @param string openid
+   *
+   * @return object
+   */
+  public function getRegUserInfo($accessToken, $openid) {
+  
+    return WechatAuth::getRegUserInfo($accessToken, $openid);
+  
+  }
+
+  /**
    * 获取微信小程序二维码
    *
    * @param string 

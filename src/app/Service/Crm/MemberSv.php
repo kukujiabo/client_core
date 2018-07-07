@@ -446,13 +446,11 @@ class MemberSv extends BaseService {
 
     $members = $this->all([]);
 
-    $token = $accessToken->access_token;
-
     foreach($members as $member) {
     
       if (!$member['wx_unionid']) {
       
-        $wxMember = $wxApp->getUserInfo($token, $member['wx_pbopenid']);
+        $wxMember = $wxApp->getUserInfo($accessToken, $member['wx_pbopenid']);
 
         $this->update($member['id'], [ 'wx_unionid' => $wxMember->unionid ]);
       
