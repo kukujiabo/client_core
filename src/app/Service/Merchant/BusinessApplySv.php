@@ -241,11 +241,15 @@ class BusinessApplySv extends BaseService {
        * 若用户为一级代理，则取出二级代理推荐码
        */
     
-      $subs = $mSv->all([ 'reference' => $member['member_identity'] ]);
+      $subs = $mSv->all([ 'reference' => $member['member_identity']  ]);
 
       foreach($subs as $sub) {
+
+        if ($sub['member_identity']) {
       
-        array_push($references, $sub['member_identity']);
+          array_push($references, $sub['member_identity']);
+
+        }
       
       }
     
