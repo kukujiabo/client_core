@@ -140,6 +140,10 @@ class Member extends BaseApi {
       
         'member_id' => 'member_id|int|true||会员id'
       
+      ],
+
+      'batchUpdateUserWxInfo' => [
+      
       ]
     
     ]);
@@ -317,5 +321,16 @@ class Member extends BaseApi {
   
   }
 
+  /**
+   * 更新用户信息
+   * @desc 更新用户信息
+   *
+   * @return array list
+   */
+  public function batchUpdateUserWxInfo() {
+  
+    return $this->dm->batchUpdateUserWxInfo($this->retriveRuleParams(__FUNCTION__));
+  
+  }
 
 }

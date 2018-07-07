@@ -246,4 +246,10 @@ class MemberDm {
   
   }
 
+  public function batchUpdateUserWxInfo($data) {
+  
+    return $this->_memberSv->batchUpdateUserWxInfo($data);
+  
+  }
+
 }

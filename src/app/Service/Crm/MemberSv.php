@@ -435,4 +435,31 @@ class MemberSv extends BaseService {
   
   }
 
+  /**
+   * 批量修改用户微信信息
+   */
+  public function batchUpdateUserWxInfo() {
+  
+    $accessToken = $wxApp->getAccessToken('app', false);
+
+    $wxApp = new WechatAppSv('cloud_credit');
+
+    $members = $this->all([]);
+
+    $token = $accessToken->access_token;
+
+    foreach($members as $member) {
+    
+      if (!$member['wx_unionid']) {
+      
+        $wxMember = $wxApp->getUserInfo($accessToken, $member['wx_pbopenid']);
+
+        $this->update($member['id'], [ 'wx_unionid' => $wxMember->unionid ]);
+      
+      }
+    
+    }
+  
+  }
+
 }
