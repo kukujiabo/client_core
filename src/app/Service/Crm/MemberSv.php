@@ -440,9 +440,9 @@ class MemberSv extends BaseService {
    */
   public function batchUpdateUserWxInfo() {
   
-    $accessToken = $wxApp->getAccessToken('app', false);
-
     $wxApp = new WechatAppSv('cloud_credit');
+
+    $accessToken = $wxApp->getAccessToken('app', false);
 
     $members = $this->all([]);
 
