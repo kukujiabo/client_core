@@ -100,7 +100,7 @@ trait CURD {
    *
    * @return array $list
    */
-  protected function queryList($condition, $fields = " * ", $order = NULL, $offset = 0, $limit = 20) {
+  protected function queryList($condition, $fields = " * ", $order = NULL, $offset = 0, $limit = 20, $or = null) {
 
     $operation = $this->_queryOptionRule;
 
@@ -122,7 +122,15 @@ trait CURD {
 
     $where = QueryBuilder::makeQuery($condition, $this->_queryOptionRule);
 
-    return $orm->where($where)->fetchRows();
+    if (!$or) {
+
+      return $orm->where($where)->fetchRows();
+
+    } else {
+    
+      return $orm->where($where)->and($or)->fetchRows();
+    
+    }
 
   }
 
@@ -133,7 +141,7 @@ trait CURD {
    *
    * @return int $num
    */
-  protected function number($condition) {
+  protected function number($condition, $or) {
   
     $operation = $this->_queryOptionRule;
 
@@ -143,7 +151,15 @@ trait CURD {
 
     $where = QueryBuilder::makeQuery($condition, $this->_queryOptionRule);
 
-    return $orm->where($where)->count();
+    if (!$or) {
+    
+      return $orm->where($where)->count();
+
+    } else {
+    
+      return $orm->where($where)->and($or)->count();
+    
+    }
   
   }
 

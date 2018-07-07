@@ -222,16 +222,42 @@ class BusinessApplySv extends BaseService {
   }
 
   /**
-   * 查询信用卡申请
+   * 查询信用卡申请(包括自己的，下级的)
    *
    */
   public function getReferenceCards($data) {
 
     $cardSv = new VBapplyMemberCardSv();
 
-    $query = [ 'reference' => $data['reference'] ];
+    $mSv = new MemberSv();
+
+    $member = $mSv->findOne($data['member_id']);
+
+    $references = [];
+
+    if ($member['member_type'] == 3) {
+
+      /**
+       * 若用户为一级代理，则取出二级代理推荐码
+       */
+    
+      $subs = $mSv->all([ 'reference' => $member['member_identity'] ]);
+
+      foreach($subs as $sub) {
+      
+        array_push($references, $sub['member_identity']);
+      
+      }
+    
+    }
+
+    array_push($references, $member['member_identity']);
+
+    $rstr = implode(',', $references);
+
+    $or = "(member_id = {$member['id']} OR reference in ({$rstr}))";
   
-    return $cardSv->queryList($query, '*', 'id desc', $data['page'], $data['page_size']);
+    return $cardSv->queryList([], '*', 'id desc', $data['page'], $data['page_size'], $or);
   
   }
 

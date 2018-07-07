@@ -53,7 +53,7 @@ class BusinessApply extends BaseApi {
 
       'getReferenceCards' => [
       
-        'reference' => 'reference|string|true||关联',
+        'member_id' => 'member_id|int|true||用户id',
         'page' => 'page|int|false|1|页码',
         'page_size' => 'page_size|int|false|12|每页条数'
       
