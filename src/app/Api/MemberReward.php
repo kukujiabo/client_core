@@ -33,11 +33,6 @@ class MemberReward extends BaseApi {
       'getList' => [
       
         'member_name' => 'member_name|string|false||会员名称',
-        'reward_name' => 'reward_name|string|false||赠品名称',
-        'checked' => 'checked|int|false||核销状态',
-        'reference' => 'reference|int|false||赠品来源',
-        'type' => 'type|int|false||赠品类型',
-        'fields' => 'fields|string|false||字段',
         'order' => 'order|string|false|created_at desc|排序',
         'page' => 'page|int|false||页码',
         'page_size' => 'page_size|int|false||每页条数'

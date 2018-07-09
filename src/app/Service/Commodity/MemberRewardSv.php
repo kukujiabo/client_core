@@ -114,30 +114,6 @@ class MemberRewardSv extends BaseService {
     
     }
 
-    if (isset($data['reward_name'])) {
-    
-      $query['reward_name'] = $data['reward_name'];
-    
-    }
-  
-    if (isset($data['checked'])) {
-    
-      $query['checked'] = $data['checked'];
-    
-    }
-  
-    if (isset($data['reference'])) {
-    
-      $query['reference'] = $data['reference'];
-    
-    }
-
-    if (isset($data['type'])) {
-    
-      $query['type'] = $data['type'];
-    
-    }
-
     $order = $data['order'] ? $data['order'] : 'created_at desc';
 
     $view = new VMemberRewardsSv();
