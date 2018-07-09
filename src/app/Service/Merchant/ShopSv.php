@@ -102,7 +102,7 @@ class ShopSv extends BaseService {
       $updateData['account_date'] = $data['account_date'];
     
     }
-    if (isset($data['display_order']) {
+    if (isset($data['display_order'])) {
     
       $updateData['display_order'] = $data['display_order'];
     
