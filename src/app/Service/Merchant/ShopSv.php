@@ -40,6 +40,7 @@ class ShopSv extends BaseService {
       'brief' => $data['brief'],
       'image_text' => $data['image_text'],
       'commission' => $data['commission'],
+      'display_order' => $data['display_order'],
       'status' => $data['status'],
       'created_at' => date('Y-m-d H:i:s')
     ];
@@ -99,6 +100,11 @@ class ShopSv extends BaseService {
     if (isset($data['account_date'])) {
     
       $updateData['account_date'] = $data['account_date'];
+    
+    }
+    if (isset($data['display_order']) {
+    
+      $updateData['display_order'] = $data['display_order'];
     
     }
     if (isset($data['shop_code'])) {
