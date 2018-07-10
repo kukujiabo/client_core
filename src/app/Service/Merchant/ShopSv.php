@@ -38,6 +38,7 @@ class ShopSv extends BaseService {
       'ext_1' => $data['ext_1'],
       'ext_2' => $data['ext_2'],
       'brief' => $data['brief'],
+      'audit_type' => $data['audit_type'],
       'image_text' => $data['image_text'],
       'commission' => $data['commission'],
       'display_order' => $data['display_order'],
@@ -95,6 +96,11 @@ class ShopSv extends BaseService {
     if (isset($data['thumbnail'])) {
     
       $updateData['thumbnail'] = $data['thumbnail'];
+    
+    }
+    if (isset($data['audit_type'])) {
+    
+      $updateData['audit_type'] = $data['audit_type'];
     
     }
     if (isset($data['account_date'])) {
