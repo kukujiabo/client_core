@@ -471,4 +471,38 @@ class MemberSv extends BaseService {
   
   }
 
+  /**
+   * 筛选会员数量
+   *
+   */
+  public function countMember($data) {
+  
+    $query = []; 
+
+    if ($data['reg_start'] && $data['reg_end']) {
+    
+      $startTime = date('Y-m-d', $data['reg_start']);
+
+      $endTime = date('Y-m-d', $data['reg_end'] + 86401);
+
+      $query['created_at'] = "gt|{$startTime};lt|{$endTime}";
+    
+    } elseif ($data['reg_start']) {
+
+      $startTime = date('Y-m-d', $data['reg_start']);
+    
+      $query['created_at'] = "gt|{$startTime}";
+
+    } elseif ($data['reg_end']) {
+
+      $endTime = date('Y-m-d', $data['reg_end']);
+    
+      $query['created_at'] = "lt|{$endTime}";
+    
+    }
+  
+    return $this->queryCount($query);
+  
+  }
+
 }
