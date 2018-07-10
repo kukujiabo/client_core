@@ -157,6 +157,15 @@ class MemberSv extends BaseService {
 
     $wxMember = $wxApp->getUserInfo($accessToken->access_token, $openid);
 
+    /**
+     * unionid为空
+     */
+    if (!$wxMember->unionid) {
+    
+      $this->throwError($this->_err->MEMBERNOTFOUNDMSG, $this->_err->MEMBERNOTFOUNDCODE);
+    
+    }
+
     $member = $this->findOne(['wx_unionid' => $wxMember->unionid]);
 
     if ($member) {
