@@ -459,11 +459,9 @@ class MemberSv extends BaseService {
 
     foreach($members as $member) {
     
-      if (!$member['wx_unionid']) {
+      if (!$member['member_identity']) {
       
-        $wxMember = $wxApp->getRegUserInfo($accessToken, $member['wx_pbopenid']);
-
-        $this->update($member['id'], [ 'wx_unionid' => $wxMember->unionid ]);
+        $this->update($member['id'], [ 'member_identity' => \App\getRandomDigit(12) ]);
       
       }
     
