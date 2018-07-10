@@ -182,6 +182,8 @@ trait AuthTrait {
       return $auth->id;
     
     } else {
+
+      $new['member_identity'] = \App\getRandomDigit(12);
     
       return $this->add($new);
 
@@ -253,7 +255,8 @@ trait AuthTrait {
 
       'created_at' => date('Y-m-d H:i:s'),
 
-      'reference' => $reference ? $reference : 1
+      'member_identity' => \App\getRandomDigit(12)
+      //'reference' => $reference ? $reference : 1
 
     ];
 
@@ -268,18 +271,26 @@ trait AuthTrait {
           case 3:
         
             $new['member_type'] = 2;
+
+            $new['reference'] = $reference;
           
             break;
 
           case 2:
         
             $new['member_type'] = 1;
+
+            $new['reference'] = $reference;
           
             break;
 
           case 1:
+
+            $new['sub_source'] = $reference;
+
+            $new['reference'] = $supervisor['reference'];
         
-            $new['member_type'] = 0;
+            $new['member_type'] = 1;
           
             break;
 
@@ -293,6 +304,12 @@ trait AuthTrait {
 
       }
 
+    }
+
+    if (!$new['reference']) {
+    
+      $new['reference'] = 1;
+    
     }
 
     if ($unionId) {

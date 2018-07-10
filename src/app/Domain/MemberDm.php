@@ -42,9 +42,9 @@ class MemberDm {
 
       $extData = array(
       
-        'member_name' => $memberName,
+        'member_name' => $memberName
 
-        'member_identity' => \App\getRandomDigit(12)
+        //'member_identity' => \App\getRandomDigit(12)
       
       );
     

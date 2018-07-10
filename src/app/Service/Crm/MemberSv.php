@@ -138,8 +138,8 @@ class MemberSv extends BaseService {
    *
    * @return
    */
-  public function wechatPubLogin($code, $reference = null) {
-  
+  public function wechatPubLogin($code, $reference = null) { 
+
     /**
      * 1.先获取 accessToken
      */
