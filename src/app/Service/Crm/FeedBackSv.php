@@ -10,7 +10,7 @@ use App\Service\Crm\MemberSv;
  *
  * @author Meroc Chen <398515393@qq.com> 2018-02-02
  */
-class FeedBackSv extends BaseService {
+class FeedbackSv extends BaseService {
 
   use CurdSv;
 
