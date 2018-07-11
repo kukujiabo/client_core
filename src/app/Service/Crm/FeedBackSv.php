@@ -3,6 +3,7 @@ namespace App\Service\Crm;
 
 use App\Service\BaseService;
 use Core\Service\CurdSv;
+use App\Service\Crm\MemberSv;
 
 /**
  * 意见反馈服务
@@ -22,10 +23,18 @@ class FeedBackSv extends BaseService {
    * @return int $id
    */
   public function addFeedback($memberId, $content) {
+
+    $mSv = new MemberSv();
+
+    $member = $mSv->findOne([ 'id' => $memberId ]);
   
     $newFeedback = [
     
       'member_id' => $memberId,
+
+      'member_name' => $member['member_name'],
+
+      'mobile' => $member['mobile'],
 
       'content' => $content,
 
@@ -34,6 +43,28 @@ class FeedBackSv extends BaseService {
     ];
 
     return $this->add($newFeedback);
+  
+  }
+
+  /**
+   * 查询反馈列表
+   */
+  public function getList($data) {
+  
+    $query = [];
+
+    if ($data['member_id']) {
+    
+      $query['member_id'] = $data['member_id'];
+    
+    }
+    if ($data['mobile']) {
+    
+      $query['mobile'] = $data['mobile'];
+    
+    }
+
+    return $this->queryList($query, $data['fields'], $data['order'], $data['page'], $data['page_size']);
   
   }
 

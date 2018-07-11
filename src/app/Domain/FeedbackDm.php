@@ -32,4 +32,14 @@ class FeedbackDm {
   
   }
 
+  /**
+   * 查询意见反馈列表
+   *
+   */
+  public function getList($data) {
+  
+    return $this->_fsv->getList($data);
+  
+  }
+
 }
