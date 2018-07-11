@@ -55,4 +55,16 @@ class BusinessApplyDm {
   
   }
 
+  public function auditPass($data) {
+  
+    return $this->_baSv->auditPass($data); 
+  
+  }
+
+  public function auditFail($data) {
+  
+    return $this->_baSv->auditFail($data);
+  
+  }
+
 }

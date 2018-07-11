@@ -79,6 +79,18 @@ class BusinessApply extends BaseApi {
       
         'id' => 'id|int|false||申请id'
       
+      ],
+
+      'auditPass' => [
+      
+        'id' => 'id|int|true||申请id'
+      
+      ],
+
+      'auditFail' => [
+      
+        'id' => 'id|int|true||申请id'
+      
       ]
 
     ]);
@@ -166,6 +178,30 @@ class BusinessApply extends BaseApi {
   public function balanceLoanMoney() {
   
     return $this->dm->balanceLoanMoney($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
+  /**
+   * 审核通过
+   * @desc 审核通过
+   *
+   * @return int num
+   */
+  public function auditPass() {
+  
+    return $this->dm->auditPass($this->retriveRuleParams(__FUNCTION__)); 
+  
+  }
+
+  /**
+   * 驳回申请
+   * @Desc 驳回申请
+   *
+   * @return int num
+   */
+  public function auditFail() {
+  
+    return $this->dm->auditFail($this->retriveRuleParams(__FUNCTION__)); 
   
   }
 

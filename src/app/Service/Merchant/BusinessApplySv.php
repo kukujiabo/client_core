@@ -468,4 +468,37 @@ class BusinessApplySv extends BaseService {
   
   }
 
+  /**
+   * 审核通过
+   */
+  public function auditPass($data) {
+  
+    if ($data['id']) {
+    
+      return $this->update($data['id'], [ 'state' => 1 ]);
+    
+    } else {
+    
+      return 0; 
+    
+    }
+  
+  }
+
+  public function auditFail() {
+  
+    if ($data['id']) {
+    
+      return $this->update($data['id'], [ 'state' => 2 ]);
+    
+    } else {
+    
+      return 0; 
+    
+    }
+
+  }
+
+
+
 }
