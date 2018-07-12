@@ -371,52 +371,83 @@ class MemberRewardSv extends BaseService {
       
         $sub = $msv->findOne([ 'member_identity' => $identity ]);
 
-        $supervisor = $msv->findOne([ 'member_identity' => $sub['reference'] ]);
+        if ($sub['member_type'] == 2) {
+
+          $supervisor = $msv->findOne([ 'member_identity' => $sub['reference'] ]);
       
-        $rule = $ruleSv->findOne([ 'loan_id' => $relatId, 'member_id' => $supervisor['id'] ]);
+          $rule = $ruleSv->findOne([ 'loan_id' => $relatId, 'member_id' => $supervisor['id'] ]);
 
-        if (!$rule) {
+          if (!$rule) {
+          
+            $rule = $ruleSv->findOne([ 'loan_id' => $relatId, 'member_id' => 0 ]);
+
+          }
+      
+          $newReward1 = [
+          
+            'apply_id' => $applyId,
+            'member_id' => $sub['id'],
+            'member_type' => $sub['member_type'],
+            'relat_id' => $relatId,
+            'relat_type' => 2,
+            'rule_id' => $rule['id'],
+            'money' => $rule['sub_reward'],
+            'writeoff' => 0,
+            'reward_type' => $loan['reward_type'],
+            'created_at' => date('Y-m-d H:i:s')
+          
+          ];
+
+          $newReward2 = [
+          
+            'apply_id' => $applyId,
+            'member_id' => $supervisor['id'],
+            'member_type' => $supervisor['member_type'],
+            'relat_id' => $relatId,
+            'relat_type' => 2,
+            'rule_id' => $rule['id'],
+            'money' => $rule['senior_reward'],
+            'writeoff' => 0,
+            'reward_type' => $loan['reward_type'],
+            'created_at' => date('Y-m-d H:i:s')
+          
+          ];
+
+          $newRewards = [];
+
+          array_push($newRewards, $newReward1, $newReward2);
+
+          return $this->batchAdd($newRewards);
+      
+        } elseif($sub['member_type'] == 3) {
+
+          $rule = $ruleSv->findOne([ 'loan_id' => $relatId, 'member_id' => $sub['id'] ]);
+
+          if (!$rule) {
+          
+            $rule = $ruleSv->findOne([ 'loan_id' => $relatId, 'member_id' => 0 ]);
+
+          }
         
-          $rule = $ruleSv->findOne([ 'loan_id' => $relatId, 'member_id' => 0 ]);
+          $newReward = [
+          
+            'apply_id' => $applyId,
+            'member_id' => $sub['id'],
+            'member_type' => $sub['member_type'],
+            'relat_id' => $relatId,
+            'relat_type' => 2,
+            'rule_id' => $rule['id'],
+            'money' => $rule['senior_reward'],
+            'writeoff' => 0,
+            'reward_type' => $loan['reward_type'],
+            'created_at' => date('Y-m-d H:i:s')
+          
+          ];
 
+          return $this->add($newReward);
+        
         }
-      
-        $newReward1 = [
-        
-          'apply_id' => $applyId,
-          'member_id' => $sub['id'],
-          'member_type' => $sub['member_type'],
-          'relat_id' => $relatId,
-          'relat_type' => 2,
-          'rule_id' => $rule['id'],
-          'money' => $rule['sub_reward'],
-          'writeoff' => 0,
-          'reward_type' => $loan['reward_type'],
-          'created_at' => date('Y-m-d H:i:s')
-        
-        ];
 
-        $newReward2 = [
-        
-          'apply_id' => $applyId,
-          'member_id' => $supervisor['id'],
-          'member_type' => $supervisor['member_type'],
-          'relat_id' => $relatId,
-          'relat_type' => 2,
-          'rule_id' => $rule['id'],
-          'money' => $rule['senior_reward'],
-          'writeoff' => 0,
-          'reward_type' => $loan['reward_type'],
-          'created_at' => date('Y-m-d H:i:s')
-        
-        ];
-
-        $newRewards = [];
-
-        array_push($newRewards, $newReward1, $newReward2);
-
-        return $this->batchAdd($newRewards);
-      
       }
 
     }
@@ -567,54 +598,84 @@ class MemberRewardSv extends BaseService {
       
         $sub = $msv->findOne([ 'member_identity' => $identity ]);
 
-        $supervisor = $msv->findOne([ 'member_identity' => $sub['reference'] ]);
+        if ($sub['member_type'] == 2) {
+
+          $supervisor = $msv->findOne([ 'member_identity' => $sub['reference'] ]);
       
-        $rule = $ruleSv->findOne([ 'card_id' => $relatId, 'member_id' => $supervisor['id'] ]);
+          $rule = $ruleSv->findOne([ 'card_id' => $relatId, 'member_id' => $supervisor['id'] ]);
 
-        if (!$rule) {
+          if (!$rule) {
+          
+            $rule = $ruleSv->findOne([ 'card_id' => $relatId, 'member_id' => 0 ]);
+
+          }
+      
+          $newReward1 = [
+          
+            'apply_id' => $applyId,
+            'member_id' => $sub['id'],
+            'member_type' => $sub['member_type'],
+            'relat_id' => $relatId,
+            'relat_type' => 1,
+            'rule_id' => $rule['id'],
+            'money' => $rule['sub_reward'],
+            'writeoff' => 0,
+            'created_at' => date('Y-m-d H:i:s')
+          
+          ];
+
+          $newReward2 = [
+          
+            'apply_id' => $applyId,
+            'member_id' => $supervisor['id'],
+            'member_type' => $supervisor['member_type'],
+            'relat_id' => $relatId,
+            'relat_type' => 1,
+            'rule_id' => $rule['id'],
+            'money' => $rule['senior_reward'],
+            'writeoff' => 0,
+            'created_at' => date('Y-m-d H:i:s')
+          
+          ];
+
+          $newRewards = [];
+
+          array_push($newRewards, $newReward1, $newReward2);
+
+          return $this->batchAdd($newRewards);
+         
+        } elseif ($sub['member_type'] == 3) {
+
+          $rule = $ruleSv->findOne([ 'card_id' => $relatId, 'member_id' => $sub['id'] ]);
+
+          if (!$rule) {
+          
+            $rule = $ruleSv->findOne([ 'card_id' => $relatId, 'member_id' => 0 ]);
+
+          }
         
-          $rule = $ruleSv->findOne([ 'card_id' => $relatId, 'member_id' => 0 ]);
-
+          $newReward = [
+          
+            'apply_id' => $applyId,
+            'member_id' => $sub['id'],
+            'member_type' => $sub['member_type'],
+            'relat_id' => $relatId,
+            'relat_type' => 1,
+            'rule_id' => $rule['id'],
+            'money' => $rule['senior_reward'] + $rule['sub_reward'],
+            'writeoff' => 0,
+            'created_at' => date('Y-m-d H:i:s')
+          
+          ]      
+        
+          return $this->add($newReward);
+        
         }
-      
-        $newReward1 = [
-        
-          'apply_id' => $applyId,
-          'member_id' => $sub['id'],
-          'member_type' => $sub['member_type'],
-          'relat_id' => $relatId,
-          'relat_type' => 1,
-          'rule_id' => $rule['id'],
-          'money' => $rule['sub_reward'],
-          'writeoff' => 0,
-          'created_at' => date('Y-m-d H:i:s')
-        
-        ];
 
-        $newReward2 = [
-        
-          'apply_id' => $applyId,
-          'member_id' => $supervisor['id'],
-          'member_type' => $supervisor['member_type'],
-          'relat_id' => $relatId,
-          'relat_type' => 1,
-          'rule_id' => $rule['id'],
-          'money' => $rule['senior_reward'],
-          'writeoff' => 0,
-          'created_at' => date('Y-m-d H:i:s')
-        
-        ];
-
-        $newRewards = [];
-
-        array_push($newRewards, $newReward1, $newReward2);
-
-        return $this->batchAdd($newRewards);
-      
       }
-
-    }
   
+    }
+
   }
 
 }
