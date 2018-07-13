@@ -146,6 +146,16 @@ class AccountSv extends BaseService {
       $query['member_name'] = $data['member_name'];
     
     }
+    if ($data['alipay_account']) {
+    
+      $query['alipay_account'] = $data['alipay_account'];
+    
+    }
+    if ($data['alipay_realname']) {
+    
+      $query['alipay_realname'] = $data['alipay_realname'];
+    
+    }
     if ($data['member_type']) {
     
       $query['member_type'] = $data['member_type'];
