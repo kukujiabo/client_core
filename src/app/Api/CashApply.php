@@ -23,7 +23,13 @@ class CashApply extends BaseApi {
 
       'getList' => [
       
-        'member_name' => 'member_name|string|false||会员名称'
+        'member_name' => 'member_name|string|false||会员名称',
+        'alipay_account' => 'alipay_account|string|false||支付宝账号',
+        'alipay_realname' => 'alipay_realname|string|false||支付宝实名',
+        'fields' => 'fields|string|false||字段',
+        'order' => 'order|string|false||排序',
+        'page' => 'page|int|false||页码',
+        'page_size' => 'page_size|int|false||每页条数'
       
       ]
     

@@ -55,7 +55,27 @@ class CashApplySv extends BaseService {
    */
   public function getList($data) {
   
+    $query = [];
+
+    if ($data['member_name']) {
+
+      $query['member_name'] = $data['member_name'];
+    
+    }
+    if ($data['alipay_account']) {
+
+      $query['alipay_account'] = $data['member_name'];
+    
+    }
+    if ($data['member_name']) {
+
+      $query['member_name'] = $data['member_name'];
+    
+    }
       
+    $vmcSv = new VMemberCashApplySv();
+
+    return $vmcSv->queryList($query, $data['fields'], $data['order'], $data['page'], $data['page_size']);
   
   }
 
