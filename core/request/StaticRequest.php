@@ -16,7 +16,7 @@ class StaticRequest extends Request {
 
     $service = str_replace('/index.php/', '', $route);
 
-    if (strpos('/', $service) == 0) {
+    if (strpos('/', $service) === 0) {
 
       $query = explode('?', $service);
 
