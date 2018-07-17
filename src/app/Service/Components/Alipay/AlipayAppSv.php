@@ -70,7 +70,7 @@ class AlipayAppSv extends ConfigSv {
 
     $apolSv = new AlipayPayOffLogSv();
 
-    $logId = $apolSv->addLog($outNo, $data['payee_account'], $data['amount'], $data['payer_show_name'], $data['payer_real_name'], $data['remark'], $relatId, $relatType);
+    $logId = $apolSv->addLog($outNo, $data['payee_account'], $data['amount'], $data['payer_show_name'], $data['payee_real_name'], $data['remark'], $relatId, $relatType);
 
     $result = $aop->execute ( $request ); 
 
