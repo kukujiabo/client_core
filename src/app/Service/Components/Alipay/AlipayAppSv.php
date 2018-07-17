@@ -84,7 +84,7 @@ class AlipayAppSv extends ConfigSv {
 
   }
 
-  public function createOutNo($sign) {
+  public function createOutNo() {
 
     $rdStr = \App\getRandomString(4);
   
