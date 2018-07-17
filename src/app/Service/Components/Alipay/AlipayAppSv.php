@@ -5,6 +5,7 @@ use App\Library\Alipay\AlipayNotify;
 use App\Service\System\ConfigSv;
 use App\Library\RedisClient;
 use App\Library\Http;
+use App\Library\Alipay\AlipaySubmit;
 
 /**
  * 支付宝应用服务类
