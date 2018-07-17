@@ -2,7 +2,7 @@
 namespace App\Api;
 
 /**
- * 商家申请入驻接口
+ * 信贷产品申请接口
  *
  * @author Meroc Chen <398515393@qq.com>
  */
