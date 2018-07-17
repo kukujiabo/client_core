@@ -6,4 +6,6 @@ use Core\Service\CurdSv;
 
 class AlipayBatchPayLogSv extends BaseService {
 
+  use CurdSv;
+
 }
