@@ -82,7 +82,7 @@ class AlipayAppSv extends ConfigSv {
 
       $success = [
       
-        'state' = 1,
+        'state' => 1,
 
         'order_id' => $result->$responseNode->order_id,
 
