@@ -121,7 +121,7 @@ class AlipayAppSv extends ConfigSv {
 
       'batch_num' => $data['batch_num'],
 
-      'detail_data' => $data['detail_data']
+      'detail_data' => $data['detail_data'],
 
       '_input_charset' => 'utf-8'
     
