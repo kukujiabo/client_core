@@ -180,6 +180,11 @@ class BusinessApplySv extends BaseService {
       $query['phone'] = $data['phone'];
     
     }
+    if (isset($data['loan_name'])) {
+    
+      $query['loan_name'] = $data['loan_name'];
+    
+    }
 
     $vbaSv = new VBapplyMemberLoanSv();
 
