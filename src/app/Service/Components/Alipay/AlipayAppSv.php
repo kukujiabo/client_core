@@ -134,7 +134,7 @@ class AlipayAppSv extends ConfigSv {
      */
     $batchLog = new AlipayBatchPayLogSv();
 
-    $batchLog->add($payOffParams);
+    $batchLog->addLogData($payOffParams);
 
     $alipaySubmit = new AlipaySubmit($this->_alipayConfig);
 

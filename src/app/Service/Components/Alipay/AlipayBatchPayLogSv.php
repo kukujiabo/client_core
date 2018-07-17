@@ -8,4 +8,12 @@ class AlipayBatchPayLogSv extends BaseService {
 
   use CurdSv;
 
+  public function addLogData($data) {
+  
+    $data['created_at'] = date('Y-m-d H:i:s');
+  
+    return $this->add($data);
+  
+  }
+
 }
