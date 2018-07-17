@@ -8,6 +8,9 @@ defined('API_ROOT') || define('API_ROOT', dirname(__FILE__) . '/..');
 // 引入composer
 require_once API_ROOT . '/vendor/autoload.php';
 
+//引入支付宝平台
+require_once API_ROOT . '/public/alipaySDK/AopSdk.php';
+
 // 时区设置
 date_default_timezone_set('Asia/Shanghai');
 

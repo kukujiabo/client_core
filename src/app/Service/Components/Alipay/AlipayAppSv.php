@@ -14,141 +14,81 @@ use App\Library\Alipay\AlipaySubmit;
  */
 class AlipayAppSv extends ConfigSv {
 
-  protected $_partnerId; 
+  protected $_appid; 
 
-  protected $_safeKey;
+  protected $_rsaPriKey;
 
-  protected $_notifyUrl;
-
-  protected $_merchantAccount;
-
-  protected $_merchantName;
-
-  protected $_alipayConfig;
+  protected $_rsaPubKey;
 
   public function __construct($appname = 'peichong') {
   
-    $this->_partnerId = $this->getConfig($appname . '_mch_id');
+    $this->_appid = $this->getConfig($appname . '_app_id');
 
-    $this->_safeKey = $this->getConfig($appname . '_safe_key');
+    $this->_rsaPriKey = $this->getConfig($appname . '_rsa_private_key');
 
-    $this->_notifyUrl = $this->getConfig($appname . '_ali_notify_url');
+    $this->_rsaPubKey = $this->getConfig($appname . '_rsa_public_key');
 
-    $this->_merchantAccount = $this->getConfig($appname . '_ali_mch_acct');
-
-    $this->_merchantName = $this->getConfig($appname . '_ali_mch_name');
-
-    $this->_alipayConfig = [
-
-      'partner' => $this->_partnerId,
-    
-      'key' => $this->_safeKey,
-
-      'sign_type' => 'md5',
-
-      'input_charset' => 'utf-8',
-
-      'cacert' => API_ROOT . '/cacert.pem',
-
-      'transport' => 'https'
-    
-    ];
-  
   }
 
-  /**
-   * 支付回调处理接口
-   *
-   * @return string
-   */
-  public function paymentNotify($data) {
+  public function payOff($data) {
 
-    $alipayNotify = new AlipayNotify($this->_alipayConfig);
+    $aop = new \AopClient();
 
-    $result = $alipayNotify->verifyNotify();
+    $aop->gatewayUrl = AlipayApi::OPENAPI;
 
-    $notifyLog = new AlipayNotifyLogSv();
+    $aop->appId = $this->_appid;
 
-    if ($result) {
+    $aop->rsaPrivateKey = $this->_rsaPriKey;
+
+    $aop->alipayrsaPublicKey = $this->_rsaPubKey;
+
+    $aop->apiVersion = '1.0';
+
+    $aop->signType = 'RSA2';
+
+    $aop->postCharset='utf-8';
+
+    $aop->format='json';
+
+    $request = new AlipayFundTransToaccountTransferRequest ();
+
+    $bizContent = [
     
-      $successDetails = $data['success_details'];
-
-      $failedDetails = $data['fail_details'];
-
-      $notifyLog->addLog($this->_partnerId, $this->safeKey, $successDetails, $failedDetails, 1);
+      'out_biz_no' => $this->createOutNo(),
+      'payee_type' => 'ALIPAY_LOGONID',
+      'payee_account' => $data['payee_account'],
+      'amount' => $data['amount'],
+      'payer_show_name' => $data['payer_show_name'],
+      'payee_real_name' => $data['payee_real_name'],
+      'remark' => $data['remark']
     
-      echo 'success';
+    ];
 
-      exit;
-    
+    $request->setBizContent( json_encode( $bizContent ) );
+
+    $result = $aop->execute ( $request ); 
+
+    $responseNode = str_replace(".", "_", $request->getApiMethodName()) . "_response";
+
+    $resultCode = $result->$responseNode->code;
+
+    if(!empty($resultCode)&&$resultCode == 10000){
+
+      return "成功";
+
     } else {
 
-      $notifyLog->addLog($this->_partnerId, $this->safeKey, '', '', 0);
-    
-      echo 'fail';
+      return "失败";
 
-      exit;   
-    
     }
-  
+
   }
 
-  /**
-   * 批量支付
-   *
-   * @return 
-   */
-  public function batchPayOff($data) {
+  public function createOutNo($sign) {
 
-    $dateStr = date('Ymd');
+    $rdStr = \App\getRandomString(4);
   
-    $payOffParams = [
-    
-      'service' => 'batch_trans_notify',
-
-      'partner' => $this->_partnerId,
-
-      'notify_url' => $this->_notifyUrl,
-
-      'email' => $this->_merchantAccount,
-
-      'account_name' => 'account_name',
-
-      'pay_date' => $dateStr,
-
-      'batch_no' => $dateStr . $data['batch_no'],
-
-      'batch_fee' => $data['batch_fee'],
-
-      'batch_num' => $data['batch_num'],
-
-      'detail_data' => $data['detail_data'],
-
-      '_input_charset' => 'utf-8'
-    
-    ];
-
-
-    /**
-     * 参数写入日志
-     */
-    $batchLog = new AlipayBatchPayLogSv();
-
-    $batchLog->addLogData($payOffParams);
-
-    $alipaySubmit = new AlipaySubmit($this->_alipayConfig);
-
-    /**
-     * 添加单个放款日志
-     */
-    $payOffLogs = new AlipayPayOffLogSv();
-
-    $payOffLogs->batchAddLog($payOffParams['batch_no'], $data['detail_data']);
-
-    /**
-     * 发送请求
-     */
-    return $alipaySubmit->buildRequestHttp($payOffParams);
+    return $rdStr . time() . rand(10000, 99999);
   
   }
 

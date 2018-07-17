@@ -20,12 +20,13 @@ class Alipay extends BaseApi {
       
       ],
 
-      'batchPayOff' => [
-      
-        'batch_fee' => 'batch_fee|float|true||支付总费用',
-        'batch_num' => 'batch_num|int|true||支付费用笔数',
-        'batch_no' => 'batch_no|string|true||批次号',
-        'detail_data' => 'detail_data|string|true||支付明细'
+      'payOff' => [
+
+        'payee_account' => 'payee_account|string|true||收款方账号',
+        'amount' => 'amount|string|true||支付金额',
+        'payer_show_name' => 'payer_show_name|string|true||收据内容',
+        'payee_real_name' => 'payee_real_name|string|true||收款方真实姓名',
+        'remark' => 'remark|string|true||备注'
       
       ]
     
@@ -51,9 +52,9 @@ class Alipay extends BaseApi {
    *
    * @return string
    */
-  public function batchPayOff() {
+  public function payOff() {
   
-    return $this->dm->batchPayOff($this->retriveRuleParams(__FUNCTION__));
+    return $this->dm->payOff($this->retriveRuleParams(__FUNCTION__));
   
   }
 
