@@ -100,18 +100,18 @@ class AlipayNotify {
      */
 	function getSignVeryfy($para_temp, $sign) {
 		//除去待签名参数数组中的空值和签名参数
-		$para_filter = paraFilter($para_temp);
+		$para_filter = AlipayFuncs::paraFilter($para_temp);
 		
 		//对待签名参数数组排序
-		$para_sort = argSort($para_filter);
+		$para_sort = AlipayFuncs::argSort($para_filter);
 		
 		//把数组所有元素，按照“参数=参数值”的模式用“&”字符拼接成字符串
-		$prestr = createLinkstring($para_sort);
+		$prestr = AlipayFuncs::createLinkstring($para_sort);
 		
 		$isSgin = false;
 		switch (strtoupper(trim($this->alipay_config['sign_type']))) {
 			case "MD5" :
-				$isSgin = md5Verify($prestr, $sign, $this->alipay_config['key']);
+				$isSgin = AlipayFuncs::md5Verify($prestr, $sign, $this->alipay_config['key']);
 				break;
 			default :
 				$isSgin = false;
@@ -140,7 +140,7 @@ class AlipayNotify {
 			$veryfy_url = $this->http_verify_url;
 		}
 		$veryfy_url = $veryfy_url."partner=" . $partner . "&notify_id=" . $notify_id;
-		$responseTxt = getHttpResponseGET($veryfy_url, $this->alipay_config['cacert']);
+		$responseTxt = AlipayFuncs::getHttpResponseGET($veryfy_url, $this->alipay_config['cacert']);
 		
 		return $responseTxt;
 	}

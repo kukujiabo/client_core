@@ -22,7 +22,7 @@ class AlipayPayOffLogSv extends BaseService {
     
       $parseData = explode('^', $log);
 
-      $ids = explode($parseData[4]);
+      $ids = explode(',', $parseData[4]);
 
       $newLog = [
       
