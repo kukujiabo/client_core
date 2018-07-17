@@ -127,6 +127,10 @@ class ErrorCode {
 
   public $NORESTMSG = '账户余额不足！';
 
+  public $NOALIPAYACCTMSG = '支付宝账户未绑定！';
+
+  public $NOALIPAYACCTCODE = '110003';
+
   /**
    * BUSINESS APPLY
    *
@@ -134,5 +138,6 @@ class ErrorCode {
   public $LOANSYNCFAILEDMSG = '贷款申请同步失败！';
 
   public $LOANSYNCFAILEDCODE = '210001';
+
 
 }

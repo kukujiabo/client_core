@@ -21,6 +21,16 @@ class CashApplySv extends BaseService {
   public function create($data) {
 
     $acctSv = new AccountSv();
+
+    $alipaySv = new MemberAlipayAccountSv();
+
+    $aliAcct = $alipaySv->findOne([ 'member_id' => $data['member_id'] ]);
+
+    if (!$aliAcct) {
+    
+      $this->throwError($this->_err->NOALIPAYACCTMSG, $this->_err->NOTALIPAYACCTCODE);
+    
+    }
   
     $newApply = [
     
