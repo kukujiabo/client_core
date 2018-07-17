@@ -7,7 +7,6 @@ class AlipayApi {
 
   CONST OPENAPI = 'https://openapi.alipay.com/gateway.do';
 
-  CONST STSERVICE = 'alipay.fund.trans.toaccount.transfer'
-
+  CONST STSERVICE = 'alipay.fund.trans.toaccount.transfer';
 
 }
