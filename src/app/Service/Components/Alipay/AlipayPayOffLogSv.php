@@ -8,49 +8,24 @@ class AlipayPayOffLogSv extends BaseService {
 
   use CurdSv;
 
-  /**
-   * 批量添加放款日志
-   *
-   */
-  public function batchAddLog($batchNo, $data) {
+  public function addLog($outNo, $amount, $payerShowName, $payeeRealName, $remark, $relatId, $relatType) {
   
-    $logData = explode('|', $data);
-
-    $batchDatas = [];
-  
-    foreach($logData as $log) {
+    $newLog = [
     
-      $parseData = explode('^', $log);
-
-      $ids = explode(',', $parseData[4]);
-
-      $newLog = [
-      
-        'batch_no' => $batchNo,
-
-        'sequence' => $parseData[0],
-        
-        'account' => $parseData[1],
-
-        'account_name' => $parseData[2],
-
-        'money' => $parseData[3],
-
-        'member_id' => $ids[0],
-
-        'apply_id' => $ids[1],
-
-        'state' => 0,
-
-        'created_at' => date('Y-m-d H:i:s')
-      
-      ];
-
-      array_push($batchDatas, $newLog);
+      'out_no' => $outNo,
+      'payee_account' => $payeeAcct,
+      'amount' => $amount,
+      'payer_show_name' => $payerShowName,
+      'payee_real_name' => $payeeRealName,
+      'remark' => $remark,
+      'relat_id' => $relatId,
+      'relat_type' => $relatType,
+      'state' => 0,
+      'created_at' => date('Y-m-d H:i:s')
     
-    }
+    ];
 
-    return $this->batchAdd($batchDatas);
+    return $this->add($newLog);
   
   }
 

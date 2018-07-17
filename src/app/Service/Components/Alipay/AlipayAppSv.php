@@ -30,7 +30,7 @@ class AlipayAppSv extends ConfigSv {
 
   }
 
-  public function payOff($data) {
+  public function payOff($data, $relatId, $relatType) {
 
     $aop = new \AopClient();
 
@@ -52,9 +52,11 @@ class AlipayAppSv extends ConfigSv {
 
     $request = new \AlipayFundTransToaccountTransferRequest ();
 
+    $outNo = $this->createOutNo();
+
     $bizContent = [
     
-      'out_biz_no' => $this->createOutNo(),
+      'out_biz_no' => $outNo,
       'payee_type' => 'ALIPAY_LOGONID',
       'payee_account' => $data['payee_account'],
       'amount' => $data['amount'],
@@ -66,6 +68,10 @@ class AlipayAppSv extends ConfigSv {
 
     $request->setBizContent( json_encode( $bizContent ) );
 
+    $apolSv = new AlipayPayOffLogSv();
+
+    $logId = $apolSv->addLog($outNo, $data['payee_account'], $data['amount'], $data['payer_show_name'], $data['payer_real_name'], $data['remark'], $relatId, $relatType);
+
     $result = $aop->execute ( $request ); 
 
     $responseNode = str_replace(".", "_", $request->getApiMethodName()) . "_response";
@@ -74,11 +80,37 @@ class AlipayAppSv extends ConfigSv {
 
     if(!empty($resultCode)&&$resultCode == 10000){
 
-      return "成功";
+      $success = [
+      
+        'state' = 1,
+
+        'order_id' => $result->$responseNode->order_id,
+
+      ];
+
+      $apolSv->update($logId, $success);
+
+      return true;
 
     } else {
 
-      return "失败";
+      $err = [
+      
+        'state' => -1,
+
+        'err_msg' => $result->$responseNode->msg,
+
+        'err_code' => $resultCode,
+
+        'sub_code' => $result->$responseNode->sub_code,
+
+        'sub_msg' => $result->$responseNode->sub_msg
+      
+      ];
+
+      $apolSv->update($logId, $err);
+
+      return false;
 
     }
 
