@@ -8,7 +8,7 @@ class AlipayPayOffLogSv extends BaseService {
 
   use CurdSv;
 
-  public function addLog($outNo, $amount, $payerShowName, $payeeRealName, $remark, $relatId, $relatType) {
+  public function addLog($outNo, $payeeAcct, $amount, $payerShowName, $payeeRealName, $remark, $relatId, $relatType) {
   
     $newLog = [
     
