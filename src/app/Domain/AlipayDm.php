@@ -19,4 +19,10 @@ class AlipayDm {
   
   }
 
+  public function batchPayOff($data) {
+  
+    return $this->_aapSv->batchPayOff($data);
+  
+  }
+
 }

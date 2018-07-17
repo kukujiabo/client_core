@@ -37,7 +37,8 @@ return array(
       'App.NationwideArea.QueryList',
       'App.UserAdmin.Login',
       'App.Goods.GetGoods',
-      'App.Wechat.wechatMessagePush'
+      'App.Wechat.wechatMessagePush',
+      'App.Alipay.PaymentNotify'
     ),
 
     'wechat_whitelist' => array(

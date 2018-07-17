@@ -18,6 +18,15 @@ class Alipay extends BaseApi {
 
         'fail_details' => 'fail_details|string|false||付款失败详情'
       
+      ],
+
+      'batchPayOff' => [
+      
+        'batch_fee' => 'batch_fee|float|true||支付总费用',
+        'batch_num' => 'batch_num|int|true||支付费用笔数',
+        'batch_no' => 'batch_no|string|true||批次号',
+        'detail_data' => 'detail_data|string|true||支付明细'
+      
       ]
     
     ]);
@@ -33,6 +42,18 @@ class Alipay extends BaseApi {
   public function paymentNotify() {
   
     return $this->dm->paymentNotify($this->retriveRuleParams(__FUNCTION__)); 
+  
+  }
+
+  /**
+   * 批量支付接口
+   * @desc 批量支付接口
+   *
+   * @return string
+   */
+  public function batchPayOff() {
+  
+    return $this->dm->batchPayOff($this->retriveRuleParams(__FUNCTION__));
   
   }
 
