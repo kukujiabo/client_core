@@ -50,7 +50,7 @@ class AlipayAppSv extends ConfigSv {
 
     $aop->format='json';
 
-    $request = new AlipayFundTransToaccountTransferRequest ();
+    $request = new \AlipayFundTransToaccountTransferRequest ();
 
     $bizContent = [
     
