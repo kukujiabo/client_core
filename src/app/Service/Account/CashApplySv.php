@@ -28,7 +28,7 @@ class CashApplySv extends BaseService {
 
     if (!$aliAcct) {
     
-      $this->throwError($this->_err->NOALIPAYACCTMSG, $this->_err->NOTALIPAYACCTCODE);
+      $this->throwError($this->_err->NOALIPAYACCTMSG, $this->_err->NOALIPAYACCTCODE);
     
     }
   
