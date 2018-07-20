@@ -100,31 +100,29 @@ class WechatAppSv extends ConfigSv {
 
       $xml = new DOMDocument();
 
-      $xml->loadXML($msg) {
+      $xml->loadXML($msg)
       
-        $msgType = $xml->getElementsByTagName('MsgType')->item(0)->nodeValue;
+      $msgType = $xml->getElementsByTagName('MsgType')->item(0)->nodeValue;
 
-        switch($msgType) {
-        
-          case 'event':
+      switch($msgType) {
+      
+        case 'event':
 
-            /**
-             * 消息类型为事件
-             */
-            $event = $domData->getElementsByTagName('Event')->item(0)->nodeValue;
+          /**
+           * 消息类型为事件
+           */
+          $event = $domData->getElementsByTagName('Event')->item(0)->nodeValue;
 
-            $wxEvtSv = new WechatEventSv(); 
+          $wxEvtSv = new WechatEventSv(); 
 
-            /**
-             * 添加事件处理日志
-             */
-            $evtId = $wxEventSv->create($event, $logId);
+          /**
+           * 添加事件处理日志
+           */
+          $evtId = $wxEventSv->create($event, $logId);
 
-            $wxEventSv->$event($xml, $this->_appid, $this->_appsecret, $evtId);
+          $wxEventSv->$event($xml, $this->_appid, $this->_appsecret, $evtId);
 
-            break;
-        
-        }
+          break;
       
       }
       
