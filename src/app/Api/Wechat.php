@@ -48,6 +48,17 @@ class Wechat extends BaseApi {
         'echostr' => 'echostr|string|false||验证响应字符串',
         'msg_signature' => 'msg_signature|string|false||消息签名'
       
+      ],
+
+      'createMenu' => [
+      
+        'menus' => 'menus|string|true||菜单'
+      
+      ],
+
+      'getMenu' => [
+      
+      
       ]
       
     ]);
@@ -115,6 +126,30 @@ class Wechat extends BaseApi {
   public function serverApi() {
   
     return $this->dm->serverApi($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
+  /**
+   * 创建微信公众号菜单
+   * @desc 创建微信公众号菜单
+   *
+   * @return boolean true/false
+   */
+  public function createMenu() {
+  
+    return $this->dm->createMenu($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
+  /**
+   * 拉取微信公众号菜单
+   * @desc 拉取微信公众号菜单
+   *
+   * @return mixed menu
+   */
+  public function getMenu() {
+  
+    return $this->dm->getMenu();
   
   }
 

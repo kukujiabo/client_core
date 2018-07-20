@@ -139,5 +139,15 @@ class ErrorCode {
 
   public $LOANSYNCFAILEDCODE = '210001';
 
+  /**
+   * Wechat
+   */
+  public $MENUCREATERESPONSEPARSEMSG = '菜单创建返回消息解析失败';
+
+  public $MENUCREATERESPONSEPARSECODE = '230002';
+
+  public $MENUCREATEFAIMSG = '菜单创建失败！';
+
+  public $MENUCREATEFAILCODE = '230001';
 
 }

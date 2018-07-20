@@ -64,4 +64,16 @@ class WechatDm {
   
   }
 
+  public function createMenu($params) {
+  
+    return $this->_wxsv->createMenu($params);
+  
+  }
+
+  public function getMenu() {
+  
+    return $this->_wxsv->getMenu();
+  
+  }
+
 }

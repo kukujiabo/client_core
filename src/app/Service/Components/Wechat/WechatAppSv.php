@@ -267,4 +267,32 @@ class WechatAppSv extends ConfigSv {
   
   }
 
+  /**
+   * 创建微信公众号菜单
+   *
+   * @param array data
+   *
+   * @return boolean true/false
+   */
+  public function createMenu($data) {
+
+    $menuSv = new WechatMenuSv();
+
+    return $menuSv->create($data, $this->_appid, $this->_appsecret);
+
+  }
+
+  /**
+   * 获取微信公众号菜单
+   *
+   * @return array menu
+   */
+  public function getMenu() {
+
+    $menuSv = new WechatMenuSv();
+
+    return $menuSv->getMenu($this->_appid, $this->_appsecret);    
+
+  }
+
 }
