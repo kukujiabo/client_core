@@ -165,7 +165,9 @@ class MemberSv extends BaseService {
 
         'sex' => $wxMember->sex,
 
-        'subscribe' => 1
+        'subscribe' => 1,
+
+        'first_in_type' => 2
       
       ];
 
@@ -239,7 +241,9 @@ class MemberSv extends BaseService {
 
         'wx_province' => $wxMember->province,
 
-        'sex' => $wxMember->sex
+        'sex' => $wxMember->sex,
+
+        'first_in_type' => 1
       
       ];
 
