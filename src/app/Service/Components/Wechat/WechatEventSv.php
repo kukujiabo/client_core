@@ -55,11 +55,36 @@ class WechatEventSv extends BaseService {
 
     if ($memberSv->wechatSubscribe($wxMember)) {
     
-      $this->update($evtId, [ 'state' => 1 ]);
+      $this->update($evtId, [ 'state' => 1, 'relat' => $wxMember->unionid ]);
+     
+    } else {
+    
+      $this->update($evtId, [ 'state' => -1, 'relat' => $wxMember->unionid ]);
+    
+    }
+  
+  }
+
+  /**
+   * 用户取消关注事件
+   */
+  public function unsubscribe($xml, $appid, $appsecret, $evtId) {
+  
+    $openId = $xml->getElementsByTagName('FromUserName')->item(0)->nodeValue;
+
+    $memberSv = new MemberSv();
+  
+    $member = $memberSv->findOne([ 'wx_pbopenid' => $openId ]);
+
+    $num = $memberSv->update($member['id'], ['subscribe' => 0]);
+
+    if ($num) {
+    
+      $this->update($evtId, [ 'state' => 1, 'relat' => $member['wx_unionid'] ]);
     
     } else {
     
-      $this->update($evtId, [ 'state' => -1 ]);
+      $this->update($evtId, [ 'state' => -1, 'relat' => $member['wx_unionid'] ]);
     
     }
   
