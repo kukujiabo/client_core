@@ -111,7 +111,7 @@ class WechatAppSv extends ConfigSv {
           /**
            * 消息类型为事件
            */
-          $event = $domData->getElementsByTagName('Event')->item(0)->nodeValue;
+          $event = $xml->getElementsByTagName('Event')->item(0)->nodeValue;
 
           $wxEvtSv = new WechatEventSv(); 
 
