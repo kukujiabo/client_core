@@ -38,7 +38,8 @@ return array(
       'App.UserAdmin.Login',
       'App.Goods.GetGoods',
       'App.Wechat.wechatMessagePush',
-      'App.Alipay.PaymentNotify'
+      'App.Wechat.ServerApi',
+      'App.Alipay.PaymentNotify',
     ),
 
     'wechat_whitelist' => array(
