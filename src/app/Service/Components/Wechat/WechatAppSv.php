@@ -100,7 +100,7 @@ class WechatAppSv extends ConfigSv {
 
       $xml = new DOMDocument();
 
-      $xml->loadXML($msg)
+      $xml->loadXML($msg);
       
       $msgType = $xml->getElementsByTagName('MsgType')->item(0)->nodeValue;
 
