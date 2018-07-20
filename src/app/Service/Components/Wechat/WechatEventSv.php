@@ -95,4 +95,21 @@ class WechatEventSv extends BaseService {
   
   }
 
+  /**
+   * 用户扫描二维码事件
+   */
+  public function scan($xml, $appid, $appsecret, $evtId) {
+
+    $openId = $xml->getElementsByTagName('FromUserName')->item(0)->nodeValue;
+
+    $scene = $xml->getElementsByTagName('EventKey')->item(0)->nodeValue;
+  
+    $memberSv = new MemberSv();
+  
+    $member = $memberSv->findOne([ 'wx_pbopenid' => $openId ]);
+
+    $this->update($evtId, [ 'state' => 1, 'relat' => $member['wx_unionid'], 'reference' => str_replace('qrscene_', '', $scene) ]);
+  
+  }
+
 }

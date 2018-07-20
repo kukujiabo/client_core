@@ -120,7 +120,9 @@ class WechatAppSv extends ConfigSv {
            */
           $evtId = $wxEvtSv->create($event, $logId);
 
-          $wxEvtSv->$event($xml, $this->_appid, $this->_appsecret, $evtId);
+          $func = strtolower($event);
+
+          $wxEvtSv->$func($xml, $this->_appid, $this->_appsecret, $evtId);
 
           break;
       
