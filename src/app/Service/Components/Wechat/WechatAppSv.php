@@ -98,7 +98,7 @@ class WechatAppSv extends ConfigSv {
        * 解析成功 分发事件处理
        */
 
-      $xml = new DOMDocument();
+      $xml = new \DOMDocument();
 
       $xml->loadXML($msg);
       
