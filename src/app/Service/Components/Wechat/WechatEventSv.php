@@ -49,11 +49,16 @@ class WechatEventSv extends BaseService {
     $wxMember = WechatAuth::getRegUserInfo($accessToken, $openId);
 
     /**
+     * 获取渠道信息（无渠道信息为空）
+     */
+    $reference = $xml->getElementsByTagName('EventKey')->item(0)->nodeValue;
+
+    /**
      * 保存用户基本信息
      */
     $memberSv = new MemberSv();
 
-    if ($memberSv->wechatSubscribe($wxMember)) {
+    if ($memberSv->wechatSubscribe($wxMember, $reference)) {
     
       $this->update($evtId, [ 'state' => 1, 'relat' => $wxMember->unionid ]);
      

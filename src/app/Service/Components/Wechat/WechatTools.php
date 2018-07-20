@@ -76,4 +76,31 @@ class WechatTools {
 
   }
 
+  /**
+   * 获取带参数的二维码
+   *
+   * @return 
+   */
+  public function createTmpQrCode($scene, $appid, $appsecret) {
+  
+    $codeData = [
+    
+      'expire_seconds' => 2592000,
+
+      'action_name' => 'QR_STR_SCENE',
+    
+      'action_info' => [ "scene" => [ "scene_str" => $scene ] ]
+    
+    ];
+  
+    $postData = json_encode($codeData);
+
+    $accessToken = WechatAuth::getAccessTokenByAppIdAppSecret($appid, $appsecret);
+
+    $url = str_replace( '{ACCESS_TOKEN}', $accessToken, WechatApi::GET_TICKET );
+
+    return Http::httpPost($url, $postData, '', '', 5000, 'raw');
+  
+  }
+
 }

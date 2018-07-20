@@ -295,4 +295,15 @@ class WechatAppSv extends ConfigSv {
 
   }
 
+  /**
+   * 创建临时二维码
+   *
+   * @return array data
+   */
+  public function createTmpQrCode($scene) {
+  
+    return WechatTools::createTmpQrCode($scene, $this->_appid, $this->_appsecret);
+  
+  }
+
 }

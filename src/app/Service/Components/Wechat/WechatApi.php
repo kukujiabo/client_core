@@ -49,7 +49,7 @@ class WechatApi {
   // 获取小程序二维码（适用于需要的码数量较少的业务场景）
   CONST GET_SMALL_PROGRAM_QR_CODE = 'https://api.weixin.qq.com/cgi-bin/wxaapp/createwxaqrcode?access_token={ACCESS_TOKEN}';
   // 获取TICKET
-  CONST GET_TICKET = 'https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token={TOKENPOST}';
+  CONST GET_TICKET = 'https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token={ACCESS_TOKEN}';
   // 获取带参数的二维码
   CONST GET_QR_CODE = 'https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket={TICKET}';
   // 上传商户图标至微信服务器
