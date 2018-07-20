@@ -134,7 +134,7 @@ class MemberSv extends BaseService {
   /**
    * 用户关注微信公众号
    */
-  public function wechatSubscribe($wxMembew, $reference = NULL) {
+  public function wechatSubscribe($wxMember, $reference = NULL) {
   
     $member = $this->findOne(['wx_unionid' => $wxMember->unionid]);
   
