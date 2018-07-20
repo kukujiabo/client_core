@@ -14,11 +14,51 @@ class WechatAppSv extends ConfigSv {
 
   protected $_appsecret;
 
+  protected $_aesKey;
+
+  protected $_servToken;
+
   public function __construct($appName = 'cloud_credit') {
   
     $this->_appid = $this->getConfig("{$appName}_appid");
 
     $this->_appsecret = $this->getConfig("{$appName}_appsecret");
+
+    $this->_aesKey = $this->getConfig("wx_serv_token");
+
+    $this->_servToken = $this->getConfig("wx_serv_aeskey");
+  
+  }
+
+  /**
+   * 微信服务器接口
+   *
+   * @param string data.signature
+   * @param string data.nonce
+   * @param string data.timestamp
+   * @param string data.echostr
+   *
+   * @return mixed
+   */
+  public function serverApi($data) {
+  
+    if ($data['echostr'] && $data['signature']) {
+    
+      if (wechatAuth::checkServAuth($data, $this->_aesKey, $this->_servToken)) {
+      
+        echo $data['echostr'];
+        
+        exit;
+      
+      } else {
+      
+        echo 'fail';
+
+        exit;
+      
+      }
+    
+    }
   
   }
 

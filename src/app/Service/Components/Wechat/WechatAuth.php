@@ -245,4 +245,24 @@ class WechatAuth {
   
   }
 
+  /**
+   * 微信服务器认证
+   *
+   * @return boolean true/false
+   */
+  public function checkServAuth($data, $aesKey, $token) {
+  
+    $tmpArr = [ $data['timestamp'], $data['nonce'], $token ];
+
+    sort($tmpArr, SOTR_STRING);
+
+    $tmpStr = implode($tmpArr);
+  
+    $sign = sha1($tmpStr);
+
+    return $data['signature'] == $sign;
+  
+  }
+
+
 }
