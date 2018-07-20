@@ -56,7 +56,7 @@ class WechatTools {
 
     $msg = '';
 
-    $errCode = $pc->decryptMsg($sign, $time, $nonce, $content, &$msg);
+    $errCode = $pc->decryptMsg($sign, $time, $nonce, $content, $msg);
 
     $wmlSv = new WechatMessageLogSv();
 
