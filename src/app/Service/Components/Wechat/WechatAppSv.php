@@ -118,9 +118,9 @@ class WechatAppSv extends ConfigSv {
           /**
            * 添加事件处理日志
            */
-          $evtId = $wxEventSv->create($event, $logId);
+          $evtId = $wxEvtSv->create($event, $logId);
 
-          $wxEventSv->$event($xml, $this->_appid, $this->_appsecret, $evtId);
+          $wxEvtSv->$event($xml, $this->_appid, $this->_appsecret, $evtId);
 
           break;
       
