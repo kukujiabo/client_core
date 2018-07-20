@@ -30,7 +30,7 @@ class WechatMessageLogSv extends BaseService {
     
     ];
 
-    return $this->add($raw);
+    return $this->add($newLog);
   
   }
 
