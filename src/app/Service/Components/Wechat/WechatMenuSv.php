@@ -32,7 +32,7 @@ class WechatMenuSv extends BaseService {
 
       if (empty($resultArray) || !empty($resultArray['errcode'])) {
 
-        $this->throwError($this->_err->MENU_CREATE_RESPONSE_PARSE_MSG, $this->_err->MENU_CREATE_RESPONSE_PARSE_CODE)
+        $this->throwError($this->_err->MENU_CREATE_RESPONSE_PARSE_MSG, $this->_err->MENU_CREATE_RESPONSE_PARSE_CODE);
       
       } elseif ($resultArray['errcode'] == 0) {
 
@@ -42,7 +42,7 @@ class WechatMenuSv extends BaseService {
 
     } else {
     
-      $this->throwError($this->_err->MENUCREATEFAILMSG, $this->_err->MENUCREATEFAILCODE)
+      $this->throwError($this->_err->MENUCREATEFAILMSG, $this->_err->MENUCREATEFAILCODE);
     
     }
   
