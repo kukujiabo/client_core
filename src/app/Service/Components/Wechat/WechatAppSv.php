@@ -24,9 +24,9 @@ class WechatAppSv extends ConfigSv {
 
     $this->_appsecret = $this->getConfig("{$appName}_appsecret");
 
-    $this->_aesKey = $this->getConfig("wx_serv_token");
+    $this->_aesKey = $this->getConfig("wx_serv_aesKey");
 
-    $this->_servToken = $this->getConfig("wx_serv_aeskey");
+    $this->_servToken = $this->getConfig("wx_serv_token");
   
   }
 

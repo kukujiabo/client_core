@@ -261,6 +261,7 @@ class WechatAuth {
       'timestamp' => $data['timestamp'],
       'echostr' => $data['echostr'],
       'token' => $token,
+      'created_at' => date('Y-m-d H:i:s'),
     
     ];
 
