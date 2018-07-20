@@ -34,4 +34,4 @@ class StaticRequest extends Request {
 
   }
 
-
+}
