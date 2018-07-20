@@ -16,11 +16,11 @@ class StaticRequest extends Request {
 
     $service = str_replace('/index.php/', '', $route);
 
-    if (strpos('/', $service) === 0) {
+    if (strpos('?', $service) > 0) {
 
-      $query = explode('?', $service);
+      $exArr = explode('?', $service);
 
-      $service = substr($query[0], 1, strlen($service) - 1);
+      $service = $exArr[0];
 
     }
 
@@ -34,4 +34,4 @@ class StaticRequest extends Request {
 
   }
 
-}
+
