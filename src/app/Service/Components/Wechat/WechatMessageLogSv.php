@@ -1,5 +1,5 @@
 <?php
-namespace App\Service\Component\Wechat;
+namespace App\Service\Components\Wechat;
 
 use App\Service\BaseService;
 use Core\Service\CurdSv;
