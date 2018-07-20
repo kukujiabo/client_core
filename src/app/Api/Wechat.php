@@ -42,9 +42,9 @@ class Wechat extends BaseApi {
 
       'serverApi' => [
       
-        'signature' => 'signature|string|true||签名',
-        'timestamp' => 'timestamp|string|true||时间戳',
-        'nonce' => 'nonce|string|true||随机串',
+        'signature' => 'signature|string|false||签名',
+        'timestamp' => 'timestamp|string|false||时间戳',
+        'nonce' => 'nonce|string|false||随机串',
         'echostr' => 'echostr|string|false||验证响应字符串',
         'msg_signature' => 'msg_signature|string|false||消息签名'
       
