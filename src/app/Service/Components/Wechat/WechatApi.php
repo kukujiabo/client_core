@@ -32,7 +32,7 @@ class WechatApi {
   // 获取 access_token 基础授权
   CONST GET_ACCESS_TOKEN = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={APPID}&secret={APPSECRET}';
   // 获取关注用户的信息
-  CONST GET_SUBSCRIBE = 'https://api.weixin.qq.com/cgi-bin/user/info?access_token={ACCESS_TOKEN}&openid={OPENID}&lang={zh_CN}';
+  CONST GET_SUBSCRIBE = 'https://api.weixin.qq.com/cgi-bin/user/info?access_token={ACCESS_TOKEN}&openid={OPENID}&lang=zh_CN';
   // 获取api_ticket
   CONST GET_JSAPI_TICKET = 'https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token={ACCESS_TOKEN}&type=jsapi';
   // 公众号推送请求连接

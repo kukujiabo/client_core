@@ -46,7 +46,7 @@ class WechatEventSv extends BaseService {
 
     $accessToken = WechatAuth::getAccessTokenByAppIdAppSecret($appid, $appsecret);
 
-    $wxMember = WechatAuth::getUserInfo($accessToken, $openId);
+    $wxMember = WechatAuth::getRegUserInfo($accessToken, $openId);
 
     /**
      * 保存用户基本信息
