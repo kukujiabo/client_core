@@ -2,6 +2,7 @@
 namespace App\Service\Components\Wechat;
 
 use App\Library\Http;
+use App\Library\WXBizMsgCrypt;
 use App\Service\Components\Qiniu\QiniuSv;
 
 /**
@@ -45,5 +46,34 @@ class WechatTools {
   
   }
 
+  /**
+   * 解析微信消息
+   *
+   */
+  public function decodeXMLMessage($content, $sign, $time, $nonce, $appid, $token, $aesKey, $logId) {
+  
+    $pc = new WXBizMsgCrypt($token, $encodingAesKey, $appId);
+
+    $msg = '';
+
+    $errCode = $pc->decryptMsg($sign, $time, $nonce, $content, &$msg);
+
+    $wmlSv = new WechatMessageLogSv();
+
+    if ($errCode != 0) {
+
+      $wmlSv->update($logId, [ 'err_code' => $errCode, 'state' => 0 ]);
+    
+      return false;
+    
+    } else {
+
+      $wmlSv->update($logId, [ 'err_code' => 0, 'state' => 1, 'decoded_message' => $msg ]);
+
+      return $msg;
+
+    }
+
+  }
 
 }

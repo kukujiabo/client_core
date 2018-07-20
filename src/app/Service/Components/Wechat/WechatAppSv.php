@@ -42,6 +42,9 @@ class WechatAppSv extends ConfigSv {
    */
   public function serverApi($data) {
   
+    /**
+     * 判断是否服务器验证
+     */
     if ($data['echostr'] && $data['signature']) {
     
       if (WechatAuth::checkServAuth($data, $this->_servToken)) {
@@ -59,6 +62,42 @@ class WechatAppSv extends ConfigSv {
       }
     
     }
+    
+    /**
+     * 获取消息具体内容
+     */
+    $raw = file_get_contents('php://input');
+
+    /**
+     * 保存消息内容
+     */
+
+    $wmLSv = new WechatMessageLogSv();
+
+    $logId = $wmLSv->addLog($raw);
+
+    /**
+     * 解析微信加密数据
+     */
+    $msg = WechatTools::decodeXMLMessage( $raw, $data['msg_signature'], $data['timestamp'], $data['nonce'], $this->_appid, $this->_servToken, $this->_aesKey, $logId );
+
+    if ($msg) { 
+
+      /**
+       * 解析成功
+       */
+    
+    }
+
+
+    /**
+     * 返回空字符串
+     */
+
+    echo '';
+
+    exit;
+    
   
   }
 
