@@ -38,6 +38,16 @@ class Wechat extends BaseApi {
       
         'url' => 'url|string|true||请求页面链接地址'
       
+      ],
+
+      'serverApi' => [
+      
+        'signature' => 'signature|string|true||签名',
+        'timestamp' => 'timestamp|string|true||时间戳',
+        'nonce' => 'nonce|string|true||随机串',
+        'echostr' => 'echostr|string|false||验证响应字符串',
+      
+      
       ]
       
     ]);
@@ -93,6 +103,18 @@ class Wechat extends BaseApi {
   public function jsapiRegister() {
   
     return $this->dm->jsapiRegister($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
+  /**
+   * 微信服务器推送消息
+   * @desc 微信服务器推送消息
+   *
+   * @return mixed
+   */
+  public function serverApi() {
+  
+    return $this->dm->serverApi($this->retriveRuleParams(__FUNCTION__));
   
   }
 

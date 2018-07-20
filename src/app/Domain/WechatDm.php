@@ -58,4 +58,10 @@ class WechatDm {
   
   }
 
+  public function serverApi($params) {
+  
+    return $this->_wxsv->serverApi($params);
+  
+  }
+
 }
