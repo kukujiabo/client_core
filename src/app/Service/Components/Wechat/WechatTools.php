@@ -81,7 +81,7 @@ class WechatTools {
    *
    * @return 
    */
-  public function createTmpQrCode($scene, $appid, $appsecret) {
+  public function createTmpQrcode($scene, $appid, $appsecret) {
   
     $codeData = [
     

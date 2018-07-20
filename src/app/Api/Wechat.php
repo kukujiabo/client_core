@@ -59,6 +59,12 @@ class Wechat extends BaseApi {
       'getMenu' => [
       
       
+      ],
+
+      'createTmpQrcode' => [
+      
+        'scene' => 'scene|string|true||场景值'
+      
       ]
       
     ]);
@@ -150,6 +156,18 @@ class Wechat extends BaseApi {
   public function getMenu() {
   
     return $this->dm->getMenu();
+  
+  }
+
+  /**
+   * 测试生成临时带参二维码接口
+   * @desc 测试生成临时带参二维码接口
+   *
+   * @return 
+   */
+  public function createTmpQrcode() {
+  
+    return $this->dm->createTmpQrcode($this->retriveRuleParams(__FUNCTION__)); 
   
   }
 

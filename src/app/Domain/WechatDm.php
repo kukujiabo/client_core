@@ -76,4 +76,10 @@ class WechatDm {
   
   }
 
+  public function createTmpQrcode($data) {
+  
+    return $this->_wxsv->createTmpQrcode($data['scene']);
+  
+  }
+
 }

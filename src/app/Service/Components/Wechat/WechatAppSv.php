@@ -300,9 +300,9 @@ class WechatAppSv extends ConfigSv {
    *
    * @return array data
    */
-  public function createTmpQrCode($scene) {
+  public function createTmpQrcode($scene) {
   
-    return WechatTools::createTmpQrCode($scene, $this->_appid, $this->_appsecret);
+    return WechatTools::createTmpQrcode($scene, $this->_appid, $this->_appsecret);
   
   }
 
