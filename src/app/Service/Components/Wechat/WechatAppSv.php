@@ -44,7 +44,7 @@ class WechatAppSv extends ConfigSv {
   
     if ($data['echostr'] && $data['signature']) {
     
-      if (WechatAuth::checkServAuth($data, $this->_aesKey, $this->_servToken)) {
+      if (WechatAuth::checkServAuth($data, $this->_servToken)) {
       
         echo $data['echostr'];
         

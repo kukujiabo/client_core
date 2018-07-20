@@ -250,7 +250,21 @@ class WechatAuth {
    *
    * @return boolean true/false
    */
-  public function checkServAuth($data, $aesKey, $token) {
+  public function checkServAuth($data, $token) {
+
+    $waclSv = new WechatAuthCheckLogSv();
+
+    $log = [
+    
+      'signature' => $data['signature'],
+      'nonce' => $data['nonce'],
+      'timestamp' => $data['timestamp'],
+      'echostr' => $data['echostr'],
+      'token' => $token,
+    
+    ];
+
+    $waclSv->add($log);
   
     $tmpArr = [ $data['timestamp'], $data['nonce'], $token ];
 
