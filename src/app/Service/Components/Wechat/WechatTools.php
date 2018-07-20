@@ -52,7 +52,7 @@ class WechatTools {
    */
   public function decodeXMLMessage($content, $sign, $time, $nonce, $appid, $token, $aesKey, $logId) {
   
-    $pc = new WXBizMsgCrypt($token, $encodingAesKey, $appId);
+    $pc = new WXBizMsgCrypt($token, $aesKey, $appid);
 
     $msg = '';
 
