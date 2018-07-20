@@ -132,13 +132,57 @@ class MemberSv extends BaseService {
   }
 
   /**
+   * 用户关注微信公众号
+   */
+  public function wechatSubscribe($wxMembew, $reference = NULL) {
+  
+    $member = $this->findOne(['wx_unionid' => $wxMember->unionid]);
+  
+    if ($member) {
+    
+      return $this->update($member['id'], [ 'subscribe' => 1 ]);
+    
+    } else {
+    
+      $id = $this->createAuthByWxPubOpenId($openid, $wxMember->unionid, $reference);
+
+      /**
+       * 创建账户
+       */
+      $acctSv = new AccountSv();
+
+      $acctSv->create([ 'member_id' => $id ]);
+
+      $extraInfo = [
+      
+        'member_name' => $wxMember->nickname,
+
+        'portrait' => $wxMember->headimgurl,
+
+        'wx_city' => $wxMember->city,
+
+        'wx_province' => $wxMember->province,
+
+        'sex' => $wxMember->sex,
+
+        'subscribe' => 1
+      
+      ];
+
+      return $this->update($id, $extraInfo);
+    
+    }
+  
+  }
+
+  /**
    * 微信公众号登陆
    *
    * @param string $code
    *
    * @return
    */
-  public function wechatPubLogin($code, $reference = null) { 
+  public function wechatPubLogin($code, $reference = null) {
 
     /**
      * 1.先获取 accessToken
@@ -160,11 +204,11 @@ class MemberSv extends BaseService {
     /**
      * unionid为空
      */
-    if (!$wxMember->unionid) {
-    
-      $this->throwError($this->_err->MEMBERNOTFOUNDMSG, $this->_err->MEMBERNOTFOUNDCODE);
-    
-    }
+    //if (!$wxMember->unionid) {
+    //
+    //  $this->throwError($this->_err->MEMBERNOTFOUNDMSG, $this->_err->MEMBERNOTFOUNDCODE);
+    //
+    //}
 
     $member = $this->findOne(['wx_unionid' => $wxMember->unionid]);
 
@@ -195,7 +239,7 @@ class MemberSv extends BaseService {
 
         'wx_province' => $wxMember->province,
 
-        'sex' => $wxMember->gender
+        'sex' => $wxMember->sex
       
       ];
 

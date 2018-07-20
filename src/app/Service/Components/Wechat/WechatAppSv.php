@@ -79,14 +79,55 @@ class WechatAppSv extends ConfigSv {
     /**
      * 解析微信加密数据
      */
-    $msg = WechatTools::decodeXMLMessage( $raw, $data['msg_signature'], $data['timestamp'], $data['nonce'], $this->_appid, $this->_servToken, $this->_aesKey, $logId );
+    $msg = WechatTools::decodeXMLMessage( 
 
-    if ($msg) { 
+      $raw, 
+      $data['msg_signature'], 
+      $data['timestamp'], 
+      $data['nonce'], 
+      $this->_appid, 
+      $this->_servToken, 
+      $this->_aesKey, 
+      $logId 
+
+    );
+
+    if ($msg) {
 
       /**
-       * 解析成功
+       * 解析成功 分发事件处理
        */
-    
+
+      $xml = new DOMDocument();
+
+      $xml->loadXML($msg) {
+      
+        $msgType = $xml->getElementsByTagName('MsgType')->item(0)->nodeValue;
+
+        switch($msgType) {
+        
+          case 'event':
+
+            /**
+             * 消息类型为事件
+             */
+            $event = $domData->getElementsByTagName('Event')->item(0)->nodeValue;
+
+            $wxEvtSv = new WechatEventSv(); 
+
+            /**
+             * 添加事件处理日志
+             */
+            $evtId = $wxEventSv->create($event, $logId);
+
+            $wxEventSv->$event($xml, $this->_appid, $this->_appsecret, $evtId);
+
+            break;
+        
+        }
+      
+      }
+      
     }
 
 

@@ -15,7 +15,7 @@ class WechatApi {
   
   CONST DEVELOPER_WECHAT_ACCESS_TOKEN = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid={APPID}&secret={APPSECRET}&code={CODE}&grant_type=authorization_code'; // app  微信获取 access_token 地址
 
-  CONST DEVELOPER_WECHAT_ONER_USER_INFO = 'https://api.weixin.qq.com/sns/userinfo?access_token={ACCESS_TOKEN}&openid={OPENID}'; // app  微信获取账户信息
+  CONST DEVELOPER_WECHAT_ONER_USER_INFO = 'https://api.weixin.qq.com/sns/userinfo?access_token={ACCESS_TOKEN}&openid={OPENID}&lang=zh_CN'; // app  微信获取账户信息
   
   // 静默授权
   CONST BASE_CODE_URI = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid={APPID}&redirect_uri={REDIRECT_URI}&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect';
