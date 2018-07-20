@@ -12,9 +12,15 @@ class WechatMessageLogSv extends BaseService {
 
   use CurdSv;
 
-  public function addLog($raw) {
+  public function addLog($raw, $signature, $timestamp, $nonce) {
   
     $newLog = [
+
+      'msg_signature' => $signature,
+
+      'timestamp' => $timestamp,
+
+      'nonce' => $nonce,
     
       'raw' => $raw,
 

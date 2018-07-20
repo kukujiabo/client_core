@@ -74,7 +74,7 @@ class WechatAppSv extends ConfigSv {
 
     $wmLSv = new WechatMessageLogSv();
 
-    $logId = $wmLSv->addLog($raw);
+    $logId = $wmLSv->addLog($raw, $data['msg_signature'], $data['timestamp'], $data['nonce']);
 
     /**
      * 解析微信加密数据

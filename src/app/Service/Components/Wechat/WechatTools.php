@@ -62,7 +62,7 @@ class WechatTools {
 
     if ($errCode != 0) {
 
-      $wmlSv->update($logId, [ 'err_code' => $errCode, 'state' => 0 ]);
+      $wmlSv->update($logId, [ 'err_code' => $errCode, 'state' => -1 ]);
     
       return false;
     
