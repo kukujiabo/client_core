@@ -8,7 +8,7 @@ use Core\Service\CurdSv;
  * 微信公众号推广二维码
  *
  */
-class WxPubQrcode extends BaseService {
+class WxPubQrcodeSv extends BaseService {
 
   use CurdSv;
 
