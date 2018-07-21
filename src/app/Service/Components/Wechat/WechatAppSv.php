@@ -352,7 +352,7 @@ class WechatAppSv extends ConfigSv {
 
       $expireTime = time() + 2592000;
 
-      $wxQrSv->create($member['id'], $member['reference'], $expireTime, $ticket);
+      $wxQrSv->create($member['id'], $member['member_identity'], $ticket, $expireTime);
 
       $qrLink = str_replace('{TICKET}', $ticket, WechatApi::GET_QR_CODE);
 
