@@ -359,7 +359,6 @@ class WechatAppSv extends ConfigSv {
       return $qrLink;
 
     }
-    
   
   }
 
