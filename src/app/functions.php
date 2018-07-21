@@ -105,7 +105,35 @@ function getImageFromUrl($url) {
 
   ob_end_clean();
 
-  return base64_encode($img);
+  $imgInfo = getimagesize($url);
+
+  $imgType = "";
+
+  switch ($imgInfo[2]) { //判读图片类型
+
+    case 1: 
+
+      $imgType = "gif";
+
+      break;
+
+    case 2: 
+
+      $imgType = "jpg";
+
+      break;
+
+    case 3: 
+      
+      $imgType = "png";
+
+      break;
+
+  }
+
+  $prefix = "data:image/{$imgType};base64,";
+
+  return $prefix . chunk_split(base64_encode($img));
 
 }
 
