@@ -3,6 +3,9 @@ namespace App\Service\Components\Wechat;
 
 use App\Service\System\ConfigSv;
 use App\Library\RedisClient;
+use App\Service\Crm\MemberSv;
+
+
 /**
  * 微信应用服务类
  *
