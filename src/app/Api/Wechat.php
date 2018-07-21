@@ -65,6 +65,12 @@ class Wechat extends BaseApi {
       
         'scene' => 'scene|string|true||场景值'
       
+      ],
+
+      'getPubTmpQrcode' => [
+      
+        'member_id' => 'member_id|int|true||会员id'
+      
       ]
       
     ]);
@@ -170,5 +176,17 @@ class Wechat extends BaseApi {
     return $this->dm->createTmpQrcode($this->retriveRuleParams(__FUNCTION__)); 
   
   }
+
+  /**
+   * 获取公众号临时推广二维码
+   * @desc 获取公众号临时推广二维码
+   *
+   * @return
+   */
+  public function getPubTmpQrcode() {
+  
+    return $this->dm->getPubTmpQrcode($this->retriveRuleParams(__FUNCTION__));
+  
+  } 
 
 }

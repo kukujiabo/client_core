@@ -82,4 +82,10 @@ class WechatDm {
   
   }
 
+  public function getPubTmpQrcode($data) {
+  
+    return $this->_wxsv->getPubTmpQrcode($data);
+  
+  }
+
 }

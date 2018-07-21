@@ -308,4 +308,56 @@ class WechatAppSv extends ConfigSv {
   
   }
 
+  /**
+   * 获取公众号临时推广二维码链接
+   *
+   * @return array
+   */
+  public function getPubTmpQrcode($data) {
+  
+    $memberSv = new MemberSv();
+
+    $wxQrSv = new WxPubQrcodeSv();
+
+    $member = $memberSv->findOne($data['member_id']);
+
+    $qrcode = $wxQrSv->findOne([ 'member_id' => $data['member_id'], 'active' => 1 ]);
+
+    $expireSafeTime = time() - 259200;
+
+    if ($qrcode && $qrcode['expire_time'] > $expireSafeTime) {
+
+      /**
+       * 临时二维码未过期，返回二维码的链接
+       */
+      $ticket = $qrcode['ticket'];
+
+      $qrLink = str_replace('{TICKET}', $ticket, WechatApi::GET_QR_CODE);
+
+      return $qrLink;
+
+    } else {
+
+      /**
+       * 临时二维码过期则重新生成
+       */
+      $wxQrSv->update($qrcode['id'], [ 'active' => 0]);
+
+      $qrcodeInfo = $this->createTmpQrcode($member['reference']);
+
+      $ticket = $qrcodeInfo['ticket'];
+
+      $expireTime = time() + 2592000;
+
+      $wxQrSv->create($member['id'], $member['reference'], $expireTime, $ticket);
+
+      $qrLink = str_replace('{TICKET}', $ticket, WechatApi::GET_QR_CODE);
+
+      return $qrLink;
+
+    }
+    
+  
+  }
+
 }

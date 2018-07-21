@@ -60,5 +60,4 @@ class BaseService extends Service {
   
   }
 
-
 }

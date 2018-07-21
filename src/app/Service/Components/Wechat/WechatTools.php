@@ -99,7 +99,7 @@ class WechatTools {
 
     $url = str_replace( '{ACCESS_TOKEN}', $accessToken, WechatApi::GET_TICKET );
 
-    return Http::httpPost($url, $postData, '', '', 5000, 'raw');
+    return json_encode(Http::httpPost($url, $postData, '', '', 5000, 'raw'));
   
   }
 
