@@ -158,6 +158,11 @@ class ShopSv extends BaseService {
       $updateData['ext_1'] = $data['ext_1'];
     
     }
+    if (isset($data['words'])) {
+    
+      $updateData['words'] = $data['words'];
+    
+    }
     if (isset($data['ext_2'])) {
     
       $updateData['ext_2'] = $data['ext_2'];
