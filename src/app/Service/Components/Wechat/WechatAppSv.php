@@ -348,7 +348,7 @@ class WechatAppSv extends ConfigSv {
 
       $qrcodeInfo = $this->createTmpQrcode($member['member_identity']);
 
-      $ticket = $qrcodeInfo['ticket'];
+      $ticket = $qrcodeInfo->ticket;
 
       $expireTime = time() + 2592000;
 
