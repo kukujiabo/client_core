@@ -346,7 +346,7 @@ class WechatAppSv extends ConfigSv {
        */
       $wxQrSv->update($qrcode['id'], [ 'active' => 0]);
 
-      $qrcodeInfo = $this->createTmpQrcode($member['reference']);
+      $qrcodeInfo = $this->createTmpQrcode($member['member_identity']);
 
       $ticket = $qrcodeInfo['ticket'];
 
