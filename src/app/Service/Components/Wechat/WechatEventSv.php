@@ -51,7 +51,9 @@ class WechatEventSv extends BaseService {
     /**
      * 获取渠道信息（无渠道信息为空）
      */
-    $reference = $xml->getElementsByTagName('EventKey')->item(0)->nodeValue;
+    $scene = $xml->getElementsByTagName('EventKey')->item(0)->nodeValue;
+
+    $reference = str_replace('qrscene_', '', $scene);
 
     /**
      * 保存用户基本信息
@@ -60,11 +62,11 @@ class WechatEventSv extends BaseService {
 
     if ($memberSv->wechatSubscribe($wxMember, $reference)) {
     
-      $this->update($evtId, [ 'state' => 1, 'relat' => $wxMember->unionid ]);
+      $this->update($evtId, [ 'state' => 1, 'relat' => $wxMember->unionid, 'reference' => $reference ]);
      
     } else {
     
-      $this->update($evtId, [ 'state' => -1, 'relat' => $wxMember->unionid ]);
+      $this->update($evtId, [ 'state' => -1, 'relat' => $wxMember->unionid, 'reference' => $reference ]);
     
     }
   
@@ -108,7 +110,22 @@ class WechatEventSv extends BaseService {
   
     $member = $memberSv->findOne([ 'wx_pbopenid' => $openId ]);
 
-    $this->update($evtId, [ 'state' => 1, 'relat' => $member['wx_unionid'], 'reference' => str_replace('qrscene_', '', $scene) ]);
+    $reference = str_replace('qrscene_', '', $scene);
+
+    /**
+     * 记录二维码扫码日志
+     */
+    $wxQrLogSv = new WxQrcodeScanLogSv();
+
+    $updateData = [
+      
+      'state' => 1, 
+      'relat' => $member['wx_unionid'], 
+      'reference' => $reference
+    
+    ];
+
+    $this->update($evtId, $updateData);
   
   }
 

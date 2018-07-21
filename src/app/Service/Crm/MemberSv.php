@@ -140,11 +140,11 @@ class MemberSv extends BaseService {
   
     if ($member) {
     
-      return $this->update($member['id'], [ 'subscribe' => 1 ]);
+      return $this->update($member['id'], [ 'subscribe' => 1, 'wx_pbopenid' => $wxMember->openid ]);
     
     } else {
     
-      $id = $this->createAuthByWxPubOpenId($openid, $wxMember->unionid, $reference);
+      $id = $this->createAuthByWxPubOpenId($wxMember->openid, $wxMember->unionid, $reference);
 
       /**
        * 创建账户
