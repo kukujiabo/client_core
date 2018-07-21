@@ -333,11 +333,7 @@ class WechatAppSv extends ConfigSv {
       /**
        * 临时二维码未过期，返回二维码的链接
        */
-      $ticket = $qrcode['ticket'];
-
-      $qrLink = str_replace('{TICKET}', $ticket, WechatApi::GET_QR_CODE);
-
-      return $qrLink;
+      return = $qrcode['image'];
 
     } else {
 
@@ -352,11 +348,13 @@ class WechatAppSv extends ConfigSv {
 
       $expireTime = time() + 2592000;
 
-      $wxQrSv->create($member['id'], $member['member_identity'], $ticket, $expireTime);
-
       $qrLink = str_replace('{TICKET}', $ticket, WechatApi::GET_QR_CODE);
 
-      return $qrLink;
+      $image = \App\getImageFromUrl($qrLink);
+
+      $wxQrSv->create($member['id'], $member['member_identity'], $ticket, $expireTime, $image);
+
+      return $image;
 
     }
   

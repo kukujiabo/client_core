@@ -93,6 +93,23 @@ function Verification($array, $data) {
 }
 
 /**
+ * 获取网络图片并返回base64编码
+ */
+function getImageFromUrl($url) {
+
+  ob_start();
+
+  readfile($url);
+
+  $img = ob_get_contents();
+
+  ob_end_clean();
+
+  return base64_encode($img);
+
+}
+
+/**
  * 生成二维码图片
  * @param string $data 二维码内容
  */

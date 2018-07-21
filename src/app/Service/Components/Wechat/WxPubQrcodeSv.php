@@ -12,7 +12,7 @@ class WxPubQrcodeSv extends BaseService {
 
   use CurdSv;
 
-  public function create($memberId, $reference, $ticket, $expireTime) {
+  public function create($memberId, $reference, $ticket, $expireTime, $image) {
   
     $newQrcode = [
     
@@ -25,6 +25,8 @@ class WxPubQrcodeSv extends BaseService {
       'expire_time' => $expireTime,
 
       'active' => 1,
+      
+      'content' => $image,
 
       'created_at' => date('Y-m-d H:i:s')
     
