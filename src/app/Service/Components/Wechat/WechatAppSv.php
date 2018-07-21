@@ -333,7 +333,7 @@ class WechatAppSv extends ConfigSv {
       /**
        * 临时二维码未过期，返回二维码的链接
        */
-      return = $qrcode['image'];
+      return $qrcode['image'];
 
     } else {
 
