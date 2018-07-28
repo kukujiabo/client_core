@@ -84,7 +84,15 @@ class BusinessApplySv extends BaseService {
 
     if ($data['type'] == 'card') {
 
-      $mrsv->createCardReward($applyId, $data['member_id'], $reference, $data['relat_id']);
+      $csv = new ShopSv();
+
+      $card =  $csv->findOne($data['relat_id']);
+
+      if ($card['commission'] > 0) {
+
+        $mrsv->createCardReward($applyId, $data['member_id'], $reference, $data['relat_id']);
+
+      }
 
     } else {
 
@@ -92,61 +100,65 @@ class BusinessApplySv extends BaseService {
 
       $loan = $lSv->findOne($data['relat_id']);
 
-      if ($loan['is_self'] == 0) {
-      
-        /**
-         * 非自营项目要同步数据给第三方
-         */
-        $httpParams = [
+      if ($loan['commission'] > 0) {
+
+        if ($loan['is_self'] == 0) {
         
-          'name' => $data['contact'],
-          'phone' => $data['phone'],
-          'fatherId' => BusinessApplySv::FATHERID,
-          'goodsId' => $loan['third_id'],
-          'type' => 1,
-          'otherUserId' => $data['member_id'],
-          'idCard' => $data['address']
-        
-        ];
-
-        $header = [ 'Content-Type:application/x-www-form-urlencoded'];
-
-        $log = new LoanThirdLogSv();
-
-        $newLogData = [
-        
-          'member_id' => $data['member_id'],
-
-          'send_data' => json_encode($httpParams),
-
-          'reward_id' => $data['relat_id'],
-
-          'goods_id' => $loan['third_id'],
-
-          'created_at' => date('Y-m-d H:i:s')
-        
-        ];
-
-        $logId = $log->add($newLogData);
-
-        $result = json_decode(Http::httpPost(BusinessApplySv::TDATALINK, $httpParams, $header, '', 5000, 'raw'), true);
-
-        $log->update($logId, ['return_data' => json_encode($result)]);
-
-        if ($result['status'] == 0) {
           /**
-           * 贷款同步失败抛出异常
+           * 非自营项目要同步数据给第三方
            */
-        
-          $this->update($applyId,  [ 'synchronization' => 0 ]);
+          $httpParams = [
+          
+            'name' => $data['contact'],
+            'phone' => $data['phone'],
+            'fatherId' => BusinessApplySv::FATHERID,
+            'goodsId' => $loan['third_id'],
+            'type' => 1,
+            'otherUserId' => $data['member_id'],
+            'idCard' => $data['address']
+          
+          ];
 
-          $this->throwError($this->_err->LOANSYNCFAILEDMSG, $this->_err->LOANSYNCFAILEDCODE);
+          $header = [ 'Content-Type:application/x-www-form-urlencoded'];
+
+          $log = new LoanThirdLogSv();
+
+          $newLogData = [
+          
+            'member_id' => $data['member_id'],
+
+            'send_data' => json_encode($httpParams),
+
+            'reward_id' => $data['relat_id'],
+
+            'goods_id' => $loan['third_id'],
+
+            'created_at' => date('Y-m-d H:i:s')
+          
+          ];
+
+          $logId = $log->add($newLogData);
+
+          $result = json_decode(Http::httpPost(BusinessApplySv::TDATALINK, $httpParams, $header, '', 5000, 'raw'), true);
+
+          $log->update($logId, ['return_data' => json_encode($result)]);
+
+          if ($result['status'] == 0) {
+            /**
+             * 贷款同步失败抛出异常
+             */
+          
+            $this->update($applyId,  [ 'synchronization' => 0 ]);
+
+            $this->throwError($this->_err->LOANSYNCFAILEDMSG, $this->_err->LOANSYNCFAILEDCODE);
+          
+          }
         
         }
-      
+
+        $mrsv->createLoanReward($applyId, $data['member_id'], $reference, $data['relat_id']);
+
       }
-    
-      $mrsv->createLoanReward($applyId, $data['member_id'], $reference, $data['relat_id']);
     
     }
 

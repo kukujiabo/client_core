@@ -171,6 +171,10 @@ class BankDataSv extends BaseService {
     $matchedPhone2 = substr($auphone, 0, 3) . substr($auphone, 8, 3);
 
     if (strpos($auname, '*') === 0) {
+
+      /**
+       * 当星号在第一位时，取最后一个字
+       */
     
       $matched1 = mb_substr($apname, mb_strlen($apname) - 1, 1, 'utf-8');
 
@@ -180,6 +184,10 @@ class BankDataSv extends BaseService {
     
     } elseif (strpos($auname, '*') > 0) {
 
+      /**
+       * 当星号在第一位之后时，取第一个字
+       */
+
       $matched1 = mb_substr($apname, 0, 1, 'utf-8');
 
       $matched2 = mb_substr($auname, 0, 1, 'utf-8');
@@ -187,6 +195,10 @@ class BankDataSv extends BaseService {
       return $matched1 == $matched2 && $matchedPhone1 == $matchedPhone2;
     
     } elseif (strpos($auname, '*') === false) {
+
+      /**
+       * 当没有星号时，取全部字段比较
+       */
     
       return $apname == $auname && $matchedPhone1 == $matchedPhone2;
     
