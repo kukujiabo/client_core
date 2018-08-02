@@ -258,4 +258,10 @@ class MemberDm {
   
   }
 
+  public function checkVip($data) {
+  
+    return $this->_memberSv->checkVip($data);
+  
+  }
+
 }

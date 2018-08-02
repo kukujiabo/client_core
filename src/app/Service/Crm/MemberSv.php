@@ -561,4 +561,20 @@ class MemberSv extends BaseService {
   
   }
 
+  public function checkVip($data) {
+  
+    $member = $this->findOne([ 'id' => $data['member_id'], 'is_vip' => 1 ]);
+
+    if ($member) {
+    
+      return 1; 
+    
+    } else {
+    
+      return 0; 
+    
+    }
+    
+  }
+
 }

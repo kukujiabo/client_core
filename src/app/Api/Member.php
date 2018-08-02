@@ -150,6 +150,12 @@ class Member extends BaseApi {
       
         'member_id' => 'member_id|int|true||会员id'
       
+      ],
+
+      'checkVip' => [
+      
+        'member_id' => 'member_id|int|true||会员id'
+      
       ]
     
     ]);
@@ -348,6 +354,18 @@ class Member extends BaseApi {
   public function setVip() {
   
     return $this->dm->setVip($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
+  /**
+   * 检验vip
+   * @desc 检验vip
+   *
+   * @return int 0/1
+   */
+  public function checkVip() {
+  
+    return $this->dm->checkVip($this->retriveRuleParams(__FUNCTION__));
   
   }
 
