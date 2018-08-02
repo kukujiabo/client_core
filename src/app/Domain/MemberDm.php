@@ -252,4 +252,10 @@ class MemberDm {
   
   }
 
+  public function setVip($data) {
+  
+    return $this->_memberSv->setVip($data);
+  
+  }
+
 }

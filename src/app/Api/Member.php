@@ -144,6 +144,12 @@ class Member extends BaseApi {
 
       'batchUpdateUserWxInfo' => [
       
+      ],
+
+      'setVip' => [
+      
+        'member_id' => 'member_id|int|true||会员id'
+      
       ]
     
     ]);
@@ -330,6 +336,18 @@ class Member extends BaseApi {
   public function batchUpdateUserWxInfo() {
   
     return $this->dm->batchUpdateUserWxInfo($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
+  /**
+   * 设置vip
+   * @desc 设置vip
+   *
+   * @return int 
+   */
+  public function setVip() {
+  
+    return $this->dm->setVip($this->retriveRuleParams(__FUNCTION__));
   
   }
 

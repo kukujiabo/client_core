@@ -551,4 +551,14 @@ class MemberSv extends BaseService {
   
   }
 
+  /**
+   * 设置vip
+   *
+   */
+  public function setVip($data) {
+  
+    return $this->update($data['member_id'], [ 'is_vip' => 1 ]);
+  
+  }
+
 }
