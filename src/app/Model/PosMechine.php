@@ -5,7 +5,7 @@ namespace App\Model;
  * POS机
  *
  */
-class PosMechineSv extends BaseModel {
+class PosMechine extends BaseModel {
 
 
 }
