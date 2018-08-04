@@ -29,4 +29,10 @@ class YPosDm {
   
   }
 
+  public function getDetail($data) {
+  
+    return $this->_ypos->getDetail($data); 
+  
+  }
+
 }

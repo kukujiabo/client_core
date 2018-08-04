@@ -51,4 +51,10 @@ class YPosSv extends BaseService {
   
   }
 
+  public function getDetail($data) {
+  
+    return $this-> findOne(['member_id' => $data['member_id']]);
+  
+  }
+
 }

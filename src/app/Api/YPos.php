@@ -33,6 +33,12 @@ class YPos extends BaseApi {
       
         'id' => 'id|int|true||pos机发货'
       
+      ],
+
+      'getDetail' => [
+      
+        'member_id' => 'member_id|int|true||会员id'
+      
       ]
     
     ]);
@@ -72,6 +78,18 @@ class YPos extends BaseApi {
   public function sendPos() {
   
     return $this->dm->sendPos($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
+  /**
+   * pos机申请详情
+   * @desc pos机申请详情
+   *
+   * @return array data
+   */
+  public function getDetail() {
+  
+    return $this->dm->getDetail($this->retriveRuleParams(__FUNCTION__)); 
   
   }
 
