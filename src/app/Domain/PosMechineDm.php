@@ -25,4 +25,10 @@ class PosMechineDm {
   
   }
 
+  public function remove($data) {
+  
+    return $this->_pmsv->remove($data['id']);
+  
+  }
+
 }

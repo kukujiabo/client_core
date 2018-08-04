@@ -26,6 +26,12 @@ class PosMechine extends BaseApi {
         'page' => 'page|int|false||页码',
         'page_size' => 'page_size|int|false||页码'
       
+      ],
+
+      'remove' => [
+      
+        'id' => 'id|int|true||pos机id'
+      
       ]
     
     ]); 
@@ -53,6 +59,18 @@ class PosMechine extends BaseApi {
   public function getList() {
   
     return $this->dm->getList($this->retriveRuleParams(__FUNCTION__)); 
+  
+  }
+
+  /**
+   * 删除pos机
+   * @desc 删除pos机
+   *
+   * @return int num
+   */
+  public function remove() {
+  
+    return $this->dm->remove($this->retriveRuleParams(__FUNCTION__));
   
   }
 
