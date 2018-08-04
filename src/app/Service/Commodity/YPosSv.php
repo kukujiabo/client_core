@@ -45,4 +45,10 @@ class YPosSv extends BaseService {
   
   }
 
+  public function sendPos($data) {
+  
+    return $this->update($data['id'], [ 'is_sent' => 1 ]);
+  
+  }
+
 }

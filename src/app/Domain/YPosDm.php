@@ -23,4 +23,10 @@ class YPosDm {
   
   }
 
+  public function sendPos($data) {
+  
+    return $this->_ypos->sendPos($data);
+  
+  }
+
 }
