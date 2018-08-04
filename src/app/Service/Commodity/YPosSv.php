@@ -39,7 +39,9 @@ class YPosSv extends BaseService {
     
     }
 
-    return $this->queryList($query, $data['fields'], $data['order'], $data['page'], $data['page_size']);
+    $vposmSv = new VPosMemberApplySv();
+
+    return $vposmSv->queryList($query, $data['fields'], $data['order'], $data['page'], $data['page_size']);
   
   }
 
