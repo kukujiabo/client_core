@@ -39,7 +39,7 @@ class YPosSv extends BaseService {
     
     }
 
-    return $this->query($query, $data['fields'], $data['order'], $data['page'], $data['page_size']);
+    return $this->queryList($query, $data['fields'], $data['order'], $data['page'], $data['page_size']);
   
   }
 
