@@ -112,4 +112,14 @@ class ShopDm {
 
   }
 
+  /**
+   * 商铺登录
+   *
+   */
+  public function login($data) {
+  
+    return $this->_spsv->login($data);
+  
+  }
+
 }

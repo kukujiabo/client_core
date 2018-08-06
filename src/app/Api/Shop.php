@@ -103,6 +103,14 @@ class Shop extends BaseApi {
         'page_size' => 'page_size|int|false|20|每页条数'
       
       
+      ],
+
+      'login' => [
+      
+        'account' => 'account|string|true||登录账号',
+
+        'password' => 'password|string|true||登录密码'
+      
       ]
     
     ]);
@@ -180,6 +188,18 @@ class Shop extends BaseApi {
   public function getCardCommissionList() {
   
     return $this->dm->getCardCommissionList($this->retriveRuleParams(__FUNCTION__)); 
+  
+  }
+
+  /**
+   * 店铺登录
+   * @desc 店铺登录
+   *
+   * @return array data
+   */
+  public function login() {
+  
+    return $this->dm->login($this->retriveRuleParams(__FUNCTION__));
   
   }
 

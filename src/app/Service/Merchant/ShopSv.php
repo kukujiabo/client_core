@@ -305,4 +305,26 @@ class ShopSv extends BaseService {
   
   }
 
+  /**
+   *
+   *
+   */
+  public function login($data) {
+  
+    $shopInfo = $this->findOne([ 'account' => $data['account'] ]);
+
+    if ($shopInfo) {
+    
+      if ($shopInfo['password'] == md5($data['password'])) {
+      
+        return $shopInfo;
+      
+      }
+    
+    }
+
+    return null;
+  
+  }
+
 }
