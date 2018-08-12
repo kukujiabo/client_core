@@ -203,8 +203,10 @@ class ShopSv extends BaseService {
    * @return array list
    */
   public function listQuery($query, $fields = '*', $order = 'id desc', $page = 1, $pageSize = 20) {
+
+    $listSv = new VShopListSv();
   
-    return $this->queryList($query, $fields, $order, $page, $pageSize);
+    return $this->listSv->queryList($query, $fields, $order, $page, $pageSize);
   
   }
 
