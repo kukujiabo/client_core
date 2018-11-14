@@ -109,6 +109,12 @@ class BankDataSv extends BaseService {
   
     $dataset = [];
 
+    $successNum = 0;
+
+    $rejectNum = 0;
+
+    $commission = 0;
+
     foreach($sheetData as $row) {
     
       $newData = [
@@ -119,12 +125,25 @@ class BankDataSv extends BaseService {
         'in_date' => $row[3],
         'audit_date' => $row[4],
         'source' => $row[5],
-        'created_at' => date('Y-m-d H:i:s'),
+        'commission' => $row[6],
         'counted' => 0,
         'bank_id' => $fileInfo['bank_id'],
-        'sequence' => $fileInfo['sequence']
+        'sequence' => $fileInfo['sequence'],
+        'created_at' => date('Y-m-d H:i:s')
 
       ];
+
+      if ($newData['state'] == 1) {
+      
+        $successNum++;
+
+        $commission += $row[6];
+      
+      } elseif ($newData['state'] == 0) {
+      
+        $rejectNum++;
+      
+      }
     
       array_push($dataset, $newData);
     
@@ -136,7 +155,7 @@ class BankDataSv extends BaseService {
 
     if ($num) {
 
-      $this->update($fileInfo['id'], [ 'state' => 1 ]);
+      $this->update($fileInfo['id'], [ 'state' => 1, 'success_num' => $successNum, 'reject_num' => $rejectNum, 'commission' => $commission ]);
 
       return $num;
 
