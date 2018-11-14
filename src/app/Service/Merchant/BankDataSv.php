@@ -32,7 +32,7 @@ class BankDataSv extends BaseService {
 
     $fileName = $bank['mcode'] . time();
 
-    if (!copy($data["file_path"], API_ROOT . "/public/uploads/credit_data/" . $fileName )) {
+    if (!copy($data["file_path"], API_ROOT . "/public/uploads/credits/" . $fileName )) {
     
       return 0;
     
