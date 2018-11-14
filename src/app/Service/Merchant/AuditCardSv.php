@@ -27,6 +27,11 @@ class AuditCardSv extends BaseService {
       $query['sequence'] = $data['sequence'];
     
     }
+    if ($data['source']) {
+    
+      $query['source'] = $data['source'];
+    
+    }
     if ($data['bank_id']) {
     
       $query['bank_id'] = $data['bank_id'];
