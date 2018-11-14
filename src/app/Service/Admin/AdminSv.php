@@ -76,4 +76,12 @@ class AdminSv extends BaseService {
   
   }
 
+  public function getAllChannel($data) {
+  
+    $query = [ 'admin_name' => 'channel' ]; 
+
+    return $this->all($query, 'id desc', 'id,account');
+  
+  }
+
 }

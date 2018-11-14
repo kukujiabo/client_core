@@ -71,4 +71,10 @@ class AdminDm {
   
   }
 
+  public function getAllChannel($data) {
+  
+    return $this->_asv->getAllChannel($data); 
+
+  }
+
 }

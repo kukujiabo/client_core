@@ -24,6 +24,11 @@ class Admin extends BaseApi {
 
         'id' => 'id|int|true||管理员id'
       
+      ],
+
+      'getAllChannel' => [
+
+
       ]
     
     ]);
@@ -52,6 +57,18 @@ class Admin extends BaseApi {
   
     return $this->dm->sessionAdminInfo($this->retriveRuleParams(__FUNCTION__)); 
 
+  }
+
+  /**
+   * 查询所有渠道商
+   * @desc 查询所有渠道商
+   *
+   * @return array info
+   */
+  public function getAllChannel() {
+  
+    return $this->dm->getAllChannel($this->retriveRuleParams(__FUNCTION__)); 
+  
   }
 
 }
