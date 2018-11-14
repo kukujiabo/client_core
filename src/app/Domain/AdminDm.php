@@ -44,6 +44,8 @@ class AdminDm {
     
       $adminInfo = [
       
+        'id' => $info['id'],
+
         'name' => $info['account'],
 
         'avatar' => $info['avatar'],

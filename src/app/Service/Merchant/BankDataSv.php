@@ -81,6 +81,11 @@ class BankDataSv extends BaseService {
       $query['mname'] = $data['mname'];
     
     }
+    if ($data['channel_id']) {
+    
+      $query['channel_id'] = $data['channel_id'];
+    
+    }
     if ($data['orig_name']) {
     
       $query['orig_name'] = $data['orig_name'];
