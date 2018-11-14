@@ -15,7 +15,7 @@ class AuditCard extends BaseApi {
       'getList' => [
       
         'sequence' => 'sequence|string|false||流水号',
-        'source' => 'sequence|string|source||渠道号',
+        'source' => 'source|string|false||渠道号',
         'bank_id' => 'bank_id|int|false||银行id',
         'order' => 'order|string|false||排序',
         'fields' => 'fields|string|false||字段',
