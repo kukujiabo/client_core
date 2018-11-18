@@ -91,6 +91,11 @@ class BankDataSv extends BaseService {
       $query['orig_name'] = $data['orig_name'];
     
     }
+    if ($data['bank_id']) {
+    
+      $query['bank_id'] = $data['bank_id'];
+    
+    }
 
     return $fileSv->queryList($query, $data['fields'], $data['order'], $data['page'], $data['page_size']);
   

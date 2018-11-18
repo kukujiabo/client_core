@@ -28,6 +28,8 @@ class BankData extends BaseApi {
       
         'mname' => 'mname|string|false||商户名称',
 
+        'bank_id' => 'bank_id|int|true||银行id',
+
         'channel_id' => 'channel_id|int|false||渠道id',
 
         'orig_name' => 'orig_name|string|false||原始文件名',
