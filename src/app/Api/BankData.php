@@ -14,7 +14,7 @@ class BankData extends BaseApi {
   
       'reconciliation' => [
       
-        'bank_id' => 'bank_id|int|true||银行id',
+        'bank_id' => 'bank_id|int|false||银行id',
         
         'channel_id' => 'channel_id|int|true||渠道id',
       
