@@ -246,7 +246,9 @@ class BankDataSv extends BaseService {
       'commission' => $data['commission'],
       'success_num' => $data['success_num'],
       'import_num' => $data['import_num'],
-      'bus_date' => $data['bus_date']
+      'bus_date' => $data['bus_date'],
+      'state' => 1,
+      'created_at' => date('Y-m-d')
     
     ];
 
