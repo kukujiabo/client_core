@@ -31,4 +31,10 @@ class BankDataDm {
   
   }
 
+  public function create($data) {
+  
+    return $this->_bdsv->create($data);
+  
+  }
+
 }

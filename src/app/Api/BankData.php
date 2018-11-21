@@ -48,6 +48,17 @@ class BankData extends BaseApi {
       
         'id' => 'id|int|true||导入数据'
       
+      ],
+
+      'create' => [
+      
+        'bank_id' => 'bank_id|int|true||银行id',
+        'channel_id' => 'channel_id|int|true||渠道id',
+        'bus_date' => 'bus_date|string|true||进件日期',
+        'import_num' => 'import_num|int|true||进件数量',
+        'success_num' => 'success_num|int|true||核卡数量',
+        'commission' => 'commission|float|true||佣金'
+      
       ]
 
     ]);
@@ -75,6 +86,18 @@ class BankData extends BaseApi {
   public function importData() {
   
     return $this->dm->importData($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
+  /**
+   * 手动添加对账单数据
+   * @desc 手动添加对账单数据
+   *
+   * @return int id
+   */
+  public function create() {
+  
+    return $this->dm->create($this->retriveRuleParams(__FUNCTION__));
   
   }
 

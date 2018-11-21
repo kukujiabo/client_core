@@ -237,4 +237,21 @@ class BankDataSv extends BaseService {
   
   }
 
+  public function create($data) {
+  
+    $newData = [
+    
+      'bank_id' => $data['bank_id'],
+      'channel_id' => $data['channel_id'],
+      'commission' => $data['commission'],
+      'success_num' => $data['success_num'],
+      'import_num' => $data['import_num'],
+      'bus_date' => $data['bus_date']
+    
+    ];
+
+    return $this->add($newData);
+  
+  }
+
 }
