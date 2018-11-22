@@ -238,22 +238,40 @@ class BankDataSv extends BaseService {
   }
 
   public function create($data) {
-  
-    $newData = [
-    
-      'bank_id' => $data['bank_id'],
-      'channel_id' => $data['channel_id'],
-      'commission' => $data['commission'],
-      'success_num' => $data['success_num'],
-      'import_num' => $data['import_num'],
-      'bus_date' => $data['bus_date'],
-      'state' => 1,
-      'created_at' => date('Y-m-d')
-    
-    ];
 
-    return $this->add($newData);
+    $old = $this->findOne([ 'bank_id' => $data['bank_id'], 'channel_id' => $data['channel_id'], 'bus_date' => $data['bus_date'] ]);
+
+    if ($old) {
+    
+      $update = [
+      
+        'commission' => $data['commission'],
+        'success_num' => $data['success_num'],
+        'import_num' => $data['import_num']
+      
+      ];
+
+      return $this->update($data['id'], $update);
+    
+    } else {
   
+      $newData = [
+      
+        'bank_id' => $data['bank_id'],
+        'channel_id' => $data['channel_id'],
+        'commission' => $data['commission'],
+        'success_num' => $data['success_num'],
+        'import_num' => $data['import_num'],
+        'bus_date' => $data['bus_date'],
+        'state' => 1,
+        'created_at' => date('Y-m-d')
+      
+      ];
+
+      return $this->add($newData);
+  
+    }
+
   }
 
 }
