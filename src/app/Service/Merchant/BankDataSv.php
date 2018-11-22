@@ -251,7 +251,7 @@ class BankDataSv extends BaseService {
       
       ];
 
-      return $this->update($data['id'], $update);
+      return $this->update($old['id'], $update);
     
     } else {
   
