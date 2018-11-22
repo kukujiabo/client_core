@@ -55,9 +55,9 @@ class BankData extends BaseApi {
         'bank_id' => 'bank_id|int|true||银行id',
         'channel_id' => 'channel_id|int|true||渠道id',
         'bus_date' => 'bus_date|string|true||进件日期',
-        'import_num' => 'import_num|int|true||进件数量',
-        'success_num' => 'success_num|int|true||核卡数量',
-        'commission' => 'commission|float|true||佣金'
+        'import_num' => 'import_num|int|false|0|进件数量',
+        'success_num' => 'success_num|int|false|0|核卡数量',
+        'commission' => 'commission|float|false|0|佣金'
       
       ]
 
