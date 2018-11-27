@@ -239,7 +239,7 @@ class BankDataSv extends BaseService {
 
   public function create($data) {
 
-    $old = $this->findOne([ 'bank_id' => $data['bank_id'], 'channel_id' => $data['channel_id'], 'bus_date' => $data['bus_date'] ]);
+    $old = $this->findOne([ 'bank_id' => $data['bank_id'], 'channel_id' => $data['channel_id'], 'bus_date' => $data['bus_date'], 'channel_code' => $data['channel_code'] ]);
 
     if ($old) {
     
@@ -259,6 +259,7 @@ class BankDataSv extends BaseService {
       
         'bank_id' => $data['bank_id'],
         'channel_id' => $data['channel_id'],
+        'channel_code' => $data['channel_code'],
         'commission' => $data['commission'],
         'success_num' => $data['success_num'],
         'import_num' => $data['import_num'],
