@@ -60,19 +60,6 @@ class AdminDm {
   
   }
 
-  /**
-   * 删除专辑
-   *
-   * @param int id
-   *
-   * @return int num
-   */
-  public function remove($id) {
-  
-    return $this->_asv->remove($id);
-  
-  }
-
   public function getAllChannel($data) {
   
     return $this->_asv->getAllChannel($data); 
