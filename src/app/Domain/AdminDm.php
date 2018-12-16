@@ -91,4 +91,10 @@ class AdminDm {
   
   }
 
+  public function remove($data) {
+  
+    return $This->_asv->remove($data['id']);
+  
+  }
+
 }

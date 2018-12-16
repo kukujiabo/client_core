@@ -39,6 +39,12 @@ class Admin extends BaseApi {
 
       ],
 
+      'remove' => [
+      
+        'id' => 'id|int|true||管理员id'
+      
+      ],
+
       'getChannelList' => [
 
         'keywords' => 'keywords|string|false||关键字',
@@ -110,6 +116,18 @@ class Admin extends BaseApi {
   public function getChannelList() {
   
     return $this->dm->getChannelList($this->retriveRuleParams(__FUNCTION__)); 
+  
+  }
+
+  /**
+   * 删除渠道
+   * @desc 删除渠道
+   *
+   * @return int num
+   */
+  public function remove() {
+  
+    return $this->dm->remove($this->retriveRuleParams(__FUNCTION__)); 
   
   }
 
