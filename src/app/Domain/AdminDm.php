@@ -93,7 +93,7 @@ class AdminDm {
 
   public function remove($data) {
   
-    return $This->_asv->remove($data['id']);
+    return $this->_asv->remove($data['id']);
   
   }
 

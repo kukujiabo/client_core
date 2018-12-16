@@ -551,30 +551,16 @@ class MemberSv extends BaseService {
   
   }
 
-  /**
-   * 设置vip
-   *
-   */
-  public function setVip($data) {
-  
-    return $this->update($data['member_id'], [ 'is_vip' => 1 ]);
-  
-  }
+  public function countMemberData() {
 
-  public function checkVip($data) {
-  
-    $member = $this->findOne([ 'id' => $data['member_id'], 'is_vip' => 1 ]);
+    $d = date('Y-m-d'); 
 
-    if ($member) {
-    
-      return 1; 
-    
-    } else {
-    
-      return 0; 
-    
-    }
-    
+    $total = $this->queryCount([]);
+
+    $today = $this->queryCount([ 'created_at' => "gt|{$d}" ]);
+
+    return [ 'today' => $today, 'total' => $total ];
+  
   }
 
 }

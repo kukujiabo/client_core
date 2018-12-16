@@ -252,15 +252,9 @@ class MemberDm {
   
   }
 
-  public function setVip($data) {
+  public function countMemberData($data) {
   
-    return $this->_memberSv->setVip($data);
-  
-  }
-
-  public function checkVip($data) {
-  
-    return $this->_memberSv->checkVip($data);
+    return $this->_memberSv->countMemberData($data); 
   
   }
 

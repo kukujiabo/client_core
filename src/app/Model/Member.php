@@ -9,7 +9,9 @@ class Member extends BaseModel {
 
   protected $_queryOptionRule = [
   
-    'member_name' => 'like'
+    'member_name' => 'like',
+
+    'created_at' => 'range'
   
   ];
 
