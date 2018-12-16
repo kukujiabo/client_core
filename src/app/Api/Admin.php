@@ -37,6 +37,16 @@ class Admin extends BaseApi {
       'getAllChannel' => [
 
 
+      ],
+
+      'getChannelList' => [
+
+        'keywords' => 'keywords|string|false||关键字',
+
+        'page' => 'page|int|false|1|页码',
+
+        'page_size' => 'page_size|int|false||每页条数'
+      
       ]
     
     ]);
@@ -88,6 +98,18 @@ class Admin extends BaseApi {
   public function addAcct() {
   
     return $this->dm->addAcct($this->retriveRuleParams(__FUNCTION__)); 
+  
+  }
+
+  /**
+   * 查询渠道列表
+   * @desc 查询渠道列表
+   *
+   * @return array list
+   */
+  public function getChannelList() {
+  
+    return $this->dm->getChannelList($this->retriveRuleParams(__FUNCTION__)); 
   
   }
 

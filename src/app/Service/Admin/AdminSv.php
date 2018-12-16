@@ -104,4 +104,20 @@ class AdminSv extends BaseService {
   
   }
 
+  public function getChannelList($data) {
+  
+    $query = [];
+
+    if ($data['keywords']) {
+    
+      $query['account'] = $data['keywords'];
+    
+    }
+
+    $query['admin_name'] = 'channel';
+  
+    return $this->queryList($query, $data['fields'], $data['order'], $data['page'], $data['page_size']);
+  
+  }
+
 }

@@ -11,7 +11,9 @@ class Admin extends BaseModel {
 
   protected $_queryOptionRule = [
   
-    'admin_name' => 'like'
+    'admin_name' => 'like',
+
+    'account' => 'like'
   
   ];
 
