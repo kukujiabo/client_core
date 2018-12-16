@@ -23,7 +23,7 @@ class ChannelCode extends BaseApi {
       'getList' => [
       
         'channel_id' => 'channel_id|int|true||渠道id',
-        'bank_id' => 'bank_id|int|true||银行id',
+        'bank_id' => 'bank_id|int|false||银行id',
         'page' => 'page|int|false|1|页码',
         'page_size' => 'page_size|int|false|20|每页条数'
       
@@ -51,12 +51,24 @@ class ChannelCode extends BaseApi {
   
   }
 
+  /**
+   * 查询渠道码列表
+   * @desc 查询渠道码列表
+   *
+   * @return array list
+   */
   public function getList() {
   
     return $this->dm->getList($this->retriveRuleParams(__FUNCTION__));
   
   }
 
+  /**
+   * 删除渠道码
+   * @desc 删除渠道码
+   *
+   * @return int id
+   */
   public function remove() {
   
     return $this->dm->remove($this->retriveRuleParams(__FUNCTION__));
