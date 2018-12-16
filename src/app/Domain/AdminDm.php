@@ -79,4 +79,10 @@ class AdminDm {
 
   }
 
+  public function addAcct($data) {
+  
+    return $this->_asv->addAcct($data); 
+  
+  }
+
 }

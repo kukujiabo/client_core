@@ -84,4 +84,24 @@ class AdminSv extends BaseService {
   
   }
 
+  public function addAcct($data) {
+  
+    $newData = [
+    
+      'account' => $data['account'],
+
+      'admin_name' => 'channel',
+    
+      'password' => md5($data['password']),
+
+      'state' => 1,
+
+      'created_at' => date('Y-m-d H:i:s')
+    
+    ];
+  
+    return $this->add($newData);
+  
+  }
+
 }

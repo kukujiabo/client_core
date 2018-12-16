@@ -20,6 +20,14 @@ class Admin extends BaseApi {
       
       ],
 
+      'addAcct' => [
+      
+        'account' => 'account|string|true||账号',
+
+        'password' => 'password|string|true||密码'
+      
+      ],
+
       'sessionAdminInfo' => [
 
         'id' => 'id|int|true||管理员id'
@@ -68,6 +76,18 @@ class Admin extends BaseApi {
   public function getAllChannel() {
   
     return $this->dm->getAllChannel($this->retriveRuleParams(__FUNCTION__)); 
+  
+  }
+
+  /**
+   * 新增渠道
+   * @desc 新增渠道
+   *
+   * @return int id
+   */
+  public function addAcct() {
+  
+    return $this->dm->addAcct($this->retriveRuleParams(__FUNCTION__)); 
   
   }
 
