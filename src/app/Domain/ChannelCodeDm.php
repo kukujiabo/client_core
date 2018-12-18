@@ -31,4 +31,10 @@ class ChannelCodeDm {
   
   }
 
+  public function edit($data) {
+  
+    return $this->_ccsv->edit($data);
+  
+  }
+
 }

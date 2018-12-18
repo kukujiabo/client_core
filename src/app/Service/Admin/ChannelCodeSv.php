@@ -48,4 +48,33 @@ class ChannelCodeSv extends BaseService {
   
   }
 
+  public function edit($data) {
+
+    $updateData = [];
+  
+    if ($data['channel_id']) {
+    
+      $updateData['channel_id'] = $data['channel_id'];
+    
+    }
+    if ($data['channel_code']) {
+    
+      $updateData['channel_code'] = $data['channel_code'];
+    
+    }
+    if ($data['bank_id']) {
+    
+      $updateData['bank_id'] = $data['bank_id'];
+    
+    }
+    if ($data['price']) {
+    
+      $updateData['price'] = $data['price'];
+    
+    }
+
+    return ChannelCodeSv::update($data['id'], $updateData);
+  
+  }
+
 }

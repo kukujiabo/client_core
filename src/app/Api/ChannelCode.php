@@ -33,6 +33,16 @@ class ChannelCode extends BaseApi {
       
         'id' => 'id|int|true||渠道id'
       
+      ],
+
+      'edit' => [
+      
+        'id' => 'id|int|true||渠道id',
+        'channel_id' => 'channel_id|int|false||渠道id',
+        'bank_id' => 'bank_id|int|false||银行id',
+        'channel_code' => 'channel_code|string|false||渠道码',
+        'price' => 'price|float|false||单价'
+      
       ]
     
     ]); 
@@ -72,6 +82,18 @@ class ChannelCode extends BaseApi {
   public function remove() {
   
     return $this->dm->remove($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
+  /**
+   * 编辑渠道码
+   * @desc 编辑渠道码
+   *
+   * @return int num
+   */
+  public function edit() {
+  
+    return $this->dm->edit($this->retriveRuleParams(__FUNCTION__)); 
   
   }
 
