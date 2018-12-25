@@ -22,9 +22,9 @@ class AuditCardSv extends BaseService {
 
     $query = [];
 
-    if ($data['sequence']) {
+    if ($data['channel_id']) {
     
-      $query['sequence'] = $data['sequence'];
+      $query['channel_id'] = $data['channel_id'];
     
     }
     if ($data['source']) {
@@ -131,6 +131,32 @@ class AuditCardSv extends BaseService {
 
     return [ 'matched_audit' => $mtNum, 'pass_apply' => $mtApp, 'reject_apply' => $dmtApp ];
   
+  }
+
+  public function getAll($params) {
+
+    $vacSv = new VAuditBankCardSv();
+
+    $query = [];
+
+    if ($data['channel_id']) {
+    
+      $query['channel_id'] = $data['channel_id'];
+    
+    }
+    if ($data['source']) {
+    
+      $query['source'] = $data['source'];
+    
+    }
+    if ($data['bank_id']) {
+    
+      $query['bank_id'] = $data['bank_id'];
+    
+    }
+
+    return $vacSv->all($query);
+
   }
 
 }

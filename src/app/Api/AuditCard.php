@@ -14,7 +14,7 @@ class AuditCard extends BaseApi {
     
       'getList' => [
       
-        'sequence' => 'sequence|string|false||流水号',
+        'channel_id' => 'channel_id|int|false||渠道id',
         'source' => 'source|string|false||渠道号',
         'bank_id' => 'bank_id|int|false||银行id',
         'order' => 'order|string|false||排序',
@@ -29,6 +29,14 @@ class AuditCard extends BaseApi {
         'sequence' => 'sequence|string|false||流水号',
         'bank_id' => 'bank_id|int|false||银行id'
       
+      ],
+
+      'getAll' => [
+
+        'channel_id' => 'channel_id|string|false||渠道id',
+        'source' => 'source|string|false||渠道号',
+        'bank_id' => 'bank_id|int|false||银行id'
+
       ]
     
     ]);
@@ -58,6 +66,18 @@ class AuditCard extends BaseApi {
   
     return $this->dm->balanceOfAccount($this->retriveRuleParams(__FUNCTION__));
   
+  }
+
+  /**
+   * 查询全部
+   * @desc 查询全部
+   *
+   * @return array result
+   */
+  public function getAll() {
+
+    return $this->dm->getAll($this->retriveRuleParams(__FUNCTION__));
+
   }
 
 }

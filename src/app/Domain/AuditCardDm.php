@@ -25,4 +25,10 @@ class AuditCardDm {
   
   }
 
+  public function getAll($params) {
+
+    return $this->_acsv->getAll($params);
+
+  }
+
 }
