@@ -30,6 +30,10 @@ class BankData extends BaseApi {
 
         'bank_id' => 'bank_id|int|false||银行id',
 
+        'channel_code' => 'channel_code|string|false||渠道编码',
+
+        'bus_date' => 'bus_date|string|false||进件日期',
+
         'channel_id' => 'channel_id|int|false||渠道id',
 
         'orig_name' => 'orig_name|string|false||原始文件名',

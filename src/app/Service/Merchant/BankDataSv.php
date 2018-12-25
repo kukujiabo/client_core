@@ -7,6 +7,7 @@ use PhpOffice\PhpSpreadSheet\SpreadSheet;
 use PhpOffice\PhpSpreadSheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use App\Exception\LogException;
+use App\Admin\ChannelCodeSv;
 
 /**
  * 银行数据
@@ -38,6 +39,10 @@ class BankDataSv extends BaseService {
     
     } else {
 
+      $ccSv = new ChannelCodeSv();
+
+      $channelCode = $ccsv->findOne([ 'bank_id' => $data['bank_id'], 'channel_id' => $data['channel_id']]);
+
       $sequence = time() . rand(1000, 9999);
     
       $newFile = [
@@ -49,6 +54,8 @@ class BankDataSv extends BaseService {
         'sequence' => $sequence,
 
         'orig_name' => $data['orig_name'],
+
+        'channel_code' => $data['channel_code'],
 
         'state' => 0,
 
@@ -94,6 +101,16 @@ class BankDataSv extends BaseService {
     if ($data['bank_id']) {
     
       $query['bank_id'] = $data['bank_id'];
+    
+    }
+    if ($data['channel_code']) {
+    
+      $query['channel_code'] = $data['channel_code'];
+    
+    }
+    if ($data['bus_date']) {
+    
+      $query['bus_date'] = $data['bus_date'];
     
     }
 
