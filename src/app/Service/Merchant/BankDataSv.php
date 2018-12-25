@@ -41,7 +41,7 @@ class BankDataSv extends BaseService {
 
       $ccSv = new ChannelCodeSv();
 
-      $channelCode = $ccsv->findOne([ 'bank_id' => $data['bank_id'], 'channel_id' => $data['channel_id']]);
+      $channelCode = $ccSv->findOne([ 'bank_id' => $data['bank_id'], 'channel_id' => $data['channel_id']]);
 
       $sequence = time() . rand(1000, 9999);
     
