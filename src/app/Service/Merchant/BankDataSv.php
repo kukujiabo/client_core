@@ -7,7 +7,7 @@ use PhpOffice\PhpSpreadSheet\SpreadSheet;
 use PhpOffice\PhpSpreadSheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use App\Exception\LogException;
-use App\Admin\ChannelCodeSv;
+use App\Service\Admin\ChannelCodeSv;
 
 /**
  * 银行数据
