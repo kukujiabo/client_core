@@ -16,7 +16,7 @@ class BankData extends BaseApi {
       
         'bank_id' => 'bank_id|int|false||银行id',
         
-        'channel_id' => 'channel_id|int|true||渠道id',
+        'channel_id' => 'channel_id|int|false||渠道id',
       
         'file_path' => 'file_path|string|true||文件地址',
 
@@ -28,7 +28,7 @@ class BankData extends BaseApi {
       
         'mname' => 'mname|string|false||商户名称',
 
-        'bank_id' => 'bank_id|int|true||银行id',
+        'bank_id' => 'bank_id|int|false||银行id',
 
         'channel_id' => 'channel_id|int|false||渠道id',
 
