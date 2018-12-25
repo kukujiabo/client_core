@@ -15,6 +15,8 @@ class AuditCard extends BaseApi {
       'getList' => [
       
         'channel_id' => 'channel_id|int|false||渠道id',
+        'begin_date' => 'begin_date|string|false||开始时间',
+        'end_date' => 'end_date|string|false||结束时间',
         'source' => 'source|string|false||渠道号',
         'bank_id' => 'bank_id|int|false||银行id',
         'order' => 'order|string|false||排序',
@@ -35,6 +37,8 @@ class AuditCard extends BaseApi {
 
         'channel_id' => 'channel_id|string|false||渠道id',
         'source' => 'source|string|false||渠道号',
+        'begin_date' => 'begin_date|string|false||开始时间',
+        'end_date' => 'end_date|string|false||结束时间',
         'bank_id' => 'bank_id|int|false||银行id'
 
       ]

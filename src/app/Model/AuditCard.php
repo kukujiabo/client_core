@@ -5,7 +5,9 @@ class AuditCard extends BaseModel {
 
   protected $_queryOptionRule = [
   
-    'id' => 'in'
+    'id' => 'in',
+
+    'in_date' => 'range'
   
   ];
 

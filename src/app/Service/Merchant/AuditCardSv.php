@@ -37,6 +37,11 @@ class AuditCardSv extends BaseService {
       $query['bank_id'] = $data['bank_id'];
     
     }
+    if ($data['begin_date']) {
+
+      $query['in_date'] = "eg|{$data['begin_date']};el|{$data['end_date']}";
+
+    }
 
     return $vacSv->queryList($query, $data['fields'], $data['order'], $data['page'], $data['page_size']);
   
@@ -153,6 +158,11 @@ class AuditCardSv extends BaseService {
     
       $query['bank_id'] = $data['bank_id'];
     
+    }
+    if ($data['begin_date']) {
+
+      $query['in_date'] = "eg|{$data['begin_date']};el|{$data['end_date']}";
+
     }
 
     return $vacSv->all($query);
