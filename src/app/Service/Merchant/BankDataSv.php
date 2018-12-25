@@ -155,11 +155,11 @@ class BankDataSv extends BaseService {
         'state' => $row[2],
         'in_date' => $row[3],
         'audit_date' => $row[4],
-        'source' => $data['channel_code'],
+        'source' => $fileInfo['channel_code'],
         'commission' => $row[6],
         'counted' => 0,
         'bank_id' => $fileInfo['bank_id'],
-        'channel_id' => $data['channel_id'],
+        'channel_id' => $fileInfo['channel_id'],
         'sequence' => $fileInfo['sequence'],
         'created_at' => date('Y-m-d H:i:s')
 
