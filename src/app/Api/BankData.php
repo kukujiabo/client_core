@@ -20,7 +20,11 @@ class BankData extends BaseApi {
       
         'file_path' => 'file_path|string|true||文件地址',
 
-        'orig_name' => 'orig_name|string|true||源文件名称'
+        'orig_name' => 'orig_name|string|true||源文件名称',
+
+        'channel_code' => 'channel_code|string|false||渠道编码',
+
+        'bus_date' => 'bus_date|string|false||进件日期'
       
       ],
 

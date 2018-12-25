@@ -51,6 +51,10 @@ class BankDataSv extends BaseService {
 
         'channel_id' => $data['channel_id'],
 
+        'channel_code' => $data['channel_code'],
+
+        'bus_date' => $data['bus_date'],
+
         'sequence' => $sequence,
 
         'orig_name' => $data['orig_name'],
