@@ -28,6 +28,14 @@ class BankData extends BaseApi {
       
       ],
 
+      'update' => [
+
+        'id' => 'id|int|true||id',
+
+        'download' => 'download|int|true||是否下载'
+
+      ],
+
       'getList' => [
       
         'mname' => 'mname|string|false||商户名称',
@@ -116,6 +124,19 @@ class BankData extends BaseApi {
   
     return $this->dm->create($this->retriveRuleParams(__FUNCTION__));
   
+  }
+
+
+  /**
+   * 查询详情
+   * @desc 查询详情
+   *
+   * @return int id
+   */
+  public function update() {
+
+    return $this->dm->update($this->retriveRuleParams(__FUNCTION__));
+
   }
 
   /**

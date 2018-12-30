@@ -43,4 +43,10 @@ class BankDataDm {
 
   }
 
+  public function update($data) {
+
+    return $this->_bdsv->update($data['id'], [ 'download' => 1 ]);
+
+  }
+
 }
