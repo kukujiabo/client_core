@@ -44,6 +44,8 @@ class BankData extends BaseApi {
 
         'fields' => 'fields|string|false||字段',
 
+        'state' => 'state|int|false||字段',
+
         'order' => 'order|string|false||排序',
 
         'page' => 'page|int|false|1|页码',
@@ -68,6 +70,12 @@ class BankData extends BaseApi {
         'success_num' => 'success_num|int|false|0|核卡数量',
         'commission' => 'commission|float|false|0|佣金'
       
+      ],
+
+      'getDetail' => [
+
+        'id' => 'id|int|true||获取详情'
+
       ]
 
     ]);
@@ -108,6 +116,18 @@ class BankData extends BaseApi {
   
     return $this->dm->create($this->retriveRuleParams(__FUNCTION__));
   
+  }
+
+  /**
+   * 查询详情
+   * @desc 查询详情
+   *
+   * @return int id
+   */
+  public function getDetail() {
+
+    return $this->dm->getDetail($this->retriveRuleParams(__FUNCTION__));
+
   }
 
 }

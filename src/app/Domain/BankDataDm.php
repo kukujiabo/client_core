@@ -37,4 +37,10 @@ class BankDataDm {
   
   }
 
+  public function getDetail($data) {
+
+    return $this->_bdsv->findOne($data['id']);
+
+  }
+
 }

@@ -117,6 +117,11 @@ class BankDataSv extends BaseService {
       $query['bus_date'] = $data['bus_date'];
     
     }
+    if (isset($data['state'])) {
+    
+      $query['state'] = $data['state'];
+    
+    }
 
     return $fileSv->queryList($query, $data['fields'], $data['order'], $data['page'], $data['page_size']);
   
