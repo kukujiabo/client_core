@@ -84,6 +84,12 @@ class BankData extends BaseApi {
 
         'id' => 'id|int|true||获取详情'
 
+      ],
+
+      'remove' => [
+
+        'id' => 'id|int|true||对账单id'
+
       ]
 
     ]);
@@ -148,6 +154,18 @@ class BankData extends BaseApi {
   public function getDetail() {
 
     return $this->dm->getDetail($this->retriveRuleParams(__FUNCTION__));
+
+  }
+
+  /**
+   * 删除对账单
+   * @desc 删除对账单
+   *
+   * @return int id
+   */
+  public function remove() {
+
+    return $this->dm->remove($this->retriveRuleParams(__FUNCTION__));
 
   }
 

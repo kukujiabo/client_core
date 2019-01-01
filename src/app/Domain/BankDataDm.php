@@ -49,4 +49,10 @@ class BankDataDm {
 
   }
 
+  public function remove($data) {
+
+    return $this->_bdsv->remove($data['id']);
+
+  }
+
 }
